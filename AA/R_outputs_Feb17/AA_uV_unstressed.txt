@@ -1,0 +1,9 @@
+next_sound,tokens
+a,20
+ā,1
+ai,1
+au,3
+e,4
+i,3
+o,1
+u,2

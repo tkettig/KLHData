@@ -1,0 +1,3 @@
+vowel,tokens
+āi,23
+āu,9

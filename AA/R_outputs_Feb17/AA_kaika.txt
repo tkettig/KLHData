@@ -1,0 +1,3 @@
+word,tokens
+kaikaina,3
+kaikamahine,12

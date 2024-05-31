@@ -1,0 +1,7 @@
+next_sound,tokens
+h,5
+ʻ,15
+k,23
+l,46
+m,36
+n,27

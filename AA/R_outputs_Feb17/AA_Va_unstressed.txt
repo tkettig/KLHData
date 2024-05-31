@@ -1,0 +1,8 @@
+previous_sound,tokens
+ai,2
+au,2
+e,20
+i,4
+o,30
+oi,1
+u,67

@@ -1,0 +1,6 @@
+following_vowel,tokens
+a,276
+e,101
+i,89
+o,43
+u,69

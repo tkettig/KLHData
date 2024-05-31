@@ -1,0 +1,4 @@
+stress,tokens
+primary,232
+secondary,53
+unstressed,190

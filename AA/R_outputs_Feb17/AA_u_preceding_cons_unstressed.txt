@@ -1,0 +1,9 @@
+previous_sound,tokens
+h,7
+ʻ,33
+k,31
+l,56
+m,18
+n,7
+p,1
+sil,1

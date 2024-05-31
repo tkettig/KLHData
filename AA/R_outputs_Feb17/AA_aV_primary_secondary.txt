@@ -1,0 +1,5 @@
+vowel,tokens
+ae,13
+ai,202
+ao,28
+au,197

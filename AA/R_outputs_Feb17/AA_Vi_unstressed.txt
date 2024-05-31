@@ -1,0 +1,6 @@
+previous_sound,tokens
+a,8
+ā,1
+au,2
+ou,2
+u,36

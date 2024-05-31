@@ -1,0 +1,17 @@
+following_vowel,tokens
+a,74
+ā,20
+ai,20
+au,14
+e,24
+ē,5
+ei,13
+ēi,4
+i,37
+ī,1
+o,45
+ō,8
+ou,2
+sil,98
+u,15
+ū,20

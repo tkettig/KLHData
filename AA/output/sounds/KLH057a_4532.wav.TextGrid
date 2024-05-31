@@ -1,0 +1,95 @@
+File type = "ooTextFile"
+Object class = "TextGrid"
+
+xmin = 0 
+xmax = 0.2585260770975057 
+tiers? <exists> 
+size = 2 
+item []: 
+    item [1]:
+        class = "TextTier" 
+        name = "GCIs" 
+        xmin = 0 
+        xmax = 0.2585260770975057 
+        points: size = 21 
+        points [1]:
+            number = 0.030431 
+            mark = "" 
+        points [2]:
+            number = 0.035941 
+            mark = "" 
+        points [3]:
+            number = 0.041701 
+            mark = "" 
+        points [4]:
+            number = 0.047279 
+            mark = "" 
+        points [5]:
+            number = 0.052925 
+            mark = "" 
+        points [6]:
+            number = 0.058617 
+            mark = "" 
+        points [7]:
+            number = 0.064354 
+            mark = "" 
+        points [8]:
+            number = 0.070363 
+            mark = "" 
+        points [9]:
+            number = 0.076259 
+            mark = "" 
+        points [10]:
+            number = 0.082268 
+            mark = "" 
+        points [11]:
+            number = 0.088481 
+            mark = "" 
+        points [12]:
+            number = 0.094717 
+            mark = "" 
+        points [13]:
+            number = 0.101224 
+            mark = "" 
+        points [14]:
+            number = 0.10805 
+            mark = "" 
+        points [15]:
+            number = 0.114785 
+            mark = "" 
+        points [16]:
+            number = 0.121814 
+            mark = "" 
+        points [17]:
+            number = 0.129025 
+            mark = "" 
+        points [18]:
+            number = 0.136553 
+            mark = "" 
+        points [19]:
+            number = 0.144354 
+            mark = "" 
+        points [20]:
+            number = 0.152381 
+            mark = "" 
+        points [21]:
+            number = 0.161655 
+            mark = "" 
+    item [2]:
+        class = "IntervalTier" 
+        name = "Phonation" 
+        xmin = 0 
+        xmax = 0.2585260770975057 
+        intervals: size = 3 
+        intervals [1]:
+            xmin = 0 
+            xmax = 0.030431 
+            text = "" 
+        intervals [2]:
+            xmin = 0.030431 
+            xmax = 0.171655 
+            text = "phonation" 
+        intervals [3]:
+            xmin = 0.171655 
+            xmax = 0.2585260770975057 
+            text = "" 

@@ -1,0 +1,4 @@
+previous_sound,tokens
+e,7
+i,2
+u,2

@@ -1,0 +1,17 @@
+previous_vowel,tokens
+a,208
+ā,82
+ae,1
+ai,7
+au,25
+e,82
+ē,2
+ei,2
+i,38
+ī,1
+o,62
+ō,4
+oi,3
+ou,11
+sil,3
+u,47

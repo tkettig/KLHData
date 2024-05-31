@@ -1,0 +1,5 @@
+previous_sound,tokens
+a,14
+ā,8
+au,5
+e,1

@@ -1,0 +1,12 @@
+vowel,tokens
+ae,13
+ai,169
+āi,23
+ao,24
+au,98
+āu,2
+ei,56
+eu,1
+iu,1
+oi,21
+ou,89
