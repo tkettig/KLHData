@@ -1,0 +1,160 @@
+File type = "ooTextFile"
+Object class = "TextGrid"
+
+xmin = 0 
+xmax = 0.27401360544217684 
+tiers? <exists> 
+size = 2 
+item []: 
+    item [1]:
+        class = "TextTier" 
+        name = "GCIs" 
+        xmin = 0 
+        xmax = 0.27401360544217684 
+        points: size = 44 
+        points [1]:
+            number = 0.002132 
+            mark = "" 
+        points [2]:
+            number = 0.008345 
+            mark = "" 
+        points [3]:
+            number = 0.014603 
+            mark = "" 
+        points [4]:
+            number = 0.020884 
+            mark = "" 
+        points [5]:
+            number = 0.026961 
+            mark = "" 
+        points [6]:
+            number = 0.032925 
+            mark = "" 
+        points [7]:
+            number = 0.038912 
+            mark = "" 
+        points [8]:
+            number = 0.044785 
+            mark = "" 
+        points [9]:
+            number = 0.05059 
+            mark = "" 
+        points [10]:
+            number = 0.05644 
+            mark = "" 
+        points [11]:
+            number = 0.062268 
+            mark = "" 
+        points [12]:
+            number = 0.068073 
+            mark = "" 
+        points [13]:
+            number = 0.073946 
+            mark = "" 
+        points [14]:
+            number = 0.079796 
+            mark = "" 
+        points [15]:
+            number = 0.085646 
+            mark = "" 
+        points [16]:
+            number = 0.091519 
+            mark = "" 
+        points [17]:
+            number = 0.09737 
+            mark = "" 
+        points [18]:
+            number = 0.103129 
+            mark = "" 
+        points [19]:
+            number = 0.108889 
+            mark = "" 
+        points [20]:
+            number = 0.114512 
+            mark = "" 
+        points [21]:
+            number = 0.120113 
+            mark = "" 
+        points [22]:
+            number = 0.12576 
+            mark = "" 
+        points [23]:
+            number = 0.131315 
+            mark = "" 
+        points [24]:
+            number = 0.136939 
+            mark = "" 
+        points [25]:
+            number = 0.142494 
+            mark = "" 
+        points [26]:
+            number = 0.147982 
+            mark = "" 
+        points [27]:
+            number = 0.153492 
+            mark = "" 
+        points [28]:
+            number = 0.159002 
+            mark = "" 
+        points [29]:
+            number = 0.164444 
+            mark = "" 
+        points [30]:
+            number = 0.169955 
+            mark = "" 
+        points [31]:
+            number = 0.175329 
+            mark = "" 
+        points [32]:
+            number = 0.180748 
+            mark = "" 
+        points [33]:
+            number = 0.186259 
+            mark = "" 
+        points [34]:
+            number = 0.191587 
+            mark = "" 
+        points [35]:
+            number = 0.197166 
+            mark = "" 
+        points [36]:
+            number = 0.20254 
+            mark = "" 
+        points [37]:
+            number = 0.208027 
+            mark = "" 
+        points [38]:
+            number = 0.213515 
+            mark = "" 
+        points [39]:
+            number = 0.218957 
+            mark = "" 
+        points [40]:
+            number = 0.224444 
+            mark = "" 
+        points [41]:
+            number = 0.230045 
+            mark = "" 
+        points [42]:
+            number = 0.235601 
+            mark = "" 
+        points [43]:
+            number = 0.241179 
+            mark = "" 
+        points [44]:
+            number = 0.246893 
+            mark = "" 
+    item [2]:
+        class = "IntervalTier" 
+        name = "Phonation" 
+        xmin = 0 
+        xmax = 0.27401360544217684 
+        intervals: size = 2 
+        intervals [1]:
+            xmin = 0 
+            xmax = 0.002132 
+            text = "" 
+        intervals [2]:
+            xmin = 0.002132 
+            xmax = 0.27401360544217684 
+            text = "phonation" 

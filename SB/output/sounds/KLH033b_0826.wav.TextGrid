@@ -1,0 +1,110 @@
+File type = "ooTextFile"
+Object class = "TextGrid"
+
+xmin = 0 
+xmax = 0.3419501133786848 
+tiers? <exists> 
+size = 2 
+item []: 
+    item [1]:
+        class = "TextTier" 
+        name = "GCIs" 
+        xmin = 0 
+        xmax = 0.3419501133786848 
+        points: size = 26 
+        points [1]:
+            number = 0.054966 
+            mark = "" 
+        points [2]:
+            number = 0.064989 
+            mark = "" 
+        points [3]:
+            number = 0.074694 
+            mark = "" 
+        points [4]:
+            number = 0.084172 
+            mark = "" 
+        points [5]:
+            number = 0.09356 
+            mark = "" 
+        points [6]:
+            number = 0.10356 
+            mark = "" 
+        points [7]:
+            number = 0.113968 
+            mark = "" 
+        points [8]:
+            number = 0.124989 
+            mark = "" 
+        points [9]:
+            number = 0.136803 
+            mark = "" 
+        points [10]:
+            number = 0.149048 
+            mark = "" 
+        points [11]:
+            number = 0.160703 
+            mark = "" 
+        points [12]:
+            number = 0.171587 
+            mark = "" 
+        points [13]:
+            number = 0.181451 
+            mark = "" 
+        points [14]:
+            number = 0.190476 
+            mark = "" 
+        points [15]:
+            number = 0.199342 
+            mark = "" 
+        points [16]:
+            number = 0.208231 
+            mark = "" 
+        points [17]:
+            number = 0.217007 
+            mark = "" 
+        points [18]:
+            number = 0.225782 
+            mark = "" 
+        points [19]:
+            number = 0.234739 
+            mark = "" 
+        points [20]:
+            number = 0.243968 
+            mark = "" 
+        points [21]:
+            number = 0.253424 
+            mark = "" 
+        points [22]:
+            number = 0.263016 
+            mark = "" 
+        points [23]:
+            number = 0.272789 
+            mark = "" 
+        points [24]:
+            number = 0.282857 
+            mark = "" 
+        points [25]:
+            number = 0.292812 
+            mark = "" 
+        points [26]:
+            number = 0.302653 
+            mark = "" 
+    item [2]:
+        class = "IntervalTier" 
+        name = "Phonation" 
+        xmin = 0 
+        xmax = 0.3419501133786848 
+        intervals: size = 3 
+        intervals [1]:
+            xmin = 0 
+            xmax = 0.054966 
+            text = "" 
+        intervals [2]:
+            xmin = 0.054966 
+            xmax = 0.312653 
+            text = "phonation" 
+        intervals [3]:
+            xmin = 0.312653 
+            xmax = 0.3419501133786848 
+            text = "" 

@@ -1,0 +1,4 @@
+word,tokens
+kaikamahine,6
+laila,14
+maikaʻi,2

@@ -1,0 +1,4 @@
+word,tokens
+ʻaʻohe,6
+ʻaʻole,20
+ʻale,3
