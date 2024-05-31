@@ -1,0 +1,3 @@
+word,tokens
+laila,7
+maikaʻi,1

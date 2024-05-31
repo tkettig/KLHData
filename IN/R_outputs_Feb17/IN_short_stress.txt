@@ -1,0 +1,15 @@
+stress,vowel,tokens
+primary,a,77
+primary,e,30
+primary,i,43
+primary,o,56
+primary,u,13
+secondary,a,30
+secondary,e,2
+secondary,i,1
+secondary,o,16
+unstressed,a,102
+unstressed,e,77
+unstressed,i,59
+unstressed,o,58
+unstressed,u,14
