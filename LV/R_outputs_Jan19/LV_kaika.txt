@@ -1,0 +1,3 @@
+word,tokens
+kaikamāhine,3
+kaikunāne,2

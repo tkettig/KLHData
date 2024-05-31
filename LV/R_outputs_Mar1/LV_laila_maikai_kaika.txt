@@ -1,0 +1,7 @@
+word,tokens
+hoʻomaikaʻi,3
+kaikamahine,1
+kaikunāne,1
+laila,8
+lokomaikaʻi,5
+maikaʻi,1

@@ -1,0 +1,4 @@
+word,tokens
+hoʻomaikaʻi,3
+lokomaikaʻi,4
+maikaʻi,1

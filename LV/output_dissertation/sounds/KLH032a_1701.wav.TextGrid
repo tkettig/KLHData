@@ -1,0 +1,160 @@
+File type = "ooTextFile"
+Object class = "TextGrid"
+
+xmin = 0 
+xmax = 0.23528344671201815 
+tiers? <exists> 
+size = 2 
+item []: 
+    item [1]:
+        class = "TextTier" 
+        name = "GCIs" 
+        xmin = 0 
+        xmax = 0.23528344671201815 
+        points: size = 44 
+        points [1]:
+            number = 0.003923 
+            mark = "" 
+        points [2]:
+            number = 0.009841 
+            mark = "" 
+        points [3]:
+            number = 0.015556 
+            mark = "" 
+        points [4]:
+            number = 0.021293 
+            mark = "" 
+        points [5]:
+            number = 0.027075 
+            mark = "" 
+        points [6]:
+            number = 0.032857 
+            mark = "" 
+        points [7]:
+            number = 0.038458 
+            mark = "" 
+        points [8]:
+            number = 0.044104 
+            mark = "" 
+        points [9]:
+            number = 0.049592 
+            mark = "" 
+        points [10]:
+            number = 0.055011 
+            mark = "" 
+        points [11]:
+            number = 0.06034 
+            mark = "" 
+        points [12]:
+            number = 0.065601 
+            mark = "" 
+        points [13]:
+            number = 0.070703 
+            mark = "" 
+        points [14]:
+            number = 0.075737 
+            mark = "" 
+        points [15]:
+            number = 0.08068 
+            mark = "" 
+        points [16]:
+            number = 0.08551 
+            mark = "" 
+        points [17]:
+            number = 0.090272 
+            mark = "" 
+        points [18]:
+            number = 0.094989 
+            mark = "" 
+        points [19]:
+            number = 0.099592 
+            mark = "" 
+        points [20]:
+            number = 0.104172 
+            mark = "" 
+        points [21]:
+            number = 0.108662 
+            mark = "" 
+        points [22]:
+            number = 0.113152 
+            mark = "" 
+        points [23]:
+            number = 0.117551 
+            mark = "" 
+        points [24]:
+            number = 0.121973 
+            mark = "" 
+        points [25]:
+            number = 0.126281 
+            mark = "" 
+        points [26]:
+            number = 0.130544 
+            mark = "" 
+        points [27]:
+            number = 0.13483 
+            mark = "" 
+        points [28]:
+            number = 0.139002 
+            mark = "" 
+        points [29]:
+            number = 0.143197 
+            mark = "" 
+        points [30]:
+            number = 0.147324 
+            mark = "" 
+        points [31]:
+            number = 0.151474 
+            mark = "" 
+        points [32]:
+            number = 0.155556 
+            mark = "" 
+        points [33]:
+            number = 0.159615 
+            mark = "" 
+        points [34]:
+            number = 0.163651 
+            mark = "" 
+        points [35]:
+            number = 0.167687 
+            mark = "" 
+        points [36]:
+            number = 0.171723 
+            mark = "" 
+        points [37]:
+            number = 0.175737 
+            mark = "" 
+        points [38]:
+            number = 0.179683 
+            mark = "" 
+        points [39]:
+            number = 0.183651 
+            mark = "" 
+        points [40]:
+            number = 0.187664 
+            mark = "" 
+        points [41]:
+            number = 0.191655 
+            mark = "" 
+        points [42]:
+            number = 0.195669 
+            mark = "" 
+        points [43]:
+            number = 0.199705 
+            mark = "" 
+        points [44]:
+            number = 0.203832 
+            mark = "" 
+    item [2]:
+        class = "IntervalTier" 
+        name = "Phonation" 
+        xmin = 0 
+        xmax = 0.23528344671201815 
+        intervals: size = 2 
+        intervals [1]:
+            xmin = 0 
+            xmax = 0.003923 
+            text = "" 
+        intervals [2]:
+            xmin = 0.003923 
+            xmax = 0.23528344671201815 
+            text = "phonation" 

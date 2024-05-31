@@ -1,0 +1,5 @@
+word,tokens
+hoʻomaikaʻi,12
+laila,14
+lokomaikaʻi,18
+maikaʻi,3
