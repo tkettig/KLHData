@@ -1,0 +1,3 @@
+word,tokens
+maikaʻi,2
+pōmaikaʻi,2
