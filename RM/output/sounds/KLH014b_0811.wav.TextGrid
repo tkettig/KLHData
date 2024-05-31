@@ -1,0 +1,317 @@
+File type = "ooTextFile"
+Object class = "TextGrid"
+
+xmin = 0 
+xmax = 0.6608163265306123 
+tiers? <exists> 
+size = 2 
+item []: 
+    item [1]:
+        class = "TextTier" 
+        name = "GCIs" 
+        xmin = 0 
+        xmax = 0.6608163265306123 
+        points: size = 95 
+        points [1]:
+            number = 0.027846 
+            mark = "" 
+        points [2]:
+            number = 0.033537 
+            mark = "" 
+        points [3]:
+            number = 0.039501 
+            mark = "" 
+        points [4]:
+            number = 0.045011 
+            mark = "" 
+        points [5]:
+            number = 0.050476 
+            mark = "" 
+        points [6]:
+            number = 0.055873 
+            mark = "" 
+        points [7]:
+            number = 0.061429 
+            mark = "" 
+        points [8]:
+            number = 0.067007 
+            mark = "" 
+        points [9]:
+            number = 0.072449 
+            mark = "" 
+        points [10]:
+            number = 0.07805 
+            mark = "" 
+        points [11]:
+            number = 0.083583 
+            mark = "" 
+        points [12]:
+            number = 0.089161 
+            mark = "" 
+        points [13]:
+            number = 0.095374 
+            mark = "" 
+        points [14]:
+            number = 0.101043 
+            mark = "" 
+        points [15]:
+            number = 0.106735 
+            mark = "" 
+        points [16]:
+            number = 0.112313 
+            mark = "" 
+        points [17]:
+            number = 0.117823 
+            mark = "" 
+        points [18]:
+            number = 0.123673 
+            mark = "" 
+        points [19]:
+            number = 0.129365 
+            mark = "" 
+        points [20]:
+            number = 0.135057 
+            mark = "" 
+        points [21]:
+            number = 0.140748 
+            mark = "" 
+        points [22]:
+            number = 0.146485 
+            mark = "" 
+        points [23]:
+            number = 0.151361 
+            mark = "" 
+        points [24]:
+            number = 0.157937 
+            mark = "" 
+        points [25]:
+            number = 0.163719 
+            mark = "" 
+        points [26]:
+            number = 0.169388 
+            mark = "" 
+        points [27]:
+            number = 0.175102 
+            mark = "" 
+        points [28]:
+            number = 0.180975 
+            mark = "" 
+        points [29]:
+            number = 0.186735 
+            mark = "" 
+        points [30]:
+            number = 0.192744 
+            mark = "" 
+        points [31]:
+            number = 0.198571 
+            mark = "" 
+        points [32]:
+            number = 0.204512 
+            mark = "" 
+        points [33]:
+            number = 0.210408 
+            mark = "" 
+        points [34]:
+            number = 0.216304 
+            mark = "" 
+        points [35]:
+            number = 0.222222 
+            mark = "" 
+        points [36]:
+            number = 0.228141 
+            mark = "" 
+        points [37]:
+            number = 0.234104 
+            mark = "" 
+        points [38]:
+            number = 0.240068 
+            mark = "" 
+        points [39]:
+            number = 0.246032 
+            mark = "" 
+        points [40]:
+            number = 0.252041 
+            mark = "" 
+        points [41]:
+            number = 0.258027 
+            mark = "" 
+        points [42]:
+            number = 0.264059 
+            mark = "" 
+        points [43]:
+            number = 0.270113 
+            mark = "" 
+        points [44]:
+            number = 0.276145 
+            mark = "" 
+        points [45]:
+            number = 0.282177 
+            mark = "" 
+        points [46]:
+            number = 0.288231 
+            mark = "" 
+        points [47]:
+            number = 0.294308 
+            mark = "" 
+        points [48]:
+            number = 0.300408 
+            mark = "" 
+        points [49]:
+            number = 0.30644 
+            mark = "" 
+        points [50]:
+            number = 0.312472 
+            mark = "" 
+        points [51]:
+            number = 0.318503 
+            mark = "" 
+        points [52]:
+            number = 0.32458 
+            mark = "" 
+        points [53]:
+            number = 0.330635 
+            mark = "" 
+        points [54]:
+            number = 0.336803 
+            mark = "" 
+        points [55]:
+            number = 0.342812 
+            mark = "" 
+        points [56]:
+            number = 0.348889 
+            mark = "" 
+        points [57]:
+            number = 0.354966 
+            mark = "" 
+        points [58]:
+            number = 0.361088 
+            mark = "" 
+        points [59]:
+            number = 0.367279 
+            mark = "" 
+        points [60]:
+            number = 0.373469 
+            mark = "" 
+        points [61]:
+            number = 0.379637 
+            mark = "" 
+        points [62]:
+            number = 0.385805 
+            mark = "" 
+        points [63]:
+            number = 0.392041 
+            mark = "" 
+        points [64]:
+            number = 0.398209 
+            mark = "" 
+        points [65]:
+            number = 0.404444 
+            mark = "" 
+        points [66]:
+            number = 0.410612 
+            mark = "" 
+        points [67]:
+            number = 0.416803 
+            mark = "" 
+        points [68]:
+            number = 0.422948 
+            mark = "" 
+        points [69]:
+            number = 0.429138 
+            mark = "" 
+        points [70]:
+            number = 0.435329 
+            mark = "" 
+        points [71]:
+            number = 0.441519 
+            mark = "" 
+        points [72]:
+            number = 0.447755 
+            mark = "" 
+        points [73]:
+            number = 0.453923 
+            mark = "" 
+        points [74]:
+            number = 0.460181 
+            mark = "" 
+        points [75]:
+            number = 0.466349 
+            mark = "" 
+        points [76]:
+            number = 0.472562 
+            mark = "" 
+        points [77]:
+            number = 0.478776 
+            mark = "" 
+        points [78]:
+            number = 0.485034 
+            mark = "" 
+        points [79]:
+            number = 0.49127 
+            mark = "" 
+        points [80]:
+            number = 0.497438 
+            mark = "" 
+        points [81]:
+            number = 0.503764 
+            mark = "" 
+        points [82]:
+            number = 0.509977 
+            mark = "" 
+        points [83]:
+            number = 0.516236 
+            mark = "" 
+        points [84]:
+            number = 0.522472 
+            mark = "" 
+        points [85]:
+            number = 0.52873 
+            mark = "" 
+        points [86]:
+            number = 0.535011 
+            mark = "" 
+        points [87]:
+            number = 0.541338 
+            mark = "" 
+        points [88]:
+            number = 0.547619 
+            mark = "" 
+        points [89]:
+            number = 0.554014 
+            mark = "" 
+        points [90]:
+            number = 0.56034 
+            mark = "" 
+        points [91]:
+            number = 0.566689 
+            mark = "" 
+        points [92]:
+            number = 0.573152 
+            mark = "" 
+        points [93]:
+            number = 0.579524 
+            mark = "" 
+        points [94]:
+            number = 0.586054 
+            mark = "" 
+        points [95]:
+            number = 0.59254 
+            mark = "" 
+    item [2]:
+        class = "IntervalTier" 
+        name = "Phonation" 
+        xmin = 0 
+        xmax = 0.6608163265306123 
+        intervals: size = 3 
+        intervals [1]:
+            xmin = 0 
+            xmax = 0.027846 
+            text = "" 
+        intervals [2]:
+            xmin = 0.027846 
+            xmax = 0.60254 
+            text = "phonation" 
+        intervals [3]:
+            xmin = 0.60254 
+            xmax = 0.6608163265306123 
+            text = "" 

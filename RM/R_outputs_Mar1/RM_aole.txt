@@ -1,0 +1,7 @@
+word,tokens
+hope,2
+ʻahe,4
+ʻaʻale,3
+ʻaʻohe,5
+ʻaʻole,28
+ʻale,12

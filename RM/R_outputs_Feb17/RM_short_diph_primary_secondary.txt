@@ -1,0 +1,10 @@
+vowel,tokens
+ae,13
+ai,83
+ao,37
+au,64
+ei,17
+eu,3
+iu,3
+oi,10
+ou,18

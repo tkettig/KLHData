@@ -1,0 +1,3643 @@
+File type = "ooTextFile"
+Object class = "TextGrid"
+
+xmin = 0.0
+xmax = 3411.721
+tiers? <exists>
+size = 3
+item []:
+    item[1]:
+        class = "IntervalTier"
+        name = "RM"
+        xmin = 0.0
+        xmax = 3411.721
+        intervals: size = 513
+        intervals [1]
+            xmin = 0.0
+            xmax = 479.905
+            text = ""
+        intervals [2]
+            xmin = 479.905
+            xmax = 485.004
+            text = "Hānau wau i, mai Wai Wainiha, Kauaʻi"
+        intervals [3]
+            xmin = 485.004
+            xmax = 486.711
+            text = ""
+        intervals [4]
+            xmin = 486.711
+            xmax = 487.12
+            text = "Kauaʻi"
+        intervals [5]
+            xmin = 487.12
+            xmax = 489.688
+            text = ""
+        intervals [6]
+            xmin = 489.688
+            xmax = 491.329
+            text = "Hanalei.  Kalana ʻo Hanalei"
+        intervals [7]
+            xmin = 491.329
+            xmax = 502.292
+            text = ""
+        intervals [8]
+            xmin = 502.292
+            xmax = 505.005
+            text = "aia ma waena o Hanalei"
+        intervals [9]
+            xmin = 505.005
+            xmax = 507.049
+            text = ""
+        intervals [10]
+            xmin = 507.049
+            xmax = 507.844
+            text = " o Lumahaʻi"
+        intervals [11]
+            xmin = 507.844
+            xmax = 508.385
+            text = ""
+        intervals [12]
+            xmin = 508.385
+            xmax = 509.14
+            text = "me Hāʻena"
+        intervals [13]
+            xmin = 509.14
+            xmax = 515.166
+            text = ""
+        intervals [14]
+            xmin = 515.166
+            xmax = 516.622
+            text = "ʻO koʻu makua kāne,"
+        intervals [15]
+            xmin = 516.622
+            xmax = 518.351
+            text = ""
+        intervals [16]
+            xmin = 518.351
+            xmax = 519.951
+            text = "Kamīkana ʻĪlālāʻole."
+        intervals [17]
+            xmin = 519.951
+            xmax = 520.696
+            text = ""
+        intervals [18]
+            xmin = 520.696
+            xmax = 522.77
+            text = "A me koʻu makuahine ʻo Minehāhā"
+        intervals [19]
+            xmin = 522.77
+            xmax = 533.589
+            text = ""
+        intervals [20]
+            xmin = 533.589
+            xmax = 535.543
+            text = "ka wā male ʻana, a ʻo Mahuiki,"
+        intervals [21]
+            xmin = 535.543
+            xmax = 539.772
+            text = ""
+        intervals [22]
+            xmin = 539.772
+            xmax = 540.282
+            text = "Kauaʻi."
+        intervals [23]
+            xmin = 540.282
+            xmax = 549.7
+            text = ""
+        intervals [24]
+            xmin = 549.7
+            xmax = 552.68
+            text = "A hānai ʻia kekahi, make nō hoʻi kekahi."
+        intervals [25]
+            xmin = 552.68
+            xmax = 561.415
+            text = ""
+        intervals [26]
+            xmin = 561.415
+            xmax = 562.495
+            text = "ʻAʻale hānai."
+        intervals [27]
+            xmin = 562.495
+            xmax = 565.598
+            text = ""
+        intervals [28]
+            xmin = 565.598
+            xmax = 566.443
+            text = "ka inoa ʻokoʻa,"
+        intervals [29]
+            xmin = 566.443
+            xmax = 570.066
+            text = ""
+        intervals [30]
+            xmin = 570.066
+            xmax = 570.402
+            text = "ʻAe."
+        intervals [31]
+            xmin = 570.402
+            xmax = 593.819
+            text = ""
+        intervals [32]
+            xmin = 593.819
+            xmax = 594.439
+            text = "ʻaʻole."
+        intervals [33]
+            xmin = 594.439
+            xmax = 601.477
+            text = ""
+        intervals [34]
+            xmin = 601.477
+            xmax = 603.002
+            text = "koʻu poʻe kūpuna, no Hawaiʻi."
+        intervals [35]
+            xmin = 603.002
+            xmax = 615.616
+            text = ""
+        intervals [36]
+            xmin = 615.616
+            xmax = 616.679
+            text = "ʻO Iokepa ia."
+        intervals [37]
+            xmin = 616.679
+            xmax = 619.564
+            text = ""
+        intervals [38]
+            xmin = 619.564
+            xmax = 620.654
+            text = "A ua make ʻo ia,"
+        intervals [39]
+            xmin = 620.654
+            xmax = 637.52
+            text = ""
+        intervals [40]
+            xmin = 637.52
+            xmax = 643.602
+            text = "Neʻe mai au i neʻi nei i ka makahiki ʻumikūmāiwa kanalimakumamālima. "
+        intervals [41]
+            xmin = 643.602
+            xmax = 644.731
+            text = ""
+        intervals [42]
+            xmin = 644.731
+            xmax = 648.021
+            text = "Mai koʻu wā liʻiliʻi a male kāne."
+        intervals [43]
+            xmin = 648.021
+            xmax = 648.576
+            text = ""
+        intervals [44]
+            xmin = 648.576
+            xmax = 651.106
+            text = "Nā makahiki aʻu i noho ai i Kauaʻi."
+        intervals [45]
+            xmin = 651.106
+            xmax = 654.709
+            text = ""
+        intervals [46]
+            xmin = 654.709
+            xmax = 657.167
+            text = "hiki i kēlā makahiki a neʻe mai wau i Honolulu"
+        intervals [47]
+            xmin = 657.167
+            xmax = 661.131
+            text = ""
+        intervals [48]
+            xmin = 661.131
+            xmax = 664.881
+            text = "Ka makahiki ʻumikūmāiwa ʻumikumamākolu."
+        intervals [49]
+            xmin = 664.881
+            xmax = 665.946
+            text = ""
+        intervals [50]
+            xmin = 665.946
+            xmax = 668.686
+            text = "ʻApelila, ʻiwakāluakūmāhā, kūmamāhā."
+        intervals [51]
+            xmin = 668.686
+            xmax = 672.733
+            text = ""
+        intervals [52]
+            xmin = 672.733
+            xmax = 673.86
+            text = "I a, i Hāʻena."
+        intervals [53]
+            xmin = 673.86
+            xmax = 677.31
+            text = ""
+        intervals [54]
+            xmin = 677.31
+            xmax = 679.406
+            text = "I kēlā manawa, he kula ko Hāʻena."
+        intervals [55]
+            xmin = 679.406
+            xmax = 680.44
+            text = ""
+        intervals [56]
+            xmin = 680.44
+            xmax = 682.985
+            text = "A hele wau i ka kula i Hāʻena nō."
+        intervals [57]
+            xmin = 682.985
+            xmax = 683.932
+            text = ""
+        intervals [58]
+            xmin = 683.932
+            xmax = 690.477
+            text = "A hiki i ka hōʻea ʻana mai o ka kai hoʻēʻe, a lawe ʻia kēlā hale kula."
+        intervals [59]
+            xmin = 690.477
+            xmax = 691.319
+            text = ""
+        intervals [60]
+            xmin = 691.319
+            xmax = 696.554
+            text = "A pau.  A neʻe ka poʻe pau loa, nā haumāna pau loa i Hanalei."
+        intervals [61]
+            xmin = 696.554
+            xmax = 697.207
+            text = ""
+        intervals [62]
+            xmin = 697.207
+            xmax = 697.857
+            text = "I ke kula."
+        intervals [63]
+            xmin = 697.857
+            xmax = 701.342
+            text = ""
+        intervals [64]
+            xmin = 701.342
+            xmax = 702.104
+            text = "Kēlā mau lā,"
+        intervals [65]
+            xmin = 702.104
+            xmax = 704.923
+            text = ""
+        intervals [66]
+            xmin = 704.923
+            xmax = 705.753
+            text = "He nui nō."
+        intervals [67]
+            xmin = 705.753
+            xmax = 708.038
+            text = ""
+        intervals [68]
+            xmin = 708.038
+            xmax = 712.143
+            text = "poʻe kahiko loa.  Ka poʻe, ʻo ia hoʻi, pukana,"
+        intervals [69]
+            xmin = 712.143
+            xmax = 722.44
+            text = ""
+        intervals [70]
+            xmin = 722.44
+            xmax = 723.855
+            text = "hānai holoholona."
+        intervals [71]
+            xmin = 723.855
+            xmax = 736.808
+            text = ""
+        intervals [72]
+            xmin = 736.808
+            xmax = 738.613
+            text = "A kaʻu ʻohana keiki.
+"
+        intervals [73]
+            xmin = 738.613
+            xmax = 739.25
+            text = ""
+        intervals [74]
+            xmin = 739.25
+            xmax = 740.73
+            text = "ʻAe.  Mahi ʻai nō lākou."
+        intervals [75]
+            xmin = 740.73
+            xmax = 745.78
+            text = ""
+        intervals [76]
+            xmin = 745.78
+            xmax = 748.0
+            text = "A ʻaʻole, no ka home wale nō."
+        intervals [77]
+            xmin = 748.0
+            xmax = 750.075
+            text = ""
+        intervals [78]
+            xmin = 750.075
+            xmax = 750.67
+            text = "kūʻai nō."
+        intervals [79]
+            xmin = 750.67
+            xmax = 755.999
+            text = ""
+        intervals [80]
+            xmin = 755.999
+            xmax = 759.204
+            text = "ʻo ka poʻe lāhui ʻē nō ka poʻe kanu laiki."
+        intervals [81]
+            xmin = 759.204
+            xmax = 759.641
+            text = ""
+        intervals [82]
+            xmin = 759.641
+            xmax = 763.676
+            text = "Kēia manawa, ʻaʻole kanu laiki, kanu kalo wale nō."
+        intervals [83]
+            xmin = 763.676
+            xmax = 764.958
+            text = ""
+        intervals [84]
+            xmin = 764.958
+            xmax = 766.053
+            text = "Pau ia manawa."
+        intervals [85]
+            xmin = 766.053
+            xmax = 768.195
+            text = ""
+        intervals [86]
+            xmin = 768.195
+            xmax = 770.1
+            text = "Nui loa ka hana, wahi a lākou."
+        intervals [87]
+            xmin = 770.1
+            xmax = 772.063
+            text = ""
+        intervals [88]
+            xmin = 772.063
+            xmax = 774.193
+            text = "kanu kalo, ʻaʻohe nui loa ka hana."
+        intervals [89]
+            xmin = 774.193
+            xmax = 775.284
+            text = ""
+        intervals [90]
+            xmin = 775.284
+            xmax = 777.909
+            text = "A huliāmahi ka poʻe lāhui ʻē,"
+        intervals [91]
+            xmin = 777.909
+            xmax = 779.081
+            text = ""
+        intervals [92]
+            xmin = 779.081
+            xmax = 781.091
+            text = "kanu, kanu kalo wale nō i"
+        intervals [93]
+            xmin = 781.091
+            xmax = 798.571
+            text = ""
+        intervals [94]
+            xmin = 798.571
+            xmax = 802.091
+            text = "Koʻu wā ʻōpiopio, mahi ʻai, a,"
+        intervals [95]
+            xmin = 802.091
+            xmax = 803.77
+            text = ""
+        intervals [96]
+            xmin = 803.77
+            xmax = 805.048
+            text = "Nui nā ʻano."
+        intervals [97]
+            xmin = 805.048
+            xmax = 816.601
+            text = ""
+        intervals [98]
+            xmin = 816.601
+            xmax = 817.136
+            text = "ʻAʻole."
+        intervals [99]
+            xmin = 817.136
+            xmax = 818.273
+            text = ""
+        intervals [100]
+            xmin = 818.273
+            xmax = 821.613
+            text = "pau ka poʻe ʻōpiopio.  ʻAʻohe makemake i kēlā hana e mahi ʻai."
+        intervals [101]
+            xmin = 821.613
+            xmax = 823.108
+            text = ""
+        intervals [102]
+            xmin = 823.108
+            xmax = 824.513
+            text = "Kaʻakaʻakahi ka poʻe."
+        intervals [103]
+            xmin = 824.513
+            xmax = 833.868
+            text = ""
+        intervals [104]
+            xmin = 833.868
+            xmax = 837.863
+            text = "Ka wā nō ia o nā mākua e ola ana a kanu ʻai."
+        intervals [105]
+            xmin = 837.863
+            xmax = 838.61
+            text = ""
+        intervals [106]
+            xmin = 838.61
+            xmax = 839.725
+            text = "Kanu lākou i ka ʻai."
+        intervals [107]
+            xmin = 839.725
+            xmax = 844.375
+            text = ""
+        intervals [108]
+            xmin = 844.375
+            xmax = 844.765
+            text = "kuʻi,"
+        intervals [109]
+            xmin = 844.765
+            xmax = 854.3
+            text = ""
+        intervals [110]
+            xmin = 854.3
+            xmax = 859.875
+            text = "Noho aʻe nō wau ia me ia papa kuʻi ʻai, a ʻeono papa kuʻi ʻai, a ʻeono poʻe kuʻi."
+        intervals [111]
+            xmin = 859.875
+            xmax = 863.286
+            text = ""
+        intervals [112]
+            xmin = 863.286
+            xmax = 864.66
+            text = "Nā wāhine, nā kāne."
+        intervals [113]
+            xmin = 864.66
+            xmax = 865.67
+            text = ""
+        intervals [114]
+            xmin = 865.67
+            xmax = 866.315
+            text = "Kuʻi i ka ʻai. "
+        intervals [115]
+            xmin = 866.315
+            xmax = 868.62
+            text = ""
+        intervals [116]
+            xmin = 868.62
+            xmax = 875.066
+            text = "ʻo koʻu poʻe mākua hānai, a mālama iaʻu kēlā manawa, he kālepa kā lākou hana,"
+        intervals [117]
+            xmin = 875.066
+            xmax = 878.452
+            text = ""
+        intervals [118]
+            xmin = 878.452
+            xmax = 881.338
+            text = "A ʻo ʻEalani me Lowelo Maka."
+        intervals [119]
+            xmin = 881.338
+            xmax = 883.205
+            text = ""
+        intervals [120]
+            xmin = 883.205
+            xmax = 887.294
+            text = "A hana mākou kēlā hana.  He kuʻi ʻai.  Kālepa."
+        intervals [121]
+            xmin = 887.294
+            xmax = 890.011
+            text = ""
+        intervals [122]
+            xmin = 890.011
+            xmax = 890.944
+            text = "kēlā kūʻai"
+        intervals [123]
+            xmin = 890.944
+            xmax = 891.692
+            text = ""
+        intervals [124]
+            xmin = 891.692
+            xmax = 895.319
+            text = "kuʻi a pau a hoʻokomo i loko o ke ʻeke.  A laila, lawe e kālewa."
+        intervals [125]
+            xmin = 895.319
+            xmax = 898.742
+            text = ""
+        intervals [126]
+            xmin = 898.742
+            xmax = 899.502
+            text = "ma ke kaʻa nō."
+        intervals [127]
+            xmin = 899.502
+            xmax = 900.585
+            text = ""
+        intervals [128]
+            xmin = 900.585
+            xmax = 902.575
+            text = "He kaʻa nō o ke, o ia manawa, he kaʻa."
+        intervals [129]
+            xmin = 902.575
+            xmax = 906.632
+            text = ""
+        intervals [130]
+            xmin = 906.632
+            xmax = 915.306
+            text = "A he piʻialiʻi, a me ka haʻokea.  Nui nā ʻano kalo o ia manawa.  Punaʻea.  Nui nā ʻano kalo."
+        intervals [131]
+            xmin = 915.306
+            xmax = 921.096
+            text = ""
+        intervals [132]
+            xmin = 921.096
+            xmax = 922.121
+            text = "ʻAʻole wau lohe"
+        intervals [133]
+            xmin = 922.121
+            xmax = 928.428
+            text = ""
+        intervals [134]
+            xmin = 928.428
+            xmax = 929.815
+            text = "Mana, haʻokea."
+        intervals [135]
+            xmin = 929.815
+            xmax = 931.963
+            text = ""
+        intervals [136]
+            xmin = 931.963
+            xmax = 933.877
+            text = "ʻo ka uliuli me ke keʻokeʻo."
+        intervals [137]
+            xmin = 933.877
+            xmax = 934.612
+            text = ""
+        intervals [138]
+            xmin = 934.612
+            xmax = 937.786
+            text = "A ʻo ia ʻano kalo loaʻa i ia manawa."
+        intervals [139]
+            xmin = 937.786
+            xmax = 938.168
+            text = ""
+        intervals [140]
+            xmin = 938.168
+            xmax = 940.748
+            text = "ʻo kēia inoa āu e ʻōlelo nei, ʻaʻole maopopo"
+        intervals [141]
+            xmin = 940.748
+            xmax = 941.352
+            text = ""
+        intervals [142]
+            xmin = 941.352
+            xmax = 942.097
+            text = "ʻAʻole wau i lohe."
+        intervals [143]
+            xmin = 942.097
+            xmax = 968.436
+            text = ""
+        intervals [144]
+            xmin = 968.436
+            xmax = 969.54
+            text = "nui nā ʻano kalo."
+        intervals [145]
+            xmin = 969.54
+            xmax = 970.289
+            text = ""
+        intervals [146]
+            xmin = 970.289
+            xmax = 973.878
+            text = "Hoʻolohe aku ʻoe i ka poʻe, a walaʻau ana ia manawa, auē."
+        intervals [147]
+            xmin = 973.878
+            xmax = 982.752
+            text = ""
+        intervals [148]
+            xmin = 982.752
+            xmax = 984.075
+            text = "
+ Ka piʻialiʻi, he ʻulaʻula ka"
+        intervals [149]
+            xmin = 984.075
+            xmax = 985.163
+            text = ""
+        intervals [150]
+            xmin = 985.163
+            xmax = 988.204
+            text = "A ka poi helu ʻekahi ia o ka wā ma mua."
+        intervals [151]
+            xmin = 988.204
+            xmax = 991.062
+            text = ""
+        intervals [152]
+            xmin = 991.062
+            xmax = 991.607
+            text = "he ʻono."
+        intervals [153]
+            xmin = 991.607
+            xmax = 992.12
+            text = ""
+        intervals [154]
+            xmin = 992.12
+            xmax = 993.676
+            text = "pohā koke kēlā ʻano poi."
+        intervals [155]
+            xmin = 993.676
+            xmax = 994.89
+            text = ""
+        intervals [156]
+            xmin = 994.89
+            xmax = 995.8
+            text = "poi keʻokeʻo."
+        intervals [157]
+            xmin = 995.8
+            xmax = 996.377
+            text = ""
+        intervals [158]
+            xmin = 996.377
+            xmax = 1000.62
+            text = "pū me ka haʻokea.  Keʻokeʻo ka poi a ʻuoʻuo ke ʻoe ʻai i ia"
+        intervals [159]
+            xmin = 1000.62
+            xmax = 1002.637
+            text = ""
+        intervals [160]
+            xmin = 1002.637
+            xmax = 1005.539
+            text = "a like pū me ka piʻialiʻi, eā?  Pohā koke.  "
+        intervals [161]
+            xmin = 1005.539
+            xmax = 1007.298
+            text = ""
+        intervals [162]
+            xmin = 1007.298
+            xmax = 1011.592
+            text = "No ke aha lā ka pohā koke?  ʻAʻohe wau maopopo.  Pehea lā, no ka ʻano kalo"
+        intervals [163]
+            xmin = 1011.592
+            xmax = 1018.717
+            text = ""
+        intervals [164]
+            xmin = 1018.717
+            xmax = 1021.237
+            text = "kēia manawa.  ʻAʻole hiki, loliloli koke."
+        intervals [165]
+            xmin = 1021.237
+            xmax = 1029.637
+            text = ""
+        intervals [166]
+            xmin = 1029.637
+            xmax = 1033.612
+            text = "kēia manawa, hoʻokomo lākou i kēlā mea hoʻoulu kalo."
+        intervals [167]
+            xmin = 1033.612
+            xmax = 1036.866
+            text = ""
+        intervals [168]
+            xmin = 1036.866
+            xmax = 1038.954
+            text = "Na ka lepo nō e hōʻike mai "
+        intervals [169]
+            xmin = 1038.954
+            xmax = 1042.343
+            text = ""
+        intervals [170]
+            xmin = 1042.343
+            xmax = 1042.72
+            text = "ʻAe."
+        intervals [171]
+            xmin = 1042.72
+            xmax = 1057.416
+            text = ""
+        intervals [172]
+            xmin = 1057.416
+            xmax = 1060.199
+            text = "a, a, ʻōkaikai nō ka wā ʻōkaikai."
+        intervals [173]
+            xmin = 1060.199
+            xmax = 1061.175
+            text = ""
+        intervals [174]
+            xmin = 1061.175
+            xmax = 1064.425
+            text = "Ka wā ʻōkaikai loa nō, ʻo ia nō kēia ʻano mahina."
+        intervals [175]
+            xmin = 1064.425
+            xmax = 1065.211
+            text = ""
+        intervals [176]
+            xmin = 1065.211
+            xmax = 1066.478
+            text = "	A me kēia mahina aʻe."
+        intervals [177]
+            xmin = 1066.478
+            xmax = 1067.307
+            text = ""
+        intervals [178]
+            xmin = 1067.307
+            xmax = 1071.839
+            text = "A ʻo Ianuali.  A ma hope aku o ia manawa, a maikaʻi nō ke kai."
+        intervals [179]
+            xmin = 1071.839
+            xmax = 1076.112
+            text = ""
+        intervals [180]
+            xmin = 1076.112
+            xmax = 1084.142
+            text = "inā ʻoe hele ma ka, ʻo ia hoʻi, kuʻu ʻupena, a ʻōpelu, ākule, nā ʻano iʻa like ʻole."
+        intervals [181]
+            xmin = 1084.142
+            xmax = 1086.101
+            text = ""
+        intervals [182]
+            xmin = 1086.101
+            xmax = 1088.756
+            text = "Hahalalū.  Ke komo mai nō hoʻi i ia manawa."
+        intervals [183]
+            xmin = 1088.756
+            xmax = 1090.383
+            text = ""
+        intervals [184]
+            xmin = 1090.383
+            xmax = 1094.868
+            text = "A kekahi lawaiʻa, ʻo ia hoʻi, hehe, hele kaʻu ʻupena."
+        intervals [185]
+            xmin = 1094.868
+            xmax = 1095.5
+            text = ""
+        intervals [186]
+            xmin = 1095.5
+            xmax = 1102.66
+            text = "A haihai nō hoʻi i ka wai i ka pō a loaʻa ka enenue."
+        intervals [187]
+            xmin = 1102.66
+            xmax = 1103.112
+            text = ""
+        intervals [188]
+            xmin = 1103.112
+            xmax = 1104.573
+            text = "ʻO ia mau ʻano iʻa i ka pō"
+        intervals [189]
+            xmin = 1104.573
+            xmax = 1104.748
+            text = ""
+        intervals [190]
+            xmin = 1104.748
+            xmax = 1105.269
+            text = "ke ao."
+        intervals [191]
+            xmin = 1105.269
+            xmax = 1106.124
+            text = ""
+        intervals [192]
+            xmin = 1106.124
+            xmax = 1107.187
+            text = "Nui nā ʻano iʻa."
+        intervals [193]
+            xmin = 1107.187
+            xmax = 1116.347
+            text = ""
+        intervals [194]
+            xmin = 1116.347
+            xmax = 1121.922
+            text = "A kēia ʻelemakule.  He ʻelemakule koʻu hoʻomaopopo ʻana iā ia.  Ua oʻo ʻelemakule."
+        intervals [195]
+            xmin = 1121.922
+            xmax = 1122.522
+            text = ""
+        intervals [196]
+            xmin = 1122.522
+            xmax = 1126.747
+            text = "A kāna hana wale nō aʻu i ʻike ai i, i ia manawa."
+        intervals [197]
+            xmin = 1126.747
+            xmax = 1128.374
+            text = ""
+        intervals [198]
+            xmin = 1128.374
+            xmax = 1134.144
+            text = "Ke makemake kekahi ʻohana, hele akula, ʻōlelo a, ""Makemake mākou i ka ʻōʻio,"
+        intervals [199]
+            xmin = 1134.144
+            xmax = 1134.864
+            text = ""
+        intervals [200]
+            xmin = 1134.864
+            xmax = 1145.434
+            text = "a makemake mākou, a, i ka ʻāweoweo.  A ʻo kēia Paʻikulu, ua maopopo ʻo ia kahi e hele ai i kēia wahi."
+        intervals [201]
+            xmin = 1145.434
+            xmax = 1146.394
+            text = ""
+        intervals [202]
+            xmin = 1146.394
+            xmax = 1149.116
+            text = "ka ʻōlelo a ka Hawaiʻi, ke, he koʻa."
+        intervals [203]
+            xmin = 1149.116
+            xmax = 1149.785
+            text = ""
+        intervals [204]
+            xmin = 1149.785
+            xmax = 1155.43
+            text = "ʻO ia hoʻi, he wahi kēlā, he wahi ʻāpapa kēlā e noho ai kēia, a, iʻa."
+        intervals [205]
+            xmin = 1155.43
+            xmax = 1156.357
+            text = ""
+        intervals [206]
+            xmin = 1156.357
+            xmax = 1159.227
+            text = "ka ʻōʻio paha.  Ka iʻa a ka poʻe e māmake ana."
+        intervals [207]
+            xmin = 1159.227
+            xmax = 1159.497
+            text = ""
+        intervals [208]
+            xmin = 1159.497
+            xmax = 1167.076
+            text = "A hele ʻo ia ma kona waʻa.  Hoe akula nō a hiki i kēia wahi, a kīloi nō i kona haleuma."
+        intervals [209]
+            xmin = 1167.076
+            xmax = 1167.341
+            text = ""
+        intervals [210]
+            xmin = 1167.341
+            xmax = 1172.026
+            text = "A kīloi i kāna laina.  Hoʻi maila me ka iʻa e māmake ʻia ai e ka poʻe."
+        intervals [211]
+            xmin = 1172.026
+            xmax = 1173.031
+            text = ""
+        intervals [212]
+            xmin = 1173.031
+            xmax = 1174.326
+            text = "Hoʻihoʻi maila ʻo ia."
+        intervals [213]
+            xmin = 1174.326
+            xmax = 1174.822
+            text = ""
+        intervals [214]
+            xmin = 1174.822
+            xmax = 1177.993
+            text = "paʻ ua ʻelemakule nō naʻe ʻo ia i ka manawa aʻu i ʻike ai"
+        intervals [215]
+            xmin = 1177.993
+            xmax = 1178.267
+            text = ""
+        intervals [216]
+            xmin = 1178.267
+            xmax = 1182.843
+            text = "Kēlā wale nō kaʻu hana i ʻike iā Paʻikulu, ʻo ia hoʻi, ka lawaiʻa."
+        intervals [217]
+            xmin = 1182.843
+            xmax = 1184.168
+            text = ""
+        intervals [218]
+            xmin = 1184.168
+            xmax = 1189.483
+            text = "Nā ʻano iʻa like ʻole.  Ua maopopo iā ia, kamaʻāina, ʻo ia hoʻi, i ka koʻa,"
+        intervals [219]
+            xmin = 1189.483
+            xmax = 1200.487
+            text = ""
+        intervals [220]
+            xmin = 1200.487
+            xmax = 1206.022
+            text = "Nānā lākou i ka pali a, a, a ka māka kēia o kēia"
+        intervals [221]
+            xmin = 1206.022
+            xmax = 1207.644
+            text = ""
+        intervals [222]
+            xmin = 1207.644
+            xmax = 1208.974
+            text = "o kekahi ʻano iʻa."
+        intervals [223]
+            xmin = 1208.974
+            xmax = 1209.634
+            text = ""
+        intervals [224]
+            xmin = 1209.634
+            xmax = 1212.134
+            text = "me kēlā ʻo ia e hele ai, a nānā i uka a."
+        intervals [225]
+            xmin = 1212.134
+            xmax = 1220.334
+            text = ""
+        intervals [226]
+            xmin = 1220.334
+            xmax = 1221.334
+            text = "ʻAʻole wau ma"
+        intervals [227]
+            xmin = 1221.334
+            xmax = 1221.909
+            text = ""
+        intervals [228]
+            xmin = 1221.909
+            xmax = 1224.168
+            text = "kamaʻāina.  ʻAʻole wau i kamaʻāina loa."
+        intervals [229]
+            xmin = 1224.168
+            xmax = 1228.559
+            text = ""
+        intervals [230]
+            xmin = 1228.559
+            xmax = 1229.599
+            text = "ka lohe wale nō"
+        intervals [231]
+            xmin = 1229.599
+            xmax = 1230.836
+            text = ""
+        intervals [232]
+            xmin = 1230.836
+            xmax = 1236.219
+            text = "ka maopopo aku i nā mea ʻano nui ma hope aku.  ʻAʻole, ʻaʻole i maopopo iaʻu."
+        intervals [233]
+            xmin = 1236.219
+            xmax = 1251.537
+            text = ""
+        intervals [234]
+            xmin = 1251.537
+            xmax = 1260.469
+            text = "kekahi.  A hana nō hoʻi no ka kalana kekahi poʻe.  A kekahi poʻe, hana i ka, ʻo ia hoʻi, māla kō."
+        intervals [235]
+            xmin = 1260.469
+            xmax = 1261.957
+            text = ""
+        intervals [236]
+            xmin = 1261.957
+            xmax = 1267.124
+            text = "kēia manawa hoʻi, ua pau aʻe nei kēia māla kō i kēia manawa.  ʻAʻole hana.
+"
+        intervals [237]
+            xmin = 1267.124
+            xmax = 1268.046
+            text = ""
+        intervals [238]
+            xmin = 1268.046
+            xmax = 1274.173
+            text = "painaʻāpala nō hoʻi.  A ua pau aʻela.  A ʻaʻole wau maopopo pehea aku ana lā ko lākou,"
+        intervals [239]
+            xmin = 1274.173
+            xmax = 1283.342
+            text = ""
+        intervals [240]
+            xmin = 1283.342
+            xmax = 1285.215
+            text = "pehea lā, mahi ʻai paha."
+        intervals [241]
+            xmin = 1285.215
+            xmax = 1291.214
+            text = ""
+        intervals [242]
+            xmin = 1291.214
+            xmax = 1291.934
+            text = "Nui ʻino."
+        intervals [243]
+            xmin = 1291.934
+            xmax = 1292.57
+            text = ""
+        intervals [244]
+            xmin = 1292.57
+            xmax = 1293.165
+            text = "Nui 'ino"
+        intervals [245]
+            xmin = 1293.165
+            xmax = 1295.785
+            text = ""
+        intervals [246]
+            xmin = 1295.785
+            xmax = 1296.135
+            text = "'Ae"
+        intervals [247]
+            xmin = 1296.135
+            xmax = 1296.988
+            text = ""
+        intervals [248]
+            xmin = 1296.988
+            xmax = 1297.53
+            text = "'oia no ka"
+        intervals [249]
+            xmin = 1297.53
+            xmax = 1511.688
+            text = ""
+        intervals [250]
+            xmin = 1511.688
+            xmax = 1513.133
+            text = "	Ke ʻole wau kuhi hewa,"
+        intervals [251]
+            xmin = 1513.133
+            xmax = 1514.283
+            text = ""
+        intervals [252]
+            xmin = 1514.283
+            xmax = 1517.421
+            text = "ʻaʻole maopopo loa iaʻu paʻ ke ʻole wau kuhi hewa, na"
+        intervals [253]
+            xmin = 1517.421
+            xmax = 1518.034
+            text = ""
+        intervals [254]
+            xmin = 1518.034
+            xmax = 1518.95
+            text = "ʻAlohikea nō"
+        intervals [255]
+            xmin = 1518.95
+            xmax = 1519.397
+            text = ""
+        intervals [256]
+            xmin = 1519.397
+            xmax = 1521.409
+            text = "Me nā hīmeni ʻē aʻe o Hanalei"
+        intervals [257]
+            xmin = 1521.409
+            xmax = 1521.781
+            text = ""
+        intervals [258]
+            xmin = 1521.781
+            xmax = 1524.42
+            text = "Hanohano Hanalei Ka ua loku"
+        intervals [259]
+            xmin = 1524.42
+            xmax = 1531.19
+            text = ""
+        intervals [260]
+            xmin = 1531.19
+            xmax = 1536.133
+            text = "Kēia limu, ʻaʻole wau maopopo inā ma Honolulu nei,"
+        intervals [261]
+            xmin = 1536.133
+            xmax = 1536.812
+            text = ""
+        intervals [262]
+            xmin = 1536.812
+            xmax = 1538.172
+            text = "loaʻa kēia ʻano limu"
+        intervals [263]
+            xmin = 1538.172
+            xmax = 1539.054
+            text = ""
+        intervals [264]
+            xmin = 1539.054
+            xmax = 1550.214
+            text = "i ko mākou wahi, Hāʻena me Hanalei, no ka ua, nui ka ua, ʻaʻole ua like pū, hoʻokahi lā, ʻelua lā, ʻekolu lā, ke ua a mau pule."
+        intervals [265]
+            xmin = 1550.214
+            xmax = 1551.113
+            text = ""
+        intervals [266]
+            xmin = 1551.113
+            xmax = 1551.927
+            text = "hoʻokahi mahina"
+        intervals [267]
+            xmin = 1551.927
+            xmax = 1552.413
+            text = ""
+        intervals [268]
+            xmin = 1552.413
+            xmax = 1557.964
+            text = "kēia ʻano limu, ke ʻoe hele aku i luna o ka mauʻu, kohu mea, kohu pela."
+        intervals [269]
+            xmin = 1557.964
+            xmax = 1559.96
+            text = ""
+        intervals [270]
+            xmin = 1559.96
+            xmax = 1561.147
+            text = "a pakika ʻoe."
+        intervals [271]
+            xmin = 1561.147
+            xmax = 1573.483
+            text = ""
+        intervals [272]
+            xmin = 1573.483
+            xmax = 1574.303
+            text = "ʻAʻole wau ʻike,"
+        intervals [273]
+            xmin = 1574.303
+            xmax = 1574.858
+            text = ""
+        intervals [274]
+            xmin = 1574.858
+            xmax = 1575.585
+            text = "ʻo Hanalei,"
+        intervals [275]
+            xmin = 1575.585
+            xmax = 1580.947
+            text = ""
+        intervals [276]
+            xmin = 1580.947
+            xmax = 1581.721
+            text = "ʻO ka mauʻu."
+        intervals [277]
+            xmin = 1581.721
+            xmax = 1584.54
+            text = ""
+        intervals [278]
+            xmin = 1584.54
+            xmax = 1587.327
+            text = "ke ʻoe nānā aku kēia limu uliuli."
+        intervals [279]
+            xmin = 1587.327
+            xmax = 1588.141
+            text = ""
+        intervals [280]
+            xmin = 1588.141
+            xmax = 1591.679
+            text = "A piʻi kēia limu i luna, pālahalaha."
+        intervals [281]
+            xmin = 1591.679
+            xmax = 1592.157
+            text = ""
+        intervals [282]
+            xmin = 1592.157
+            xmax = 1593.77
+            text = "aia i loko o kēia,"
+        intervals [283]
+            xmin = 1593.77
+            xmax = 1595.103
+            text = ""
+        intervals [284]
+            xmin = 1595.103
+            xmax = 1595.776
+            text = "Kahi ulu ʻana,"
+        intervals [285]
+            xmin = 1595.776
+            xmax = 1596.764
+            text = ""
+        intervals [286]
+            xmin = 1596.764
+            xmax = 1597.754
+            text = "kohu a"
+        intervals [287]
+            xmin = 1597.754
+            xmax = 1600.984
+            text = ""
+        intervals [288]
+            xmin = 1600.984
+            xmax = 1602.042
+            text = "Ke ʻoe hehi aku, ē."
+        intervals [289]
+            xmin = 1602.042
+            xmax = 1602.429
+            text = ""
+        intervals [290]
+            xmin = 1602.429
+            xmax = 1604.0
+            text = "No kēlā kiʻikiʻi i luna"
+        intervals [291]
+            xmin = 1604.0
+            xmax = 1605.407
+            text = ""
+        intervals [292]
+            xmin = 1605.407
+            xmax = 1606.48
+            text = "Hehi aku ʻoe a"
+        intervals [293]
+            xmin = 1606.48
+            xmax = 1610.285
+            text = ""
+        intervals [294]
+            xmin = 1610.285
+            xmax = 1611.078
+            text = "Ke ʻoe hele,"
+        intervals [295]
+            xmin = 1611.078
+            xmax = 1612.39
+            text = ""
+        intervals [296]
+            xmin = 1612.39
+            xmax = 1613.07
+            text = "kou hele ʻana."
+        intervals [297]
+            xmin = 1613.07
+            xmax = 1670.177
+            text = ""
+        intervals [298]
+            xmin = 1670.177
+            xmax = 1672.21
+            text = "A ʻo koʻu manaʻo, o ka limu."
+        intervals [299]
+            xmin = 1672.21
+            xmax = 1701.258
+            text = ""
+        intervals [300]
+            xmin = 1701.258
+            xmax = 1702.251
+            text = "A p, a pēlā nō."
+        intervals [301]
+            xmin = 1702.251
+            xmax = 1702.778
+            text = ""
+        intervals [302]
+            xmin = 1702.778
+            xmax = 1705.339
+            text = "Inā mālia, ʻaʻole loaʻa.  ʻAʻole."
+        intervals [303]
+            xmin = 1705.339
+            xmax = 1708.535
+            text = ""
+        intervals [304]
+            xmin = 1708.535
+            xmax = 1713.538
+            text = "ka weuweu wale nō ka mea ulu, akā inā ulu kēlā limu, ʻō, paʻa."
+        intervals [305]
+            xmin = 1713.538
+            xmax = 1714.23
+            text = ""
+        intervals [306]
+            xmin = 1714.23
+            xmax = 1715.2
+            text = "Paʻa nā wahi a"
+        intervals [307]
+            xmin = 1715.2
+            xmax = 1716.329
+            text = ""
+        intervals [308]
+            xmin = 1716.329
+            xmax = 1716.689
+            text = "paʻa."
+        intervals [309]
+            xmin = 1716.689
+            xmax = 1719.555
+            text = ""
+        intervals [310]
+            xmin = 1719.555
+            xmax = 1720.242
+            text = "ʻAʻale."
+        intervals [311]
+            xmin = 1720.242
+            xmax = 1721.835
+            text = ""
+        intervals [312]
+            xmin = 1721.835
+            xmax = 1722.858
+            text = "ʻA'ole hiki ke ʻai."
+        intervals [313]
+            xmin = 1722.858
+            xmax = 1726.693
+            text = ""
+        intervals [314]
+            xmin = 1726.693
+            xmax = 1729.431
+            text = "He, ʻaʻole wau, ʻaʻole wau ʻike.
+"
+        intervals [315]
+            xmin = 1729.431
+            xmax = 1730.654
+            text = ""
+        intervals [316]
+            xmin = 1730.654
+            xmax = 1732.674
+            text = "ʻO kēia limu wale nō kaʻu i ʻike."
+        intervals [317]
+            xmin = 1732.674
+            xmax = 1736.808
+            text = ""
+        intervals [318]
+            xmin = 1736.808
+            xmax = 1741.202
+            text = "ʻo ka līpeʻepeʻe nō, ka manauea,"
+        intervals [319]
+            xmin = 1741.202
+            xmax = 1742.067
+            text = ""
+        intervals [320]
+            xmin = 1742.067
+            xmax = 1743.555
+            text = "ka uaua loli,"
+        intervals [321]
+            xmin = 1743.555
+            xmax = 1745.994
+            text = ""
+        intervals [322]
+            xmin = 1745.994
+            xmax = 1747.114
+            text = "ka limu ʻeleʻele."
+        intervals [323]
+            xmin = 1747.114
+            xmax = 1748.025
+            text = ""
+        intervals [324]
+            xmin = 1748.025
+            xmax = 1749.685
+            text = "A ka māneoneo"
+        intervals [325]
+            xmin = 1749.685
+            xmax = 1755.4
+            text = ""
+        intervals [326]
+            xmin = 1755.4
+            xmax = 1760.987
+            text = "A koʻu wā nō hoʻi kauhale, ʻae.  Hele wau kahakai, kiʻi nō kaʻu limu, kaʻu mea e ʻai ai."
+        intervals [327]
+            xmin = 1760.987
+            xmax = 1761.992
+            text = ""
+        intervals [328]
+            xmin = 1761.992
+            xmax = 1762.68
+            text = "ka ʻō heʻe."
+        intervals [329]
+            xmin = 1762.68
+            xmax = 1767.966
+            text = ""
+        intervals [330]
+            xmin = 1767.966
+            xmax = 1773.713
+            text = "A nā mahina maikaʻi o ka heʻe, a mahina o, Hoʻomaka mai a Malaki."
+        intervals [331]
+            xmin = 1773.713
+            xmax = 1774.392
+            text = ""
+        intervals [332]
+            xmin = 1774.392
+            xmax = 1776.159
+            text = "A ʻApelila, ʻoi loa aku."
+        intervals [333]
+            xmin = 1776.159
+            xmax = 1779.154
+            text = ""
+        intervals [334]
+            xmin = 1779.154
+            xmax = 1782.154
+            text = "a o pumehana nō, a nui ka heʻe."
+        intervals [335]
+            xmin = 1782.154
+            xmax = 1784.92
+            text = ""
+        intervals [336]
+            xmin = 1784.92
+            xmax = 1788.374
+            text = "Hele aku ʻoe a ʻaʻohe ʻū, piha kāu ʻeke."
+        intervals [337]
+            xmin = 1788.374
+            xmax = 1791.342
+            text = ""
+        intervals [338]
+            xmin = 1791.342
+            xmax = 1792.276
+            text = "kēia mahina."
+        intervals [339]
+            xmin = 1792.276
+            xmax = 1792.795
+            text = ""
+        intervals [340]
+            xmin = 1792.795
+            xmax = 1794.062
+            text = "A he nao manini."
+        intervals [341]
+            xmin = 1794.062
+            xmax = 1797.119
+            text = ""
+        intervals [342]
+            xmin = 1797.119
+            xmax = 1799.681
+            text = "i loko o ka puka o ka ʻāpapa i ka manini."
+        intervals [343]
+            xmin = 1799.681
+            xmax = 1802.45
+            text = ""
+        intervals [344]
+            xmin = 1802.45
+            xmax = 1803.397
+            text = "A loʻa nō."
+        intervals [345]
+            xmin = 1803.397
+            xmax = 1803.906
+            text = ""
+        intervals [346]
+            xmin = 1803.906
+            xmax = 1804.866
+            text = "Ka wā kau, kau."
+        intervals [347]
+            xmin = 1804.866
+            xmax = 1805.839
+            text = ""
+        intervals [348]
+            xmin = 1805.839
+            xmax = 1806.871
+            text = "A hele nō mākou."
+        intervals [349]
+            xmin = 1806.871
+            xmax = 1808.566
+            text = ""
+        intervals [350]
+            xmin = 1808.566
+            xmax = 1809.972
+            text = "kēlā mea iʻa liʻiliʻi."
+        intervals [351]
+            xmin = 1809.972
+            xmax = 1818.815
+            text = ""
+        intervals [352]
+            xmin = 1818.815
+            xmax = 1819.749
+            text = "kēia manawa."
+        intervals [353]
+            xmin = 1819.749
+            xmax = 1827.525
+            text = ""
+        intervals [354]
+            xmin = 1827.525
+            xmax = 1829.065
+            text = "Ke, ke ʻoe hele, a"
+        intervals [355]
+            xmin = 1829.065
+            xmax = 1829.711
+            text = ""
+        intervals [356]
+            xmin = 1829.711
+            xmax = 1839.018
+            text = "kēia, ʻike ʻoe i ke kai, a ʻaʻole kai maloʻo, kai hapa, ʻaʻohe piha loa,"
+        intervals [357]
+            xmin = 1839.018
+            xmax = 1839.856
+            text = ""
+        intervals [358]
+            xmin = 1839.856
+            xmax = 1845.969
+            text = "A hele ʻoe me ka welu, ʻo ia hoʻi, ka, ka welu,"
+        intervals [359]
+            xmin = 1845.969
+            xmax = 1848.206
+            text = ""
+        intervals [360]
+            xmin = 1848.206
+            xmax = 1859.266
+            text = "Hele ʻoe me ka welu, no ka mea, kahi manawa he ʻelua puka.  A pani ʻoe i kekahi puka a hoʻokahi ma ka ʻaoʻao ʻākau a kou wahi ia e nanao ai."
+        intervals [361]
+            xmin = 1859.266
+            xmax = 1860.044
+            text = ""
+        intervals [362]
+            xmin = 1860.044
+            xmax = 1863.94
+            text = "hoʻopaʻa ʻoe, hoʻokomo ʻoe i kou ʻōwili i loko o kēia,"
+        intervals [363]
+            xmin = 1863.94
+            xmax = 1864.879
+            text = ""
+        intervals [364]
+            xmin = 1864.879
+            xmax = 1865.246
+            text = "welu"
+        intervals [365]
+            xmin = 1865.246
+            xmax = 1865.705
+            text = ""
+        intervals [366]
+            xmin = 1865.705
+            xmax = 1868.405
+            text = "I hiki iā ʻoe ke nanao.  ʻAʻole ʻoe kūkū.
+"
+        intervals [367]
+            xmin = 1868.405
+            xmax = 1879.79
+            text = ""
+        intervals [368]
+            xmin = 1879.79
+            xmax = 1881.797
+            text = "wehe ka waha o ke ʻeke a hoʻokomo i loko."
+        intervals [369]
+            xmin = 1881.797
+            xmax = 1883.704
+            text = ""
+        intervals [370]
+            xmin = 1883.704
+            xmax = 1886.935
+            text = "ʻAʻole hiki.  Ua paʻa akula iā ʻoe kekahi ʻaoʻao o ka puka."
+        intervals [371]
+            xmin = 1886.935
+            xmax = 1890.942
+            text = ""
+        intervals [372]
+            xmin = 1890.942
+            xmax = 1892.843
+            text = "iwakālua, kanakolu"
+        intervals [373]
+            xmin = 1892.843
+            xmax = 1893.038
+            text = ""
+        intervals [374]
+            xmin = 1893.038
+            xmax = 1894.786
+            text = "me kēia nei ka nui o kēlā puka."
+        intervals [375]
+            xmin = 1894.786
+            xmax = 1895.192
+            text = ""
+        intervals [376]
+            xmin = 1895.192
+            xmax = 1898.085
+            text = "Kahi manawa, piha kanalima o ka manini,"
+        intervals [377]
+            xmin = 1898.085
+            xmax = 1902.058
+            text = ""
+        intervals [378]
+            xmin = 1902.058
+            xmax = 1907.071
+            text = "ka iʻa e holo ai i loko o ka puka, a nao wau me ka welu, me ka welu wau e nanao ai."
+        intervals [379]
+            xmin = 1907.071
+            xmax = 1909.466
+            text = ""
+        intervals [380]
+            xmin = 1909.466
+            xmax = 1912.31
+            text = "nalu, nānā maila poʻe hana kalana iaʻu,"
+        intervals [381]
+            xmin = 1912.31
+            xmax = 1923.402
+            text = ""
+        intervals [382]
+            xmin = 1923.402
+            xmax = 1926.829
+            text = "piha, piha ka ʻāpapa i ka iʻa, o hoʻi ʻoe, hapa ʻeke."
+        intervals [383]
+            xmin = 1926.829
+            xmax = 1927.987
+            text = ""
+        intervals [384]
+            xmin = 1927.987
+            xmax = 1928.549
+            text = "pā kini."
+        intervals [385]
+            xmin = 1928.549
+            xmax = 1929.377
+            text = ""
+        intervals [386]
+            xmin = 1929.377
+            xmax = 1930.869
+            text = "Kaʻu hana ia koʻu wā noho i"
+        intervals [387]
+            xmin = 1930.869
+            xmax = 1931.701
+            text = ""
+        intervals [388]
+            xmin = 1931.701
+            xmax = 1934.16
+            text = "aia nō wau i Kauaʻi,  ka, kaʻu hana nō ia.
+"
+        intervals [389]
+            xmin = 1934.16
+            xmax = 2004.525
+            text = ""
+        intervals [390]
+            xmin = 2004.525
+            xmax = 2007.185
+            text = "A ma kēlā,"
+        intervals [391]
+            xmin = 2007.185
+            xmax = 2008.945
+            text = ""
+        intervals [392]
+            xmin = 2008.945
+            xmax = 2011.975
+            text = "ʻaʻole oʻu nānā i kēlā ʻano lawaiʻa me ka makau."
+        intervals [393]
+            xmin = 2011.975
+            xmax = 2019.076
+            text = ""
+        intervals [394]
+            xmin = 2019.076
+            xmax = 2021.336
+            text = "ʻAʻole wau makemake, hoʻopau manawa."
+        intervals [395]
+            xmin = 2021.336
+            xmax = 2025.23
+            text = ""
+        intervals [396]
+            xmin = 2025.23
+            xmax = 2026.73
+            text = "kali ʻoe a ʻehia lā minuke,"
+        intervals [397]
+            xmin = 2026.73
+            xmax = 2028.31
+            text = ""
+        intervals [398]
+            xmin = 2028.31
+            xmax = 2029.795
+            text = "Kaʻu mea māmake, wikiwiki."
+        intervals [399]
+            xmin = 2029.795
+            xmax = 2031.277
+            text = ""
+        intervals [400]
+            xmin = 2031.277
+            xmax = 2033.007
+            text = "Nao a nanao i loko"
+        intervals [401]
+            xmin = 2033.007
+            xmax = 2034.312
+            text = ""
+        intervals [402]
+            xmin = 2034.312
+            xmax = 2037.707
+            text = "Piha ke ʻeke.  ʻUmikūmālima nō minuke a hoʻi ʻoe."
+        intervals [403]
+            xmin = 2037.707
+            xmax = 2041.179
+            text = ""
+        intervals [404]
+            xmin = 2041.179
+            xmax = 2042.987
+            text = "ʻAʻole wau hele me ka ʻupena."
+        intervals [405]
+            xmin = 2042.987
+            xmax = 2047.774
+            text = ""
+        intervals [406]
+            xmin = 2047.774
+            xmax = 2049.699
+            text = "ʻO ka piaea, a ʻo ia."
+        intervals [407]
+            xmin = 2049.699
+            xmax = 2053.717
+            text = ""
+        intervals [408]
+            xmin = 2053.717
+            xmax = 2054.676
+            text = "Piaea liʻiliʻi,"
+        intervals [409]
+            xmin = 2054.676
+            xmax = 2056.65
+            text = ""
+        intervals [410]
+            xmin = 2056.65
+            xmax = 2057.906
+            text = "he piaea iā mākou.
+"
+        intervals [411]
+            xmin = 2057.906
+            xmax = 2058.408
+            text = ""
+        intervals [412]
+            xmin = 2058.408
+            xmax = 2059.958
+            text = "A kēlā, hele me ka ʻupena,"
+        intervals [413]
+            xmin = 2059.958
+            xmax = 2060.873
+            text = ""
+        intervals [414]
+            xmin = 2060.873
+            xmax = 2062.233
+            text = "kēia iʻa,"
+        intervals [415]
+            xmin = 2062.233
+            xmax = 2075.565
+            text = ""
+        intervals [416]
+            xmin = 2075.565
+            xmax = 2076.14
+            text = "ʻai maka."
+        intervals [417]
+            xmin = 2076.14
+            xmax = 2081.583
+            text = ""
+        intervals [418]
+            xmin = 2081.583
+            xmax = 2084.274
+            text = "ʻAe.  Kekahi poʻe, he hana me ka lau niu."
+        intervals [419]
+            xmin = 2084.274
+            xmax = 2084.751
+            text = ""
+        intervals [420]
+            xmin = 2084.751
+            xmax = 2085.949
+            text = "E hele ai e hoʻā"
+        intervals [421]
+            xmin = 2085.949
+            xmax = 2086.913
+            text = ""
+        intervals [422]
+            xmin = 2086.913
+            xmax = 2088.648
+            text = "A kā mākou, he pōhuehue."
+        intervals [423]
+            xmin = 2088.648
+            xmax = 2090.92
+            text = ""
+        intervals [424]
+            xmin = 2090.92
+            xmax = 2092.175
+            text = "pōhuehue kohu lei."
+        intervals [425]
+            xmin = 2092.175
+            xmax = 2092.746
+            text = ""
+        intervals [426]
+            xmin = 2092.746
+            xmax = 2096.877
+            text = "A paʻa ʻoe, hoʻokahi mea i ka ʻaoʻao o ka ʻupena."
+        intervals [427]
+            xmin = 2096.877
+            xmax = 2097.741
+            text = ""
+        intervals [428]
+            xmin = 2097.741
+            xmax = 2107.311
+            text = "ka ʻupena a me kēlā, kēia lau a kekahi ʻaoʻao, ʻo kekahi mea ka, kekahi ʻaoʻao o ka lau a hele kiʻi i ka iʻa hoʻu."
+        intervals [429]
+            xmin = 2107.311
+            xmax = 2109.101
+            text = ""
+        intervals [430]
+            xmin = 2109.101
+            xmax = 2109.571
+            text = "I loko o"
+        intervals [431]
+            xmin = 2109.571
+            xmax = 2124.046
+            text = ""
+        intervals [432]
+            xmin = 2124.046
+            xmax = 2124.631
+            text = "He hele."
+        intervals [433]
+            xmin = 2124.631
+            xmax = 2125.068
+            text = ""
+        intervals [434]
+            xmin = 2125.068
+            xmax = 2133.523
+            text = "He hele aku i waho kahi hohonu.  Kakahiaka, ʻaʻohe poʻe hele koke i kakahiaka a ʻike aku ʻoe ma ka ʻae kai e kakaʻi ana."
+        intervals [435]
+            xmin = 2133.523
+            xmax = 2133.918
+            text = ""
+        intervals [436]
+            xmin = 2133.918
+            xmax = 2134.768
+            text = "Ma ka lihi kai."
+        intervals [437]
+            xmin = 2134.768
+            xmax = 2138.813
+            text = ""
+        intervals [438]
+            xmin = 2138.813
+            xmax = 2139.343
+            text = "Mau."
+        intervals [439]
+            xmin = 2139.343
+            xmax = 2148.05
+            text = ""
+        intervals [440]
+            xmin = 2148.05
+            xmax = 2149.948
+            text = "ʻAʻole hoʻokahi manawa oʻu nānā"
+        intervals [441]
+            xmin = 2149.948
+            xmax = 2150.319
+            text = ""
+        intervals [442]
+            xmin = 2150.319
+            xmax = 2151.599
+            text = "e hele me ka makau."
+        intervals [443]
+            xmin = 2151.599
+            xmax = 2162.049
+            text = ""
+        intervals [444]
+            xmin = 2162.049
+            xmax = 2164.046
+            text = "Hīmeni ana māua, ʻo Nani Kauaʻi."
+        intervals [445]
+            xmin = 2164.046
+            xmax = 2302.542
+            text = ""
+        intervals [446]
+            xmin = 2302.542
+            xmax = 2305.057
+            text = "ʻo ʻAlohikea.  Kēlā, ʻaʻole wau maopopo."
+        intervals [447]
+            xmin = 2305.057
+            xmax = 2305.654
+            text = ""
+        intervals [448]
+            xmin = 2305.654
+            xmax = 2306.979
+            text = "ʻO ia hoʻi, kēia mele."
+        intervals [449]
+            xmin = 2306.979
+            xmax = 2312.403
+            text = ""
+        intervals [450]
+            xmin = 2312.403
+            xmax = 2313.303
+            text = "ma mua loa."
+        intervals [451]
+            xmin = 2313.303
+            xmax = 2318.833
+            text = ""
+        intervals [452]
+            xmin = 2318.833
+            xmax = 2322.873
+            text = "ʻaʻale wau maopopo inā nāna ʻiʻo i, ʻo ia hoʻi,"
+        intervals [453]
+            xmin = 2322.873
+            xmax = 2325.548
+            text = ""
+        intervals [454]
+            xmin = 2325.548
+            xmax = 2328.133
+            text = "a hiki wau ʻōlelo aku iā ʻoe nāna i haku,"
+        intervals [455]
+            xmin = 2328.133
+            xmax = 2341.09
+            text = ""
+        intervals [456]
+            xmin = 2341.09
+            xmax = 2342.575
+            text = "ʻŌ, ʻeʻena i ka ʻehu kai."
+        intervals [457]
+            xmin = 2342.575
+            xmax = 2344.569
+            text = ""
+        intervals [458]
+            xmin = 2344.569
+            xmax = 2357.999
+            text = "ʻO ia hoʻi, a ke puhi maila ka makani i ka wā e, ʻo ia hoʻi, ka ʻehu kai, ke poʻi ka nalu, piʻi kēlā ʻehu kai i luna.  ʻO ia hoʻi, kēlā huʻa"
+        intervals [459]
+            xmin = 2357.999
+            xmax = 2360.514
+            text = ""
+        intervals [460]
+            xmin = 2360.514
+            xmax = 2365.279
+            text = "Kēlā huʻa o ke kai.  Ke ʻoe nānā i ka ʻale keʻokeʻo, he piha i ka huʻa"
+        intervals [461]
+            xmin = 2365.279
+            xmax = 2365.889
+            text = ""
+        intervals [462]
+            xmin = 2365.889
+            xmax = 2367.354
+            text = "	Piha kēlā mea keʻokeʻo."
+        intervals [463]
+            xmin = 2367.354
+            xmax = 2369.971
+            text = ""
+        intervals [464]
+            xmin = 2369.971
+            xmax = 2380.426
+            text = "A puhi maila ka makani, a ʻike ʻoe i kēia puehu, no ka mea, puhi maila ka makani, puehu aʻela kēia huʻa o ke kai."
+        intervals [465]
+            xmin = 2380.426
+            xmax = 2380.833
+            text = ""
+        intervals [466]
+            xmin = 2380.833
+            xmax = 2386.318
+            text = "ʻO, ʻo ia ka mea i ʻōlelo ʻia ai, ʻEʻena Hāʻena i ka ʻehu kai.  No Hāʻena nō kēlā."
+        intervals [467]
+            xmin = 2386.318
+            xmax = 2396.959
+            text = ""
+        intervals [468]
+            xmin = 2396.959
+            xmax = 2398.424
+            text = "inā lawe ma kēlā."
+        intervals [469]
+            xmin = 2398.424
+            xmax = 2400.876
+            text = ""
+        intervals [470]
+            xmin = 2400.876
+            xmax = 2403.926
+            text = "malia he manaʻo ʻokoʻa kekahi o kēlā,"
+        intervals [471]
+            xmin = 2403.926
+            xmax = 2405.351
+            text = ""
+        intervals [472]
+            xmin = 2405.351
+            xmax = 2407.878
+            text = "A inā e lawe ma kēlā, ʻaʻole wau maopopo."
+        intervals [473]
+            xmin = 2407.878
+            xmax = 2409.191
+            text = ""
+        intervals [474]
+            xmin = 2409.191
+            xmax = 2415.571
+            text = "ma ka, ma ka hīmeni, a ʻo ia ka manaʻo.  ʻO ia hoʻi, kēia huʻa kai."
+        intervals [475]
+            xmin = 2415.571
+            xmax = 2416.856
+            text = ""
+        intervals [476]
+            xmin = 2416.856
+            xmax = 2423.541
+            text = "A inā lawe ma kēlā ʻeʻena, a ʻeʻena o ka pōhaku, hiki nō,"
+        intervals [477]
+            xmin = 2423.541
+            xmax = 2424.553
+            text = ""
+        intervals [478]
+            xmin = 2424.553
+            xmax = 2425.323
+            text = "ke, ma kēlā."
+        intervals [479]
+            xmin = 2425.323
+            xmax = 2429.022
+            text = ""
+        intervals [480]
+            xmin = 2429.022
+            xmax = 2430.707
+            text = "Hawaiʻi, he nui nā manaʻo "
+        intervals [481]
+            xmin = 2430.707
+            xmax = 2434.228
+            text = ""
+        intervals [482]
+            xmin = 2434.228
+            xmax = 2434.858
+            text = "Huikau"
+        intervals [483]
+            xmin = 2434.858
+            xmax = 2440.418
+            text = ""
+        intervals [484]
+            xmin = 2440.418
+            xmax = 2441.428
+            text = "ʻAe, kaulana."
+        intervals [485]
+            xmin = 2441.428
+            xmax = 2457.418
+            text = ""
+        intervals [486]
+            xmin = 2457.418
+            xmax = 2458.288
+            text = "piha ka mahina"
+        intervals [487]
+            xmin = 2458.288
+            xmax = 2459.508
+            text = ""
+        intervals [488]
+            xmin = 2459.508
+            xmax = 2459.988
+            text = "Nui"
+        intervals [489]
+            xmin = 2459.988
+            xmax = 2464.281
+            text = ""
+        intervals [490]
+            xmin = 2464.281
+            xmax = 2464.961
+            text = "kahi manawa"
+        intervals [491]
+            xmin = 2464.961
+            xmax = 2466.908
+            text = ""
+        intervals [492]
+            xmin = 2466.908
+            xmax = 2469.243
+            text = "ke ʻau aku ma kekahi kapa.
+"
+        intervals [493]
+            xmin = 2469.243
+            xmax = 2471.235
+            text = ""
+        intervals [494]
+            xmin = 2471.235
+            xmax = 2475.035
+            text = "ʻāina mahi ʻai ma kēia ʻaoʻao, ʻaʻohe pilikia o kahawai."
+        intervals [495]
+            xmin = 2475.035
+            xmax = 2475.59
+            text = ""
+        intervals [496]
+            xmin = 2475.59
+            xmax = 2478.08
+            text = "A inā ma kēlā ʻaoʻao, ʻaʻole hiki."
+        intervals [497]
+            xmin = 2478.08
+            xmax = 2489.457
+            text = ""
+        intervals [498]
+            xmin = 2489.457
+            xmax = 2492.267
+            text = "Kahi kanu ʻai o kaʻu poʻe keiki a,"
+        intervals [499]
+            xmin = 2492.267
+            xmax = 2493.522
+            text = ""
+        intervals [500]
+            xmin = 2493.522
+            xmax = 2494.332
+            text = "ʻau aku ʻoe,"
+        intervals [501]
+            xmin = 2494.332
+            xmax = 2495.027
+            text = ""
+        intervals [502]
+            xmin = 2495.027
+            xmax = 2500.977
+            text = "a inā he mālia a hiki nō ʻoe hele wāwae i loko o kahawai, ʻaʻohe hohonu loa."
+        intervals [503]
+            xmin = 2500.977
+            xmax = 2501.787
+            text = ""
+        intervals [504]
+            xmin = 2501.787
+            xmax = 2506.307
+            text = "A inā ʻaʻole, ʻaʻole hiki.  Inā nui loa ka wai, ʻaʻole hiki."
+        intervals [505]
+            xmin = 2506.307
+            xmax = 2506.727
+            text = ""
+        intervals [506]
+            xmin = 2506.727
+            xmax = 2511.502
+            text = "Waikahe ikaika loa.  ʻAʻole hiki iā ʻoe ke ʻau aku hele e huki ʻai a."
+        intervals [507]
+            xmin = 2511.502
+            xmax = 2512.527
+            text = ""
+        intervals [508]
+            xmin = 2512.527
+            xmax = 2515.919
+            text = "a noho 'oe a kali a ka lā mālia."
+        intervals [509]
+            xmin = 2515.919
+            xmax = 2518.836
+            text = ""
+        intervals [510]
+            xmin = 2518.836
+            xmax = 2520.391
+            text = "ʻAʻohe hoʻi nui loa ka wai."
+        intervals [511]
+            xmin = 2520.391
+            xmax = 3382.298
+            text = ""
+        intervals [512]
+            xmin = 3382.298
+            xmax = 3383.998
+            text = "ka ʻae ʻana mai e kipa mai."
+        intervals [513]
+            xmin = 3383.998
+            xmax = 3411.721
+            text = ""
+    item[2]:
+        class = "IntervalTier"
+        name = "LK"
+        xmin = 0.0
+        xmax = 3411.721
+        intervals: size = 345
+        intervals [1]
+            xmin = 0.0
+            xmax = 406.926
+            text = ""
+        intervals [2]
+            xmin = 406.926
+            xmax = 414.658
+            text = "E nā kini o Hawaiʻi nei me nā kupa o ka ʻāina mai Hawaiʻi a Niʻihau.  Aloha ahiahi kākou."
+        intervals [3]
+            xmin = 414.658
+            xmax = 415.591
+            text = ""
+        intervals [4]
+            xmin = 415.591
+            xmax = 427.408
+            text = "Mahalo nui iā ʻoukou, e nā poʻe haumāna o ke Kula ʻo, ʻo Kana Lui me kā ʻoukou kumu, ʻo Keola Lake no kā ʻoukou hana maikaʻi mai iā mākou i kēia ahiahi."
+        intervals [5]
+            xmin = 427.408
+            xmax = 428.796
+            text = ""
+        intervals [6]
+            xmin = 428.796
+            xmax = 431.529
+            text = "A eia nō me kākou i kēia ahiahi"
+        intervals [7]
+            xmin = 431.529
+            xmax = 432.007
+            text = ""
+        intervals [8]
+            xmin = 432.007
+            xmax = 434.19
+            text = "ko mākou mau hoa kipa"
+        intervals [9]
+            xmin = 434.19
+            xmax = 440.176
+            text = ""
+        intervals [10]
+            xmin = 440.176
+            xmax = 442.612
+            text = "Aloha ahiahi nō kākou"
+        intervals [11]
+            xmin = 442.612
+            xmax = 445.055
+            text = ""
+        intervals [12]
+            xmin = 445.055
+            xmax = 449.746
+            text = "ʻAe.  Mahalo nui iā ʻolua i kā ʻolua hele ʻana mai i kēia ahiahi."
+        intervals [13]
+            xmin = 449.746
+            xmax = 449.823
+            text = ""
+        intervals [14]
+            xmin = 449.823
+            xmax = 455.028
+            text = "ua nui loa ko mākou hauʻoli no ka, no ke kipa ʻana mai"
+        intervals [15]
+            xmin = 455.028
+            xmax = 455.409
+            text = ""
+        intervals [16]
+            xmin = 455.409
+            xmax = 456.493
+            text = "a"
+        intervals [17]
+            xmin = 456.493
+            xmax = 457.008
+            text = ""
+        intervals [18]
+            xmin = 457.008
+            xmax = 466.219
+            text = "no ka hoʻolauna ʻana iā ʻolua i ka poʻe e hoʻolohe ana i kēia ahiahi, no ka mea, ʻo kekahi paha o, o lākou, ʻaʻohe maopopo"
+        intervals [19]
+            xmin = 466.219
+            xmax = 466.411
+            text = ""
+        intervals [20]
+            xmin = 466.411
+            xmax = 472.552
+            text = "o ka ʻāina hea, ʻo ka ʻāina hea ʻoe i hānau, i hānau ʻia ai e"
+        intervals [21]
+            xmin = 472.552
+            xmax = 475.041
+            text = ""
+        intervals [22]
+            xmin = 475.041
+            xmax = 478.322
+            text = "E ʻoluʻolu ʻoe e hōʻike mai i kou one hānau."
+        intervals [23]
+            xmin = 478.322
+            xmax = 485.75
+            text = ""
+        intervals [24]
+            xmin = 485.75
+            xmax = 486.69
+            text = "Ma Wainiha"
+        intervals [25]
+            xmin = 486.69
+            xmax = 489.02
+            text = ""
+        intervals [26]
+            xmin = 489.02
+            xmax = 489.633
+            text = "Hanalei"
+        intervals [27]
+            xmin = 489.633
+            xmax = 493.84
+            text = ""
+        intervals [28]
+            xmin = 493.84
+            xmax = 494.565
+            text = "ʻo Hanalei."
+        intervals [29]
+            xmin = 494.565
+            xmax = 495.094
+            text = ""
+        intervals [30]
+            xmin = 495.094
+            xmax = 496.221
+            text = "ʻO Wainiha"
+        intervals [31]
+            xmin = 496.221
+            xmax = 498.737
+            text = ""
+        intervals [32]
+            xmin = 498.737
+            xmax = 500.881
+            text = "ma, ma ka ʻaoʻao o Hāʻena"
+        intervals [33]
+            xmin = 500.881
+            xmax = 508.107
+            text = ""
+        intervals [34]
+            xmin = 508.107
+            xmax = 508.382
+            text = "ʻĒ."
+        intervals [35]
+            xmin = 508.382
+            xmax = 512.542
+            text = ""
+        intervals [36]
+            xmin = 512.542
+            xmax = 514.266
+            text = "A ʻo wai kou mau mākua?"
+        intervals [37]
+            xmin = 514.266
+            xmax = 525.555
+            text = ""
+        intervals [38]
+            xmin = 525.555
+            xmax = 527.826
+            text = "ʻO ia.  ʻO  ʻĪ, ʻĪlālāʻole kou,"
+        intervals [39]
+            xmin = 527.826
+            xmax = 537.539
+            text = ""
+        intervals [40]
+            xmin = 537.539
+            xmax = 538.88
+            text = "ʻO kāu kāne no"
+        intervals [41]
+            xmin = 538.88
+            xmax = 541.765
+            text = ""
+        intervals [42]
+            xmin = 541.765
+            xmax = 543.492
+            text = "A ʻehia a ʻolua keiki?"
+        intervals [43]
+            xmin = 543.492
+            xmax = 553.045
+            text = ""
+        intervals [44]
+            xmin = 553.045
+            xmax = 557.485
+            text = "He ʻumikumamāono ka nui o nā keiki?  Nā keiki ponoʻī nō?"
+        intervals [45]
+            xmin = 557.485
+            xmax = 558.745
+            text = ""
+        intervals [46]
+            xmin = 558.745
+            xmax = 560.415
+            text = "ʻehia āu hānai?"
+        intervals [47]
+            xmin = 560.415
+            xmax = 566.96
+            text = ""
+        intervals [48]
+            xmin = 566.96
+            xmax = 570.02
+            text = "A ʻo ia nō kēia keiki ʻo Kawai?"
+        intervals [49]
+            xmin = 570.02
+            xmax = 570.425
+            text = ""
+        intervals [50]
+            xmin = 570.425
+            xmax = 575.645
+            text = "Pehea ʻoe, e Kawai?  Maopopo paha iā ʻoe i ke kamaʻilio ʻana i ka ʻōlelo Hawaiʻi, ʻeā?"
+        intervals [51]
+            xmin = 575.645
+            xmax = 579.283
+            text = ""
+        intervals [52]
+            xmin = 579.283
+            xmax = 581.323
+            text = "Kaulana nō kou leo ma ka mele."
+        intervals [53]
+            xmin = 581.323
+            xmax = 582.186
+            text = ""
+        intervals [54]
+            xmin = 582.186
+            xmax = 583.769
+            text = "ʻAe.  Mahalo nui iā ʻoe."
+        intervals [55]
+            xmin = 583.769
+            xmax = 587.566
+            text = ""
+        intervals [56]
+            xmin = 587.566
+            xmax = 589.576
+            text = "A ʻo kou mau kūpuna  "
+        intervals [57]
+            xmin = 589.576
+            xmax = 590.784
+            text = ""
+        intervals [58]
+            xmin = 590.784
+            xmax = 591.74
+            text = "kou mau kūpuna?"
+        intervals [59]
+            xmin = 591.74
+            xmax = 594.517
+            text = ""
+        intervals [60]
+            xmin = 594.517
+            xmax = 596.012
+            text = "No ka mea, kēia inoa ʻo"
+        intervals [61]
+            xmin = 596.012
+            xmax = 603.54
+            text = ""
+        intervals [62]
+            xmin = 603.54
+            xmax = 608.779
+            text = "No ka mea, kēia kanaka, hoʻokahi kanaka ʻo ʻĪlālāʻole nō kona inoa.  Ua lohe liʻiliʻi wau"
+        intervals [63]
+            xmin = 608.779
+            xmax = 609.08
+            text = ""
+        intervals [64]
+            xmin = 609.08
+            xmax = 612.91
+            text = "pili ana i kona kaulana ma ka hula,"
+        intervals [65]
+            xmin = 612.91
+            xmax = 622.107
+            text = ""
+        intervals [66]
+            xmin = 622.107
+            xmax = 622.967
+            text = "He kumu hula,"
+        intervals [67]
+            xmin = 622.967
+            xmax = 624.622
+            text = ""
+        intervals [68]
+            xmin = 624.622
+            xmax = 626.422
+            text = "ma ke oli me ka hula"
+        intervals [69]
+            xmin = 626.422
+            xmax = 627.852
+            text = ""
+        intervals [70]
+            xmin = 627.852
+            xmax = 628.299
+            text = "ʻAe."
+        intervals [71]
+            xmin = 628.299
+            xmax = 628.891
+            text = ""
+        intervals [72]
+            xmin = 628.891
+            xmax = 629.531
+            text = "A"
+        intervals [73]
+            xmin = 629.531
+            xmax = 629.982
+            text = ""
+        intervals [74]
+            xmin = 629.982
+            xmax = 636.022
+            text = "ʻo kou one hānau, pehe, a pehea ka lōkihi o kou noho ʻana i Kauaʻi ma mua o ka neʻe i neʻi nei?"
+        intervals [75]
+            xmin = 636.022
+            xmax = 648.177
+            text = ""
+        intervals [76]
+            xmin = 648.177
+            xmax = 648.552
+            text = "ʻĒ."
+        intervals [77]
+            xmin = 648.552
+            xmax = 658.01
+            text = ""
+        intervals [78]
+            xmin = 658.01
+            xmax = 660.36
+            text = "A i ka makahiki hea ʻoe i hānau ʻia ai?"
+        intervals [79]
+            xmin = 660.36
+            xmax = 668.736
+            text = ""
+        intervals [80]
+            xmin = 668.736
+            xmax = 669.246
+            text = "ʻĒ."
+        intervals [81]
+            xmin = 669.246
+            xmax = 669.956
+            text = ""
+        intervals [82]
+            xmin = 669.956
+            xmax = 672.616
+            text = "A i Hanalei nō ʻoe i hele ai i ke kula?"
+        intervals [83]
+            xmin = 672.616
+            xmax = 675.455
+            text = ""
+        intervals [84]
+            xmin = 675.455
+            xmax = 676.922
+            text = "ʻAʻohe kula o Hanalei?"
+        intervals [85]
+            xmin = 676.922
+            xmax = 690.659
+            text = ""
+        intervals [86]
+            xmin = 690.659
+            xmax = 691.089
+            text = "ʻĒ."
+        intervals [87]
+            xmin = 691.089
+            xmax = 696.757
+            text = ""
+        intervals [88]
+            xmin = 696.757
+            xmax = 697.195
+            text = "ʻĒ, ʻĒ."
+        intervals [89]
+            xmin = 697.195
+            xmax = 698.486
+            text = ""
+        intervals [90]
+            xmin = 698.486
+            xmax = 701.041
+            text = "He nui nō ka poʻe noho ana i kēlā mau lā?"
+        intervals [91]
+            xmin = 701.041
+            xmax = 714.61
+            text = ""
+        intervals [92]
+            xmin = 714.61
+            xmax = 715.87
+            text = "He poʻe mahi, mai"
+        intervals [93]
+            xmin = 715.87
+            xmax = 724.992
+            text = ""
+        intervals [94]
+            xmin = 724.992
+            xmax = 729.517
+            text = " No ka mea, ua kaulana nō ʻo Hanalei i ka loʻi ʻai, ē?"
+        intervals [95]
+            xmin = 729.517
+            xmax = 730.184
+            text = ""
+        intervals [96]
+            xmin = 730.184
+            xmax = 731.539
+            text = "ka loʻi kalo ma laila"
+        intervals [97]
+            xmin = 731.539
+            xmax = 734.821
+            text = ""
+        intervals [98]
+            xmin = 734.821
+            xmax = 736.466
+            text = "Pehea, he loʻi ʻai kā ʻoukou?"
+        intervals [99]
+            xmin = 736.466
+            xmax = 744.058
+            text = ""
+        intervals [100]
+            xmin = 744.058
+            xmax = 745.233
+            text = "He mahi ʻai kalo?"
+        intervals [101]
+            xmin = 745.233
+            xmax = 750.903
+            text = ""
+        intervals [102]
+            xmin = 750.903
+            xmax = 751.333
+            text = "ʻĒ"
+        intervals [103]
+            xmin = 751.333
+            xmax = 752.147
+            text = ""
+        intervals [104]
+            xmin = 752.147
+            xmax = 754.392
+            text = "A pehea ka laiki?  Kanu ʻia paha ka laiki"
+        intervals [105]
+            xmin = 754.392
+            xmax = 782.186
+            text = ""
+        intervals [106]
+            xmin = 782.186
+            xmax = 792.336
+            text = "ʻŌlelo ʻia nō, ē, he hana, he nui ka hana o ka, a, mahi ʻai kalo, kao^^ kalo wai, ē?  Ka ʻāina wai, loʻi kalo?
+"
+        intervals [107]
+            xmin = 792.336
+            xmax = 809.634
+            text = ""
+        intervals [108]
+            xmin = 809.634
+            xmax = 810.104
+            text = "ʻĒ, ʻē."
+        intervals [109]
+            xmin = 810.104
+            xmax = 810.791
+            text = ""
+        intervals [110]
+            xmin = 810.791
+            xmax = 816.171
+            text = "Pehea kēia manawa?  ʻOi aku paha ka nui o ka mahi ʻai ʻana ma mua o ka wā kahiko?"
+        intervals [111]
+            xmin = 816.171
+            xmax = 821.843
+            text = ""
+        intervals [112]
+            xmin = 821.843
+            xmax = 822.34
+            text = "ʻĒ."
+        intervals [113]
+            xmin = 822.34
+            xmax = 828.428
+            text = ""
+        intervals [114]
+            xmin = 828.428
+            xmax = 829.478
+            text = "kēlā mau lā, i "
+        intervals [115]
+            xmin = 829.478
+            xmax = 840.401
+            text = ""
+        intervals [116]
+            xmin = 840.401
+            xmax = 841.119
+            text = "He kuʻi i ka ʻai me"
+        intervals [117]
+            xmin = 841.119
+            xmax = 847.07
+            text = ""
+        intervals [118]
+            xmin = 847.07
+            xmax = 853.06
+            text = "ʻOʻoleʻa nō ke kino, ē? Kēia manawa, hoʻokomo wale nō i loko o ka mīkini.  Na ka mīkini nō i hana."
+        intervals [119]
+            xmin = 853.06
+            xmax = 861.405
+            text = ""
+        intervals [120]
+            xmin = 861.405
+            xmax = 863.26
+            text = "Nā, nā wāhine, nā kāne."
+        intervals [121]
+            xmin = 863.26
+            xmax = 864.987
+            text = ""
+        intervals [122]
+            xmin = 864.987
+            xmax = 865.652
+            text = "Kuʻi i ka ʻai?"
+        intervals [123]
+            xmin = 865.652
+            xmax = 876.982
+            text = ""
+        intervals [124]
+            xmin = 876.982
+            xmax = 878.389
+            text = "ʻO wai kou mau kahu hānai?"
+        intervals [125]
+            xmin = 878.389
+            xmax = 887.722
+            text = ""
+        intervals [126]
+            xmin = 887.722
+            xmax = 888.09
+            text = "ʻĒ."
+        intervals [127]
+            xmin = 888.09
+            xmax = 896.276
+            text = ""
+        intervals [128]
+            xmin = 896.276
+            xmax = 897.656
+            text = "Kālewa ma luna o ka lio "
+        intervals [129]
+            xmin = 897.656
+            xmax = 903.923
+            text = ""
+        intervals [130]
+            xmin = 903.923
+            xmax = 906.326
+            text = "He aha ke, he aha ke kalo o ia manawa?"
+        intervals [131]
+            xmin = 906.326
+            xmax = 916.036
+            text = ""
+        intervals [132]
+            xmin = 916.036
+            xmax = 919.984
+            text = "Pehea, lohe anei ʻoe i kēia kalo kūʻoha, kūʻoho?"
+        intervals [133]
+            xmin = 919.984
+            xmax = 943.141
+            text = ""
+        intervals [134]
+            xmin = 943.141
+            xmax = 945.499
+            text = "He kalo kēia no ka ʻāina maloʻo nō."
+        intervals [135]
+            xmin = 945.499
+            xmax = 946.004
+            text = ""
+        intervals [136]
+            xmin = 946.004
+            xmax = 952.271
+            text = "ʻōlelo ʻia no kekahi poʻe, kēia kalo ma kekahi ʻāina, he ʻokoʻa ka inoa."
+        intervals [137]
+            xmin = 952.271
+            xmax = 954.459
+            text = ""
+        intervals [138]
+            xmin = 954.459
+            xmax = 961.089
+            text = "Like nō me ko Hawaiʻi inoa.  He ʻokoʻa paha me ko Kauaʻi, ea?  A hoʻokahi ʻano kalo nō ia."
+        intervals [139]
+            xmin = 961.089
+            xmax = 965.508
+            text = ""
+        intervals [140]
+            xmin = 965.508
+            xmax = 967.25
+            text = "Nui nō nā ʻano kalo."
+        intervals [141]
+            xmin = 967.25
+            xmax = 975.303
+            text = ""
+        intervals [142]
+            xmin = 975.303
+            xmax = 979.769
+            text = "A he aha ka hoe, he aha ke kau, kalo helu ʻe, helu ʻekahi iā ʻoe?"
+        intervals [143]
+            xmin = 979.769
+            xmax = 1014.155
+            text = ""
+        intervals [144]
+            xmin = 1014.155
+            xmax = 1016.86
+            text = "ke waiho i loko o ka loʻi a mau makahiki, ē?"
+        intervals [145]
+            xmin = 1016.86
+            xmax = 1022.002
+            text = ""
+        intervals [146]
+            xmin = 1022.002
+            xmax = 1028.73
+            text = "Kēia manawa, ka poʻe mahi ʻai kalo a kanu nō ke kalo i oʻo koke, ē?  I hiki iā lākou ke"
+        intervals [147]
+            xmin = 1028.73
+            xmax = 1040.215
+            text = ""
+        intervals [148]
+            xmin = 1040.215
+            xmax = 1041.674
+            text = "Akā poʻi nō ʻoukou, ē?"
+        intervals [149]
+            xmin = 1041.674
+            xmax = 1045.462
+            text = ""
+        intervals [150]
+            xmin = 1045.462
+            xmax = 1046.18
+            text = "ka mauʻu"
+        intervals [151]
+            xmin = 1046.18
+            xmax = 1047.733
+            text = ""
+        intervals [152]
+            xmin = 1047.733
+            xmax = 1049.88
+            text = "i mea hoʻoulu ai i kai, i ka ʻai."
+        intervals [153]
+            xmin = 1049.88
+            xmax = 1052.085
+            text = ""
+        intervals [154]
+            xmin = 1052.085
+            xmax = 1056.427
+            text = "A ʻo ka lawaiʻa, he, he ʻano ʻōkaikai kēlā kai o "
+        intervals [155]
+            xmin = 1056.427
+            xmax = 1072.105
+            text = ""
+        intervals [156]
+            xmin = 1072.105
+            xmax = 1074.31
+            text = "ʻAe.  A he aha ka lawaiʻa?  He"
+        intervals [157]
+            xmin = 1074.31
+            xmax = 1107.755
+            text = ""
+        intervals [158]
+            xmin = 1107.755
+            xmax = 1111.982
+            text = "Ua ʻōlelo mua mai ʻoe e pili ana i kēia kupa kahiko"
+        intervals [159]
+            xmin = 1111.982
+            xmax = 1112.662
+            text = ""
+        intervals [160]
+            xmin = 1112.662
+            xmax = 1113.674
+            text = "Hāʻena?  ʻO"
+        intervals [161]
+            xmin = 1113.674
+            xmax = 1149.32
+            text = ""
+        intervals [162]
+            xmin = 1149.32
+            xmax = 1149.68
+            text = "Ae."
+        intervals [163]
+            xmin = 1149.68
+            xmax = 1182.897
+            text = ""
+        intervals [164]
+            xmin = 1182.897
+            xmax = 1183.272
+            text = "ʻĒ."
+        intervals [165]
+            xmin = 1183.272
+            xmax = 1191.575
+            text = ""
+        intervals [166]
+            xmin = 1191.575
+            xmax = 1193.11
+            text = "Paʻa nō i ka poʻe kahiko.
+"
+        intervals [167]
+            xmin = 1193.11
+            xmax = 1194.422
+            text = ""
+        intervals [168]
+            xmin = 1194.422
+            xmax = 1196.282
+            text = "ka, i kau, kahi o ke koʻa."
+        intervals [169]
+            xmin = 1196.282
+            xmax = 1196.739
+            text = ""
+        intervals [170]
+            xmin = 1196.739
+            xmax = 1197.619
+            text = "A nānā nō"
+        intervals [171]
+            xmin = 1197.619
+            xmax = 1213.589
+            text = ""
+        intervals [172]
+            xmin = 1213.589
+            xmax = 1220.31
+            text = "ʻAe.  ʻO, ʻo kēia ʻāi, inoa ʻāina o Māmalahoa.  Kamaʻāina, ʻoe me kēia ʻāina?"
+        intervals [173]
+            xmin = 1220.31
+            xmax = 1238.734
+            text = ""
+        intervals [174]
+            xmin = 1238.734
+            xmax = 1239.661
+            text = "A"
+        intervals [175]
+            xmin = 1239.661
+            xmax = 1240.676
+            text = ""
+        intervals [176]
+            xmin = 1240.676
+            xmax = 1244.83
+            text = "kēia manawa, a he kākaʻikahi wale nō ka poʻe e noho ana i Hanalei, ʻeā?"
+        intervals [177]
+            xmin = 1244.83
+            xmax = 1245.886
+            text = ""
+        intervals [178]
+            xmin = 1245.886
+            xmax = 1248.989
+            text = "ka hana nui o ka poʻe o laila? He mahi ʻai nō"
+        intervals [179]
+            xmin = 1248.989
+            xmax = 1288.018
+            text = ""
+        intervals [180]
+            xmin = 1288.018
+            xmax = 1290.238
+            text = "poʻe Hawaiʻi, ua haʻalele loa kēlā ʻano hana.
+"
+        intervals [181]
+            xmin = 1290.238
+            xmax = 1293.2
+            text = ""
+        intervals [182]
+            xmin = 1293.2
+            xmax = 1295.563
+            text = "Na ka lāhui ʻē e lawe ai i kēia hana."
+        intervals [183]
+            xmin = 1295.563
+            xmax = 1301.213
+            text = ""
+        intervals [184]
+            xmin = 1301.213
+            xmax = 1306.025
+            text = "Pehea, e Kawai?  Hiki nō iā ʻolua ke ho, ke hīmeni mai i kekahi mele?"
+        intervals [185]
+            xmin = 1306.025
+            xmax = 1313.04
+            text = ""
+        intervals [186]
+            xmin = 1313.04
+            xmax = 1313.57
+            text = "Mahalo"
+        intervals [187]
+            xmin = 1313.57
+            xmax = 1501.825
+            text = ""
+        intervals [188]
+            xmin = 1501.825
+            xmax = 1503.575
+            text = "Mahalo a nui loa iā ʻolua."
+        intervals [189]
+            xmin = 1503.575
+            xmax = 1506.355
+            text = ""
+        intervals [190]
+            xmin = 1506.355
+            xmax = 1507.587
+            text = "maopopo anei iā ʻoe"
+        intervals [191]
+            xmin = 1507.587
+            xmax = 1526.343
+            text = ""
+        intervals [192]
+            xmin = 1526.343
+            xmax = 1528.136
+            text = "A kēia puana pili ana i"
+        intervals [193]
+            xmin = 1528.136
+            xmax = 1594.57
+            text = ""
+        intervals [194]
+            xmin = 1594.57
+            xmax = 1594.938
+            text = "ʻĒ."
+        intervals [195]
+            xmin = 1594.938
+            xmax = 1613.2
+            text = ""
+        intervals [196]
+            xmin = 1613.2
+            xmax = 1617.86
+            text = "'Ae, E kala mai liʻiliʻi.  E hoʻolaha ana nō kēia kahua i wahi hoʻolaha."
+        intervals [197]
+            xmin = 1617.86
+            xmax = 1642.025
+            text = ""
+        intervals [198]
+            xmin = 1642.025
+            xmax = 1650.755
+            text = "ʻAe.  Aloha ahiahi nō kākou.  Eia hou nō mākou, ka papahana kēia ʻo Ka Leo Hawaiʻi.  A ʻo ko mākou hoa kipa i kēia ahiahi"
+        intervals [199]
+            xmin = 1650.755
+            xmax = 1653.248
+            text = ""
+        intervals [200]
+            xmin = 1653.248
+            xmax = 1654.674
+            text = "me kāna keiki, ʻo "
+        intervals [201]
+            xmin = 1654.674
+            xmax = 1656.538
+            text = ""
+        intervals [202]
+            xmin = 1656.538
+            xmax = 1663.579
+            text = "A ua ʻōlelo nō mākou e pili ana i kēia limu kaulana o Hanalei, ka limu o Manuʻakepa."
+        intervals [203]
+            xmin = 1663.579
+            xmax = 1664.354
+            text = ""
+        intervals [204]
+            xmin = 1664.354
+            xmax = 1669.321
+            text = "ʻO ia paha ka i, ʻo Manuʻakepa ka inoa o, o ia limu, a i ʻole, ka inoa nō o ka ʻāina."
+        intervals [205]
+            xmin = 1669.321
+            xmax = 1674.73
+            text = ""
+        intervals [206]
+            xmin = 1674.73
+            xmax = 1680.006
+            text = "A he loaʻa nō mākou ma Hawaiʻi kēia ʻano li, akā ʻaʻohe like nō me ko"
+        intervals [207]
+            xmin = 1680.006
+            xmax = 1681.865
+            text = ""
+        intervals [208]
+            xmin = 1681.865
+            xmax = 1682.345
+            text = "Hanalei"
+        intervals [209]
+            xmin = 1682.345
+            xmax = 1688.325
+            text = ""
+        intervals [210]
+            xmin = 1688.325
+            xmax = 1691.033
+            text = "kēia limu ulu nō ma nuna o ka pāhoehoe,"
+        intervals [211]
+            xmin = 1691.033
+            xmax = 1694.232
+            text = ""
+        intervals [212]
+            xmin = 1694.232
+            xmax = 1695.859
+            text = "kēia manawa, a ulu mai"
+        intervals [213]
+            xmin = 1695.859
+            xmax = 1702.286
+            text = ""
+        intervals [214]
+            xmin = 1702.286
+            xmax = 1702.673
+            text = "ʻĒ."
+        intervals [215]
+            xmin = 1702.673
+            xmax = 1723.103
+            text = ""
+        intervals [216]
+            xmin = 1723.103
+            xmax = 1725.962
+            text = "Pehea kēia ʻano limu līpālāwai, he loaʻa iā ʻoukou?"
+        intervals [217]
+            xmin = 1725.962
+            xmax = 1732.821
+            text = ""
+        intervals [218]
+            xmin = 1732.821
+            xmax = 1735.17
+            text = "He aha ka limu ʻai o ka ʻāina o Hanalei?"
+        intervals [219]
+            xmin = 1735.17
+            xmax = 1753.395
+            text = ""
+        intervals [220]
+            xmin = 1753.395
+            xmax = 1755.328
+            text = "ʻO ia paha kāu hana i kou wā liʻiliʻi."
+        intervals [221]
+            xmin = 1755.328
+            xmax = 1764.863
+            text = ""
+        intervals [222]
+            xmin = 1764.863
+            xmax = 1767.529
+            text = "Ka manawa hea ka manawa o ka, o ka heʻe?"
+        intervals [223]
+            xmin = 1767.529
+            xmax = 1800.612
+            text = ""
+        intervals [224]
+            xmin = 1800.612
+            xmax = 1802.382
+            text = "Kēia ʻōhua, ʻaʻahe?"
+        intervals [225]
+            xmin = 1802.382
+            xmax = 1803.463
+            text = ""
+        intervals [226]
+            xmin = 1803.463
+            xmax = 1803.869
+            text = "Loʻa."
+        intervals [227]
+            xmin = 1803.869
+            xmax = 1814.591
+            text = ""
+        intervals [228]
+            xmin = 1814.591
+            xmax = 1817.079
+            text = "Akā, he kapu nō kēlā iʻa"
+        intervals [229]
+            xmin = 1817.079
+            xmax = 1820.312
+            text = ""
+        intervals [230]
+            xmin = 1820.312
+            xmax = 1823.992
+            text = "E ʻoluʻolu, wehewehe mai kēia ʻano hana, he nao manini"
+        intervals [231]
+            xmin = 1823.992
+            xmax = 1864.361
+            text = ""
+        intervals [232]
+            xmin = 1864.361
+            xmax = 1864.846
+            text = "welu"
+        intervals [233]
+            xmin = 1864.846
+            xmax = 1882.075
+            text = ""
+        intervals [234]
+            xmin = 1882.075
+            xmax = 1883.649
+            text = "ʻAʻohe holo ka iʻa i waho?"
+        intervals [235]
+            xmin = 1883.649
+            xmax = 1934.751
+            text = ""
+        intervals [236]
+            xmin = 1934.751
+            xmax = 1935.84
+            text = "He hana nanea nō"
+        intervals [237]
+            xmin = 1935.84
+            xmax = 1938.53
+            text = ""
+        intervals [238]
+            xmin = 1938.53
+            xmax = 1940.01
+            text = "Hele kahakai holoholo, ē?"
+        intervals [239]
+            xmin = 1940.01
+            xmax = 1940.655
+            text = ""
+        intervals [240]
+            xmin = 1940.655
+            xmax = 1946.03
+            text = "E kala mai e hoʻolaha ana au i kēia manawa i nā helu kelepona o kēia kahua."
+        intervals [241]
+            xmin = 1946.03
+            xmax = 1946.364
+            text = ""
+        intervals [242]
+            xmin = 1946.364
+            xmax = 1951.908
+            text = "Inā he manaʻo paha ko ʻoukou, a i ʻole, he nīnau, e ʻoluʻolu e kelepona mai."
+        intervals [243]
+            xmin = 1951.908
+            xmax = 1952.303
+            text = ""
+        intervals [244]
+            xmin = 1952.303
+            xmax = 1954.803
+            text = "A eia nō nā helu o kēia kahua,"
+        intervals [245]
+            xmin = 1954.803
+            xmax = 1955.542
+            text = ""
+        intervals [246]
+            xmin = 1955.542
+            xmax = 1959.996
+            text = "ka helu ʻeiwa ʻelua ʻekolu, ʻole ʻehā ʻole ʻelua."
+        intervals [247]
+            xmin = 1959.996
+            xmax = 1960.44
+            text = ""
+        intervals [248]
+            xmin = 1960.44
+            xmax = 1967.171
+            text = "Me ka helu ʻole ʻehā, a e kala mai.  Helu ʻeiwa ʻelua ʻekolu, ʻole ʻehā ʻole ʻekolu."
+        intervals [249]
+            xmin = 1967.171
+            xmax = 1967.541
+            text = ""
+        intervals [250]
+            xmin = 1967.541
+            xmax = 1971.893
+            text = "Ka helu ʻeiwa ʻelua ʻekolu, ʻole ʻehā ʻole ʻehā."
+        intervals [251]
+            xmin = 1971.893
+            xmax = 1972.396
+            text = ""
+        intervals [252]
+            xmin = 1972.396
+            xmax = 1978.169
+            text = "A me ka helu ʻeiwa ʻelua ʻekolu, ʻekahi ʻewalu ʻehā ʻehā."
+        intervals [253]
+            xmin = 1978.169
+            xmax = 1987.813
+            text = ""
+        intervals [254]
+            xmin = 1987.813
+            xmax = 1988.43
+            text = "a"
+        intervals [255]
+            xmin = 1988.43
+            xmax = 1990.137
+            text = ""
+        intervals [256]
+            xmin = 1990.137
+            xmax = 1992.392
+            text = "ʻo kēia hana o ka, o ka hana lawaiʻa o"
+        intervals [257]
+            xmin = 1992.392
+            xmax = 1996.42
+            text = ""
+        intervals [258]
+            xmin = 1996.42
+            xmax = 2000.46
+            text = "pehea maopopo iā ʻoe i ka hana ʻana i kēia palu no ka,
+"
+        intervals [259]
+            xmin = 2000.46
+            xmax = 2039.512
+            text = ""
+        intervals [260]
+            xmin = 2039.512
+            xmax = 2041.047
+            text = "Kāʻeʻe paha ma ka ʻupena."
+        intervals [261]
+            xmin = 2041.047
+            xmax = 2046.974
+            text = ""
+        intervals [262]
+            xmin = 2046.974
+            xmax = 2047.764
+            text = "Pehea ka"
+        intervals [263]
+            xmin = 2047.764
+            xmax = 2066.027
+            text = ""
+        intervals [264]
+            xmin = 2066.027
+            xmax = 2066.923
+            text = "kēlā iā mākou."
+        intervals [265]
+            xmin = 2066.923
+            xmax = 2070.547
+            text = ""
+        intervals [266]
+            xmin = 2070.547
+            xmax = 2071.215
+            text = "He 'ono nō"
+        intervals [267]
+            xmin = 2071.215
+            xmax = 2072.03
+            text = ""
+        intervals [268]
+            xmin = 2072.03
+            xmax = 2074.31
+            text = "ka ʻai maka, he kaulaʻi nō."
+        intervals [269]
+            xmin = 2074.31
+            xmax = 2076.817
+            text = ""
+        intervals [270]
+            xmin = 2076.817
+            xmax = 2079.402
+            text = "ʻĒ.  He hele kēia me ka nīʻau, ē?"
+        intervals [271]
+            xmin = 2079.402
+            xmax = 2080.829
+            text = ""
+        intervals [272]
+            xmin = 2080.829
+            xmax = 2081.559
+            text = "ka lau niu."
+        intervals [273]
+            xmin = 2081.559
+            xmax = 2117.85
+            text = ""
+        intervals [274]
+            xmin = 2117.85
+            xmax = 2121.331
+            text = "mea, ke kau maila ka lā, hāʻekaʻeka no kēia,"
+        intervals [275]
+            xmin = 2121.331
+            xmax = 2133.918
+            text = ""
+        intervals [276]
+            xmin = 2133.918
+            xmax = 2134.768
+            text = "Transcription said ""ke lihi kai"" i hear ""ka lihi kai"""
+        intervals [277]
+            xmin = 2134.768
+            xmax = 2135.718
+            text = ""
+        intervals [278]
+            xmin = 2135.718
+            xmax = 2138.158
+            text = "Mau nō ka lawaiʻa o kēlā, kēlā ʻano iʻa?"
+        intervals [279]
+            xmin = 2138.158
+            xmax = 2139.428
+            text = ""
+        intervals [280]
+            xmin = 2139.428
+            xmax = 2140.623
+            text = "I loko nō o kēia kapu."
+        intervals [281]
+            xmin = 2140.623
+            xmax = 2143.37
+            text = ""
+        intervals [282]
+            xmin = 2143.37
+            xmax = 2144.73
+            text = "He iʻa ʻono nō kēia."
+        intervals [283]
+            xmin = 2144.73
+            xmax = 2154.524
+            text = ""
+        intervals [284]
+            xmin = 2154.524
+            xmax = 2157.175
+            text = "A pehea?  He mele hou aʻe kā ʻolua hiki"
+        intervals [285]
+            xmin = 2157.175
+            xmax = 2161.035
+            text = ""
+        intervals [286]
+            xmin = 2161.035
+            xmax = 2161.418
+            text = "ʻO wai?"
+        intervals [287]
+            xmin = 2161.418
+            xmax = 2269.919
+            text = ""
+        intervals [288]
+            xmin = 2269.919
+            xmax = 2275.886
+            text = "ʻAe, e Kawai.  A eia nō ʻoe ke hana nei ma Waikīkī?"
+        intervals [289]
+            xmin = 2275.886
+            xmax = 2289.748
+            text = ""
+        intervals [290]
+            xmin = 2289.748
+            xmax = 2293.747
+            text = "maopopo iā ʻoe ka mea nāna i haku kēia mele ʻo Nani Kauaʻi?"
+        intervals [291]
+            xmin = 2293.747
+            xmax = 2307.041
+            text = ""
+        intervals [292]
+            xmin = 2307.041
+            xmax = 2308.126
+            text = "Mele kahiko kēia?"
+        intervals [293]
+            xmin = 2308.126
+            xmax = 2332.665
+            text = ""
+        intervals [294]
+            xmin = 2332.665
+            xmax = 2340.99
+            text = "A he aha ka manaʻo nui o kēia puana o kēia mele aʻe ʻo, ʻo Hanalei?   A kēia puana pili ana iā Hāʻena?"
+        intervals [295]
+            xmin = 2340.99
+            xmax = 2342.737
+            text = ""
+        intervals [296]
+            xmin = 2342.737
+            xmax = 2344.212
+            text = "ʻEnaʻena i ka ʻehu kai."
+        intervals [297]
+            xmin = 2344.212
+            xmax = 2389.999
+            text = ""
+        intervals [298]
+            xmin = 2389.999
+            xmax = 2396.189
+            text = "ʻEʻena, ua , ka manaʻo no ʻeʻena, he mea, ē?  ʻEnaʻena nō paha pōhaku kālua, ē?"
+        intervals [299]
+            xmin = 2396.189
+            xmax = 2436.178
+            text = ""
+        intervals [300]
+            xmin = 2436.178
+            xmax = 2439.678
+            text = "A kēia, ua kaulana nō ʻo Hanalei i ka ua nui, ē?"
+        intervals [301]
+            xmin = 2439.678
+            xmax = 2441.638
+            text = ""
+        intervals [302]
+            xmin = 2441.638
+            xmax = 2443.108
+            text = "Ka ua loku."
+        intervals [303]
+            xmin = 2443.108
+            xmax = 2445.46
+            text = ""
+        intervals [304]
+            xmin = 2445.46
+            xmax = 2452.231
+            text = "Like nō me kāu i ʻōlelo mua mai ai pili ana i ke ʻano ka ua o Hanalei.  ʻAʻohe nō hoʻokahi, ʻelua lā"
+        intervals [305]
+            xmin = 2452.231
+            xmax = 2458.323
+            text = ""
+        intervals [306]
+            xmin = 2458.323
+            xmax = 2459.393
+            text = "He nui ka wai, ē?"
+        intervals [307]
+            xmin = 2459.393
+            xmax = 2462.053
+            text = ""
+        intervals [308]
+            xmin = 2462.053
+            xmax = 2463.825
+            text = "pilikia ka poʻe mahi ʻai i ka ua.
+"
+        intervals [309]
+            xmin = 2463.825
+            xmax = 2481.89
+            text = ""
+        intervals [310]
+            xmin = 2481.89
+            xmax = 2483.725
+            text = "Nui ke kahawai o Ha, Ha,"
+        intervals [311]
+            xmin = 2483.725
+            xmax = 2522.303
+            text = ""
+        intervals [312]
+            xmin = 2522.303
+            xmax = 2526.258
+            text = "ʻAuhea hoʻi nā poʻe o Kauaʻi?  ʻAʻohe i kelepona mai i kēia ahiahi."
+        intervals [313]
+            xmin = 2526.258
+            xmax = 2527.346
+            text = ""
+        intervals [314]
+            xmin = 2527.346
+            xmax = 2532.42
+            text = "Hoʻolaha hou ana wau i kēia poʻe helu o, helu kelepona o kēia kahua."
+        intervals [315]
+            xmin = 2532.42
+            xmax = 2534.064
+            text = ""
+        intervals [316]
+            xmin = 2534.064
+            xmax = 2540.015
+            text = "ʻO ia nō, a, ka helu ʻeiwa ʻelua ʻekolu, ʻole ʻehā ʻole ʻelua."
+        intervals [317]
+            xmin = 2540.015
+            xmax = 2546.124
+            text = ""
+        intervals [318]
+            xmin = 2546.124
+            xmax = 2549.883
+            text = "Helu ʻeiwa ʻelua ʻekolu, ʻole ʻehā ʻole ʻehā."
+        intervals [319]
+            xmin = 2549.883
+            xmax = 2550.471
+            text = ""
+        intervals [320]
+            xmin = 2550.471
+            xmax = 2557.774
+            text = "A me ka helu a ʻekahi, a ʻeiwa ʻelua ʻekolu, ʻekahi ʻewalu ʻehā ʻehā."
+        intervals [321]
+            xmin = 2557.774
+            xmax = 2558.093
+            text = ""
+        intervals [322]
+            xmin = 2558.093
+            xmax = 2566.716
+            text = "A ʻo nā keiki e pane ana i nā kelepona i kēia ahiahi, ʻo ia nō kekahi mau haumāna mai ke Kula ʻo Kana Lui mai. "
+        intervals [323]
+            xmin = 2566.716
+            xmax = 2567.183
+            text = ""
+        intervals [324]
+            xmin = 2567.183
+            xmax = 2574.762
+            text = "He mau haumāna kēia na Keola Leik, ke kumu, a, ʻōlelo Hawaiʻi o Kana Lua, a Kana Lui."
+        intervals [325]
+            xmin = 2574.762
+            xmax = 2575.413
+            text = ""
+        intervals [326]
+            xmin = 2575.413
+            xmax = 2583.414
+            text = "A ʻo nā inoa o kēia mau keiki, ʻo ia ʻo Makapāhau Kahiapo me Kamaki"
+        intervals [327]
+            xmin = 2583.414
+            xmax = 2585.993
+            text = ""
+        intervals [328]
+            xmin = 2585.993
+            xmax = 2596.058
+            text = "A mahalo nui iā ʻoukou i ko ʻolua, kā ʻoukou hele ʻana mai, no ka mea, he mau haumāna i hele mai ai i kēia ahiahi i ke kahua nei."
+        intervals [329]
+            xmin = 2596.058
+            xmax = 2597.674
+            text = ""
+        intervals [330]
+            xmin = 2597.674
+            xmax = 2598.854
+            text = "ʻAe, e kala mai."
+        intervals [331]
+            xmin = 2598.854
+            xmax = 3347.325
+            text = ""
+        intervals [332]
+            xmin = 3347.325
+            xmax = 3350.79
+            text = "'Ae, mahalo nui i ko ʻoukou kāhea ʻana mai i kēia ahiahi."
+        intervals [333]
+            xmin = 3350.79
+            xmax = 3351.402
+            text = ""
+        intervals [334]
+            xmin = 3351.402
+            xmax = 3352.027
+            text = "A"
+        intervals [335]
+            xmin = 3352.027
+            xmax = 3353.744
+            text = ""
+        intervals [336]
+            xmin = 3353.744
+            xmax = 3355.699
+            text = "a mahalo nui iā ʻolua, e"
+        intervals [337]
+            xmin = 3355.699
+            xmax = 3359.407
+            text = ""
+        intervals [338]
+            xmin = 3359.407
+            xmax = 3360.972
+            text = "kā ʻolua hele ʻana mai"
+        intervals [339]
+            xmin = 3360.972
+            xmax = 3363.671
+            text = ""
+        intervals [340]
+            xmin = 3363.671
+            xmax = 3368.606
+            text = "e hoʻolauna pū mai ai me nā poʻe hoʻolohe ana me mākou i kēia ahiahi."
+        intervals [341]
+            xmin = 3368.606
+            xmax = 3369.373
+            text = ""
+        intervals [342]
+            xmin = 3369.373
+            xmax = 3375.353
+            text = "A iā ʻoe, e Kawai, i kāu hīmeni ʻana "
+        intervals [343]
+            xmin = 3375.353
+            xmax = 3389.493
+            text = ""
+        intervals [344]
+            xmin = 3389.493
+            xmax = 3402.703
+            text = "A iā ʻoukou a pau loa, mahalo nui i ko ʻoukou hoʻolohe ʻana mai.  E hoʻolohe hou mai i kēia Poʻalua aʻe, i ka hola ʻewalu nō o ke ahiahi.  A aloha nui, a hui hou aku nō kākou."
+        intervals [345]
+            xmin = 3402.703
+            xmax = 3411.721
+            text = ""
+    item[3]:
+        class = "IntervalTier"
+        name = "Notes"
+        xmin = 0.0
+        xmax = 3411.721
+        intervals: size = 43
+        intervals [1]
+            xmin = 0.0
+            xmax = 422.754
+            text = ""
+        intervals [2]
+            xmin = 422.754
+            xmax = 423.542
+            text = "Lake = leik"
+        intervals [3]
+            xmin = 423.542
+            xmax = 823.108
+            text = ""
+        intervals [4]
+            xmin = 823.108
+            xmax = 824.513
+            text = "^(Kākaʻikahi) "
+        intervals [5]
+            xmin = 824.513
+            xmax = 1002.637
+            text = ""
+        intervals [6]
+            xmin = 1002.637
+            xmax = 1005.539
+            text = "Transcription says ""Aohe like pu"" but I believe it is ""a like pu"" because it is saying that both the Piialii and Haokea ferment/sour fast"
+        intervals [7]
+            xmin = 1005.539
+            xmax = 1158.416
+            text = ""
+        intervals [8]
+            xmin = 1158.416
+            xmax = 1158.826
+            text = """Mamake"""
+        intervals [9]
+            xmin = 1158.826
+            xmax = 1167.346
+            text = ""
+        intervals [10]
+            xmin = 1167.346
+            xmax = 1172.066
+            text = "I hear ""mamake"" but the transcription says makemake. Not sure if this is important."
+        intervals [11]
+            xmin = 1172.066
+            xmax = 1174.833
+            text = ""
+        intervals [12]
+            xmin = 1174.833
+            xmax = 1175.441
+            text = """paʻ"" is ""but"" "
+        intervals [13]
+            xmin = 1175.441
+            xmax = 1220.334
+            text = ""
+        intervals [14]
+            xmin = 1220.334
+            xmax = 1221.334
+            text = "Transcription says ""aole"" but she says 'a'ale"
+        intervals [15]
+            xmin = 1221.334
+            xmax = 1515.167
+            text = ""
+        intervals [16]
+            xmin = 1515.167
+            xmax = 1515.666
+            text = "but"
+        intervals [17]
+            xmin = 1515.666
+            xmax = 1573.483
+            text = ""
+        intervals [18]
+            xmin = 1573.483
+            xmax = 1574.303
+            text = "I hear ""ale"" not sure if it is just a fast ""a"" sound though"
+        intervals [19]
+            xmin = 1574.303
+            xmax = 1656.538
+            text = ""
+        intervals [20]
+            xmin = 1656.538
+            xmax = 1663.579
+            text = "I hear some small noises in the background and possibly a grunt from RM but it is not listed on the transcript I am not sure if that will be a problem in analysis"
+        intervals [21]
+            xmin = 1663.579
+            xmax = 1721.835
+            text = ""
+        intervals [22]
+            xmin = 1721.835
+            xmax = 1722.858
+            text = "Transcription says ""aole"" but I hear ""ale"""
+        intervals [23]
+            xmin = 1722.858
+            xmax = 1748.025
+            text = ""
+        intervals [24]
+            xmin = 1748.025
+            xmax = 1749.685
+            text = "Seems like transcription added a ka'i here"
+        intervals [25]
+            xmin = 1749.685
+            xmax = 1784.92
+            text = ""
+        intervals [26]
+            xmin = 1784.92
+            xmax = 1788.374
+            text = """a 'ahe 'u"" it seems like there is an either very soft ""a"" sound in her aohe or none at all"
+        intervals [27]
+            xmin = 1788.374
+            xmax = 1802.355
+            text = ""
+        intervals [28]
+            xmin = 1802.355
+            xmax = 1804.058
+            text = "loaʻa = loʻa"
+        intervals [29]
+            xmin = 1804.058
+            xmax = 2084.751
+            text = ""
+        intervals [30]
+            xmin = 2084.751
+            xmax = 2085.949
+            text = "I dont really hear the ""o"" at the end of ""ho'a'o"". I hear Ho'a"
+        intervals [31]
+            xmin = 2085.949
+            xmax = 2148.05
+            text = ""
+        intervals [32]
+            xmin = 2148.05
+            xmax = 2151.615
+            text = "There is a laugh in here not sure if that is unusable or not"
+        intervals [33]
+            xmin = 2151.615
+            xmax = 2325.525
+            text = ""
+        intervals [34]
+            xmin = 2325.525
+            xmax = 2326.86
+            text = "transcribed as ʻaʻole, hear /a/"
+        intervals [35]
+            xmin = 2326.86
+            xmax = 2380.833
+            text = ""
+        intervals [36]
+            xmin = 2380.833
+            xmax = 2386.318
+            text = "I think those slashes are meant to be like quotations like this is a poetic saying or idiom"
+        intervals [37]
+            xmin = 2386.318
+            xmax = 2390.368
+            text = ""
+        intervals [38]
+            xmin = 2390.368
+            xmax = 2390.976
+            text = """ua"" = ""well"" in transcript "
+        intervals [39]
+            xmin = 2390.976
+            xmax = 2471.235
+            text = ""
+        intervals [40]
+            xmin = 2471.235
+            xmax = 2475.035
+            text = "I hear ""aina na mahi 'ai, im not sure why the transcription says ""ka aina"" here"
+        intervals [41]
+            xmin = 2475.035
+            xmax = 2569.869
+            text = ""
+        intervals [42]
+            xmin = 2569.869
+            xmax = 2570.628
+            text = "Lake = leik"
+        intervals [43]
+            xmin = 2570.628
+            xmax = 3411.721
+            text = ""

@@ -1,0 +1,5 @@
+stress,vowel,tokens
+primary,o,97
+primary,u,46
+unstressed,o,52
+unstressed,u,37

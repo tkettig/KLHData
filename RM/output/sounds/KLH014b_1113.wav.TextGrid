@@ -1,0 +1,200 @@
+File type = "ooTextFile"
+Object class = "TextGrid"
+
+xmin = 0 
+xmax = 0.34122448979591835 
+tiers? <exists> 
+size = 2 
+item []: 
+    item [1]:
+        class = "TextTier" 
+        name = "GCIs" 
+        xmin = 0 
+        xmax = 0.34122448979591835 
+        points: size = 56 
+        points [1]:
+            number = 0.00356 
+            mark = "" 
+        points [2]:
+            number = 0.009365 
+            mark = "" 
+        points [3]:
+            number = 0.015057 
+            mark = "" 
+        points [4]:
+            number = 0.020703 
+            mark = "" 
+        points [5]:
+            number = 0.026259 
+            mark = "" 
+        points [6]:
+            number = 0.031973 
+            mark = "" 
+        points [7]:
+            number = 0.037506 
+            mark = "" 
+        points [8]:
+            number = 0.043084 
+            mark = "" 
+        points [9]:
+            number = 0.048662 
+            mark = "" 
+        points [10]:
+            number = 0.054286 
+            mark = "" 
+        points [11]:
+            number = 0.060023 
+            mark = "" 
+        points [12]:
+            number = 0.065692 
+            mark = "" 
+        points [13]:
+            number = 0.071497 
+            mark = "" 
+        points [14]:
+            number = 0.077188 
+            mark = "" 
+        points [15]:
+            number = 0.082834 
+            mark = "" 
+        points [16]:
+            number = 0.088458 
+            mark = "" 
+        points [17]:
+            number = 0.094082 
+            mark = "" 
+        points [18]:
+            number = 0.099569 
+            mark = "" 
+        points [19]:
+            number = 0.105057 
+            mark = "" 
+        points [20]:
+            number = 0.110544 
+            mark = "" 
+        points [21]:
+            number = 0.115918 
+            mark = "" 
+        points [22]:
+            number = 0.121156 
+            mark = "" 
+        points [23]:
+            number = 0.126349 
+            mark = "" 
+        points [24]:
+            number = 0.131723 
+            mark = "" 
+        points [25]:
+            number = 0.136984 
+            mark = "" 
+        points [26]:
+            number = 0.142177 
+            mark = "" 
+        points [27]:
+            number = 0.147279 
+            mark = "" 
+        points [28]:
+            number = 0.152358 
+            mark = "" 
+        points [29]:
+            number = 0.157415 
+            mark = "" 
+        points [30]:
+            number = 0.162449 
+            mark = "" 
+        points [31]:
+            number = 0.16737 
+            mark = "" 
+        points [32]:
+            number = 0.172109 
+            mark = "" 
+        points [33]:
+            number = 0.176848 
+            mark = "" 
+        points [34]:
+            number = 0.181633 
+            mark = "" 
+        points [35]:
+            number = 0.186281 
+            mark = "" 
+        points [36]:
+            number = 0.19102 
+            mark = "" 
+        points [37]:
+            number = 0.195714 
+            mark = "" 
+        points [38]:
+            number = 0.200454 
+            mark = "" 
+        points [39]:
+            number = 0.205125 
+            mark = "" 
+        points [40]:
+            number = 0.209841 
+            mark = "" 
+        points [41]:
+            number = 0.214444 
+            mark = "" 
+        points [42]:
+            number = 0.219116 
+            mark = "" 
+        points [43]:
+            number = 0.223787 
+            mark = "" 
+        points [44]:
+            number = 0.228481 
+            mark = "" 
+        points [45]:
+            number = 0.233129 
+            mark = "" 
+        points [46]:
+            number = 0.2378 
+            mark = "" 
+        points [47]:
+            number = 0.242494 
+            mark = "" 
+        points [48]:
+            number = 0.247234 
+            mark = "" 
+        points [49]:
+            number = 0.251973 
+            mark = "" 
+        points [50]:
+            number = 0.256757 
+            mark = "" 
+        points [51]:
+            number = 0.261746 
+            mark = "" 
+        points [52]:
+            number = 0.266667 
+            mark = "" 
+        points [53]:
+            number = 0.271633 
+            mark = "" 
+        points [54]:
+            number = 0.276485 
+            mark = "" 
+        points [55]:
+            number = 0.281882 
+            mark = "" 
+        points [56]:
+            number = 0.28712 
+            mark = "" 
+    item [2]:
+        class = "IntervalTier" 
+        name = "Phonation" 
+        xmin = 0 
+        xmax = 0.34122448979591835 
+        intervals: size = 3 
+        intervals [1]:
+            xmin = 0 
+            xmax = 0.00356 
+            text = "" 
+        intervals [2]:
+            xmin = 0.00356 
+            xmax = 0.29712 
+            text = "phonation" 
+        intervals [3]:
+            xmin = 0.29712 
+            xmax = 0.34122448979591835 
+            text = "" 
