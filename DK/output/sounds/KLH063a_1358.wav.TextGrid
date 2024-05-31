@@ -1,0 +1,83 @@
+File type = "ooTextFile"
+Object class = "TextGrid"
+
+xmin = 0 
+xmax = 0.19158730158730158 
+tiers? <exists> 
+size = 2 
+item []: 
+    item [1]:
+        class = "TextTier" 
+        name = "GCIs" 
+        xmin = 0 
+        xmax = 0.19158730158730158 
+        points: size = 17 
+        points [1]:
+            number = 0.029773 
+            mark = "" 
+        points [2]:
+            number = 0.037143 
+            mark = "" 
+        points [3]:
+            number = 0.044104 
+            mark = "" 
+        points [4]:
+            number = 0.05102 
+            mark = "" 
+        points [5]:
+            number = 0.057914 
+            mark = "" 
+        points [6]:
+            number = 0.064671 
+            mark = "" 
+        points [7]:
+            number = 0.071474 
+            mark = "" 
+        points [8]:
+            number = 0.07839 
+            mark = "" 
+        points [9]:
+            number = 0.085306 
+            mark = "" 
+        points [10]:
+            number = 0.09229 
+            mark = "" 
+        points [11]:
+            number = 0.09941 
+            mark = "" 
+        points [12]:
+            number = 0.106803 
+            mark = "" 
+        points [13]:
+            number = 0.114399 
+            mark = "" 
+        points [14]:
+            number = 0.122154 
+            mark = "" 
+        points [15]:
+            number = 0.130181 
+            mark = "" 
+        points [16]:
+            number = 0.138481 
+            mark = "" 
+        points [17]:
+            number = 0.146961 
+            mark = "" 
+    item [2]:
+        class = "IntervalTier" 
+        name = "Phonation" 
+        xmin = 0 
+        xmax = 0.19158730158730158 
+        intervals: size = 3 
+        intervals [1]:
+            xmin = 0 
+            xmax = 0.029773 
+            text = "" 
+        intervals [2]:
+            xmin = 0.029773 
+            xmax = 0.156961 
+            text = "phonation" 
+        intervals [3]:
+            xmin = 0.156961 
+            xmax = 0.19158730158730158 
+            text = "" 

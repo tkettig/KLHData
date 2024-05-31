@@ -1,0 +1,5 @@
+stress,vowel,tokens
+primary,e,198
+primary,i,228
+unstressed,e,309
+unstressed,i,162
