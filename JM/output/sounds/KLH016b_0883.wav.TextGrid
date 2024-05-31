@@ -1,0 +1,161 @@
+File type = "ooTextFile"
+Object class = "TextGrid"
+
+xmin = 0 
+xmax = 0.44090702947845806 
+tiers? <exists> 
+size = 2 
+item []: 
+    item [1]:
+        class = "TextTier" 
+        name = "GCIs" 
+        xmin = 0 
+        xmax = 0.44090702947845806 
+        points: size = 43 
+        points [1]:
+            number = 0.038526 
+            mark = "" 
+        points [2]:
+            number = 0.047687 
+            mark = "" 
+        points [3]:
+            number = 0.056803 
+            mark = "" 
+        points [4]:
+            number = 0.065533 
+            mark = "" 
+        points [5]:
+            number = 0.07415 
+            mark = "" 
+        points [6]:
+            number = 0.082562 
+            mark = "" 
+        points [7]:
+            number = 0.090907 
+            mark = "" 
+        points [8]:
+            number = 0.099342 
+            mark = "" 
+        points [9]:
+            number = 0.10771 
+            mark = "" 
+        points [10]:
+            number = 0.116009 
+            mark = "" 
+        points [11]:
+            number = 0.124308 
+            mark = "" 
+        points [12]:
+            number = 0.132517 
+            mark = "" 
+        points [13]:
+            number = 0.140703 
+            mark = "" 
+        points [14]:
+            number = 0.148866 
+            mark = "" 
+        points [15]:
+            number = 0.157098 
+            mark = "" 
+        points [16]:
+            number = 0.165215 
+            mark = "" 
+        points [17]:
+            number = 0.173333 
+            mark = "" 
+        points [18]:
+            number = 0.181383 
+            mark = "" 
+        points [19]:
+            number = 0.189433 
+            mark = "" 
+        points [20]:
+            number = 0.197438 
+            mark = "" 
+        points [21]:
+            number = 0.205419 
+            mark = "" 
+        points [22]:
+            number = 0.213356 
+            mark = "" 
+        points [23]:
+            number = 0.221293 
+            mark = "" 
+        points [24]:
+            number = 0.229206 
+            mark = "" 
+        points [25]:
+            number = 0.236893 
+            mark = "" 
+        points [26]:
+            number = 0.244626 
+            mark = "" 
+        points [27]:
+            number = 0.252177 
+            mark = "" 
+        points [28]:
+            number = 0.259683 
+            mark = "" 
+        points [29]:
+            number = 0.26712 
+            mark = "" 
+        points [30]:
+            number = 0.274467 
+            mark = "" 
+        points [31]:
+            number = 0.281791 
+            mark = "" 
+        points [32]:
+            number = 0.289048 
+            mark = "" 
+        points [33]:
+            number = 0.296304 
+            mark = "" 
+        points [34]:
+            number = 0.303515 
+            mark = "" 
+        points [35]:
+            number = 0.310726 
+            mark = "" 
+        points [36]:
+            number = 0.317914 
+            mark = "" 
+        points [37]:
+            number = 0.325125 
+            mark = "" 
+        points [38]:
+            number = 0.332313 
+            mark = "" 
+        points [39]:
+            number = 0.339524 
+            mark = "" 
+        points [40]:
+            number = 0.346644 
+            mark = "" 
+        points [41]:
+            number = 0.353855 
+            mark = "" 
+        points [42]:
+            number = 0.361791 
+            mark = "" 
+        points [43]:
+            number = 0.370771 
+            mark = "" 
+    item [2]:
+        class = "IntervalTier" 
+        name = "Phonation" 
+        xmin = 0 
+        xmax = 0.44090702947845806 
+        intervals: size = 3 
+        intervals [1]:
+            xmin = 0 
+            xmax = 0.038526 
+            text = "" 
+        intervals [2]:
+            xmin = 0.038526 
+            xmax = 0.380771 
+            text = "phonation" 
+        intervals [3]:
+            xmin = 0.380771 
+            xmax = 0.44090702947845806 
+            text = "" 

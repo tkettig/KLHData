@@ -1,0 +1,6 @@
+word,tokens
+kaikaina,2
+kaikamahine,2
+kaikuaʻana,2
+laila,26
+maikaʻi,2

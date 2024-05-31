@@ -1,0 +1,61 @@
+File type = "ooTextFile"
+Object class = "TextGrid"
+
+xmin = 0 
+xmax = 0.14634920634920634 
+tiers? <exists> 
+size = 2 
+item []: 
+    item [1]:
+        class = "TextTier" 
+        name = "GCIs" 
+        xmin = 0 
+        xmax = 0.14634920634920634 
+        points: size = 11 
+        points [1]:
+            number = 0.02 
+            mark = "" 
+        points [2]:
+            number = 0.028005 
+            mark = "" 
+        points [3]:
+            number = 0.037007 
+            mark = "" 
+        points [4]:
+            number = 0.045669 
+            mark = "" 
+        points [5]:
+            number = 0.05381 
+            mark = "" 
+        points [6]:
+            number = 0.062608 
+            mark = "" 
+        points [7]:
+            number = 0.070839 
+            mark = "" 
+        points [8]:
+            number = 0.079138 
+            mark = "" 
+        points [9]:
+            number = 0.087506 
+            mark = "" 
+        points [10]:
+            number = 0.096349 
+            mark = "" 
+        points [11]:
+            number = 0.107211 
+            mark = "" 
+    item [2]:
+        class = "IntervalTier" 
+        name = "Phonation" 
+        xmin = 0 
+        xmax = 0.14634920634920634 
+        intervals: size = 2 
+        intervals [1]:
+            xmin = 0 
+            xmax = 0.02 
+            text = "" 
+        intervals [2]:
+            xmin = 0.02 
+            xmax = 0.14634920634920634 
+            text = "phonation" 

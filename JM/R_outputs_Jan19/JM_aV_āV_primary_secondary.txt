@@ -1,0 +1,7 @@
+vowel,tokens
+ae,75
+ai,158
+āi,14
+ao,15
+au,99
+āu,5
