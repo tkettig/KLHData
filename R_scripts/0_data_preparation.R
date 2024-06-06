@@ -36,25 +36,23 @@ data <- left_join(data, freq_catherine, by="word")
 
 ###### Label speakers #######
 
-data <- data %>% mutate(Speaker = case_when(
-  filename == 'KLH016' ~ 'JM',
-  filename == 'KLH032' ~ 'LV',
-  filename == 'KLH013' ~ 'IN',
-  filename == 'KLH021' ~ 'HM',
-  filename == 'KLH021' ~ 'DK',
-  filename == 'KLH021' ~ 'SB',
-  filename == 'KLH021' ~ 'RM',
-  filename == 'KLH021' ~ 'AA'
-))
+data %>% mutate(Speaker = case_when( str_detect(filename, "KLH016") ~ 'JM', 
+                                     str_detect(filename, "KLH032") ~ 'LV', 
+                                     str_detect(filename, "KLH013") ~ 'IN', 
+                                     str_detect(filename, "KLH021") ~ 'HM', 
+                                     str_detect(filename, "KLH063") ~ 'DK', 
+                                     str_detect(filename, "KLH033") ~ 'SB', 
+                                     str_detect(filename, "KLH014") ~ 'RM', 
+                                     str_detect(filename, "KLH057") ~ 'AA', TRUE ~ '0'))
 
-#data$Speaker <- ifelse(grepl("KLH016", data$filename),"JM",
+# data$Speaker <- ifelse(grepl("KLH016", data$filename),"JM",
 #                ifelse(grepl("KLH032", data$filename),"LV",
 #                ifelse(grepl("KLH013", data$filename),"IN",
 #                ifelse(grepl("KLH021", data$filename),"HM",
 #                ifelse(grepl("KLH063", data$filename),"DK",
 #                ifelse(grepl("KLH033", data$filename),"SB",
 #                ifelse(grepl("KLH014", data$filename),"RM",
-#                ifelse(grepl("KLH057", data$filename),"AA",       
+#                ifelse(grepl("KLH057", data$filename),"AA",
 #                            0))))))))
 
 ##### Get a token label in original order and correct some spellings #######
@@ -270,3 +268,4 @@ data <- data %>% rename_at(vars(starts_with("f3")), funs(str_replace(., "f3", "f
 ## Arjun: fix with regex
 
 # data <- data %>% rename_with(.cols = f11:f39, .fn = ~paste0(.x, '.'))
+
