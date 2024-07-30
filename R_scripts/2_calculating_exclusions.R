@@ -1,4 +1,4 @@
-setwd("/Users/Thomas/Documents/Hawaiian_Phonetics/Dissertation/R_scripts/")
+setwd("/Users/Thomas/Documents/Hawaiian_Phonetics/KLHData/R_scripts")
 source("0_data_preparation.R")
 source("1_reselect_winners.R")
 library(joeyr)

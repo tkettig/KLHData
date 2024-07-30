@@ -2,7 +2,7 @@
 
 library(tidyverse)
 
-setwd("/Users/Thomas/Documents/Hawaiian_Phonetics/Dissertation/Manaleo/RM/output")
+setwd("/Users/Thomas/Documents/Hawaiian_Phonetics/KLHData/RM/output")
 
 seg_info <- read.csv("segmentation_information.csv", header=TRUE, stringsAsFactors=FALSE) %>%
   select(-inputfile) %>%
@@ -18,7 +18,7 @@ formants$filename <- gsub(".wav", "", formants$filename)
 RM <- left_join(seg_info, formants, by="filename")
 
 # Get list of .f0 files
-setwd("/Users/Thomas/Documents/Hawaiian_Phonetics/Dissertation/Manaleo/RM/output/sounds/")
+setwd("/Users/Thomas/Documents/Hawaiian_Phonetics/KLHData/RM/output/sounds/")
 file_list = list.files(pattern = "*.f0")
 
 # Make it into a data frame
@@ -43,4 +43,4 @@ RM <- left_join(RM, df, by="filename")
 
 
 
-setwd("/Users/Thomas/Documents/Hawaiian_Phonetics/Dissertation/R_scripts/")
+setwd("/Users/Thomas/Documents/Hawaiian_Phonetics/KLHData/R_scripts/")

@@ -1,8 +1,8 @@
 ## Normalize full, cleaned dataset
 
-setwd("/Users/Thomas/Documents/Hawaiian_Phonetics/Dissertation/R_scripts/")
+setwd("/Users/Thomas/Documents/Hawaiian_Phonetics/KLHData/R_scripts/")
 
-source("calculating_exclusions.R")
+source("2_calculating_exclusions.R")
 
 ## Get it into format that Joey's function can use
 

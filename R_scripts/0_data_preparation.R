@@ -8,7 +8,7 @@ library(reshape2)
 `%!in%` = Negate(`%in%`)
 `%notin%` <- Negate(`%in%`)
 
-setwd("/Users/Thomas/Documents/Hawaiian_Phonetics/Dissertation/R_scripts/")
+setwd("/Users/Thomas/Documents/Hawaiian_Phonetics/KLHData/R_scripts/")
 
 ## Has Fast Track aggregation function
 source("aggregatedata.R")
@@ -36,7 +36,8 @@ data <- left_join(data, freq_catherine, by="word")
 
 ###### Label speakers #######
 
-data %>% mutate(Speaker = case_when( str_detect(filename, "KLH016") ~ 'JM', 
+data <- data %>% 
+  mutate(Speaker = case_when( str_detect(filename, "KLH016") ~ 'JM', 
                                      str_detect(filename, "KLH032") ~ 'LV', 
                                      str_detect(filename, "KLH013") ~ 'IN', 
                                      str_detect(filename, "KLH021") ~ 'HM', 
