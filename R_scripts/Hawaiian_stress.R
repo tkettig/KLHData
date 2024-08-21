@@ -265,9 +265,136 @@ long_2syll_dur_means$lower <- long_2syll_dur_means$mean - long_2syll_dur_means$m
 
 
 
+#### Arjun Models #####
+
+
+# 2 syllables
+
+dat_2syl <- short2 %>% filter(word_syllables == 2, str_length(vowel) == 1, Moras == 1)
+
+dat_2syl <- dat_2syl %>% select(F0_reaper, Moras,intensity, duration, f1_normed_inf, f2_normed_inf,syllable_number,Speaker,word_unique,vowel) %>% mutate(syllable_number = ifelse(syllable_number == -1,0,1),
+                                                                                                                                                      across(c(F0_reaper,intensity,duration,f1_normed_inf,f2_normed_inf),scale)
+) %>% rename(f0 = F0_reaper, f1 = f1_normed_inf, f2 = f2_normed_inf)
+
+dat_2syl %>% pull(syllable_number) %>% table
+
+dat_2syl %>% .$vowel %>% table
+
+dat_2syl %>% .$Moras %>% table
+
+dat_2syl %>% names
+
+model <- glm(syllable_number ~ (intensity + duration + f0 + f1 + f2)*vowel, data = dat_2syl %>% drop_na(intensity,Moras),family = 'binomial')
+
+model2 <- glm(syllable_number ~ intensity + duration + f0 + (f1 + f2)*vowel, data = dat_2syl %>% drop_na(intensity,Moras),family = 'binomial')
+
+model3 <- lme4::glmer(syllable_number ~ (intensity + duration + f0 + f1 + f2)*vowel + (1|Speaker) + (1|word_unique), data = dat_2syl %>% drop_na(syllable_number),family = binomial)
+
+model3 %>% summary
+
+lme4::ranef(model3)
+
+model %>% summary
+
+anova(model,model2)
+
+exp(coef(model))
+
+emmeans::emmeans(model,~vowel|f0|f1|f2)
+
+vip::vip(model2, out_var = 1)
+
+effects::allEffects(model3, partial.residuals=TRUE) %>% plot(multiline = T,rescale.axis=FALSE, residuals.pch=15)
+
+varImp_model <- varImp(model)
+
+# Plot the variable importance
+plot(varImp_model)
+
+varImp_data <- varImp_model %>% as.data.frame() %>% arrange(desc(Overall)) %>% rownames_to_column()
+
+varImp_data %>% ggplot(aes(fct_reorder(rowname,Overall), Overall)) + 
+  geom_bar(stat = 'identity') +
+  coord_flip()
+
+
+# 3 syllables
+
+dat_3syl <- short2 %>% filter(word_syllables == 3, str_length(vowel) == 1, Moras == 1)
+
+dat_3syl %>% pull(syllable_number) %>% table
+
+dat_3syl <- dat_3syl %>% select(meanf0, Moras,intensity, duration, f1_normed_inf, f2_normed_inf,syllable_number,Speaker,word_unique,vowel) %>% mutate(across(c(meanf0,intensity,duration,f1_normed_inf,f2_normed_inf),scale)
+) %>% rename(f0 = meanf0, f1 = f1_normed_inf, f2 = f2_normed_inf)
+
+
+library(nnet)
+
+# Fit the multinomial logistic regression model
+model <- multinom(syllable_number ~ (intensity + duration + f0 + f1 + f2)*vowel, data = dat_3syl %>% drop_na(intensity))
+model %>% summary
+
+model %>% effects::allEffects(partial.residuals=TRUE) %>% map(~.x %>% plot(multiline = T,rescale.axis=FALSE, residuals.pch=15))
+
+library(caret)
+
+# Use the varImp function from caret
+varImp_model <- varImp(model)
+
+# Plot the variable importance
+plot(varImp_model)
+
+varImp_data <- varImp_model %>% as.data.frame() %>% arrange(desc(Overall)) %>% rownames_to_column()
+
+varImp_data %>% ggplot(aes(fct_reorder(rowname,Overall), Overall)) + 
+  geom_bar(stat = 'identity') +
+  coord_flip()
+
+# 4 syllables
+
+dat_4syl <- short2 %>% filter(word_syllables == 4, str_length(vowel) == 1, Moras == 1)
+
+dat_4syl %>% pull(syllable_number) %>% table
+
+dat_4syl <- dat_4syl %>% select(meanf0, Moras,intensity, duration, f1_normed_inf, f2_normed_inf,syllable_number,Speaker,word_unique,vowel) %>% mutate(across(c(meanf0,intensity,duration,f1_normed_inf,f2_normed_inf),scale)
+) %>% rename(f0 = meanf0, f1 = f1_normed_inf, f2 = f2_normed_inf)
+
+
+library(nnet)
+
+# Fit the multinomial logistic regression model
+model <- multinom(syllable_number ~ (intensity + duration + f0 + f1 + f2)*vowel, data = dat_4syl %>% drop_na(intensity))
+model %>% summary
+
+model %>% effects::allEffects(partial.residuals=TRUE) %>% map(~.x %>% plot(multiline = T,rescale.axis=FALSE, residuals.pch=15))
+
+library(caret)
+
+# Use the varImp function from caret
+varImp_model <- varImp(model)
+
+# Plot the variable importance
+plot(varImp_model)
+
+varImp_data <- varImp_model %>% as.data.frame() %>% arrange(desc(Overall)) %>% rownames_to_column()
+
+varImp_data %>% ggplot(aes(fct_reorder(rowname,Overall), Overall)) + 
+  geom_bar(stat = 'identity') +
+  coord_flip()
 
 
 
+
+
+
+
+
+
+
+
+
+
+###### Stuff from before Arjun #######
 
 ## Making a ggplot theme
 apatheme=theme_bw()+
