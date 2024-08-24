@@ -267,32 +267,78 @@ long_2syll_dur_means$lower <- long_2syll_dur_means$mean - long_2syll_dur_means$m
 
 #### Arjun Models #####
 
+## Choose to either log transform or get rid of some duration outliers
+short2$log_duration <- log(short2$duration)
 
-# 2 syllables
+##### 2 syllables ######
 
 dat_2syl <- short2 %>% filter(word_syllables == 2, str_length(vowel) == 1, Moras == 1)
 
-dat_2syl <- dat_2syl %>% select(F0_reaper, Moras,intensity, duration, f1_normed_inf, f2_normed_inf,syllable_number,Speaker,word_unique,vowel) %>% mutate(syllable_number = ifelse(syllable_number == -1,0,1),
-                                                                                                                                                      across(c(F0_reaper,intensity,duration,f1_normed_inf,f2_normed_inf),scale)
-) %>% rename(f0 = F0_reaper, f1 = f1_normed_inf, f2 = f2_normed_inf)
+dat_2syl <- dat_2syl %>% select(F0_reaper, Moras,intensity, log_duration, f1_normed_inf, f2_normed_inf,syllable_number,Speaker,word_unique,vowel) %>% mutate(syllable_number = ifelse(syllable_number == -1,0,1),
+                                                                                                                                                      across(c(F0_reaper,intensity,log_duration,f1_normed_inf,f2_normed_inf),scale)
+) %>% rename(f0 = F0_reaper, f1 = f1_normed_inf, f2 = f2_normed_inf, duration = log_duration)
 
+### Tables of Ns and co-occurrences
 dat_2syl %>% pull(syllable_number) %>% table
 
 dat_2syl %>% .$vowel %>% table
 
-dat_2syl %>% .$Moras %>% table
+dat_2syl %>% group_by(vowel, syllable_number) %>%
+  summarise(count = n())
 
-dat_2syl %>% names
+## Sum coding vowel
+dat_2syl$vowel <- as.factor(dat_2syl$vowel)
+contrasts(dat_2syl$vowel) = contr.sum(5)
 
-model <- glm(syllable_number ~ (intensity + duration + f0 + f1 + f2)*vowel, data = dat_2syl %>% drop_na(intensity,Moras),family = 'binomial')
+
+## Models
+
+## Model with full interactions and no random effects
+
+model1 <- glm(syllable_number ~ (intensity + duration + f0 + f1 + f2)*vowel, data = dat_2syl %>% drop_na(intensity,Moras),family = 'binomial')
+
+## Model with vowel interacting only with F1/F2 and no random effects
 
 model2 <- glm(syllable_number ~ intensity + duration + f0 + (f1 + f2)*vowel, data = dat_2syl %>% drop_na(intensity,Moras),family = 'binomial')
 
+## Model with full interactions and by-speaker and by-utterance random intercept
+
 model3 <- lme4::glmer(syllable_number ~ (intensity + duration + f0 + f1 + f2)*vowel + (1|Speaker) + (1|word_unique), data = dat_2syl %>% drop_na(syllable_number),family = binomial)
+
+## Full model summary and effects
 
 model3 %>% summary
 
+effects::allEffects(model3, partial.residuals=TRUE) %>% plot(multiline = T,rescale.axis=FALSE, residuals.pch=15)
+
 lme4::ranef(model3)
+
+## Plot variable importance from model without random effects
+
+vip::vip(model1, out_var = 1)
+
+varImp_model <- varImp(model1)
+varImp_data <- varImp_model %>% as.data.frame() %>% arrange(desc(Overall)) %>% rownames_to_column()
+varImp_data %>% ggplot(aes(fct_reorder(rowname,Overall), Overall)) + 
+  geom_bar(stat = 'identity') +
+  coord_flip()
+
+## Doesn't work yet, but seeing if I can use predict() to see how good this model is as predicting the actual outcome
+## Write contingency table
+
+predict(model3)
+
+data = dat_2syl %>% drop_na(syllable_number)
+
+y = data$syllable_number
+  
+predictions = ifelse (predict(model3) > 0, 0,1)
+
+mean(predictions == y)
+
+
+
+
 
 model %>% summary
 
@@ -302,20 +348,6 @@ exp(coef(model))
 
 emmeans::emmeans(model,~vowel|f0|f1|f2)
 
-vip::vip(model2, out_var = 1)
-
-effects::allEffects(model3, partial.residuals=TRUE) %>% plot(multiline = T,rescale.axis=FALSE, residuals.pch=15)
-
-varImp_model <- varImp(model)
-
-# Plot the variable importance
-plot(varImp_model)
-
-varImp_data <- varImp_model %>% as.data.frame() %>% arrange(desc(Overall)) %>% rownames_to_column()
-
-varImp_data %>% ggplot(aes(fct_reorder(rowname,Overall), Overall)) + 
-  geom_bar(stat = 'identity') +
-  coord_flip()
 
 
 # 3 syllables
@@ -324,16 +356,31 @@ dat_3syl <- short2 %>% filter(word_syllables == 3, str_length(vowel) == 1, Moras
 
 dat_3syl %>% pull(syllable_number) %>% table
 
-dat_3syl <- dat_3syl %>% select(meanf0, Moras,intensity, duration, f1_normed_inf, f2_normed_inf,syllable_number,Speaker,word_unique,vowel) %>% mutate(across(c(meanf0,intensity,duration,f1_normed_inf,f2_normed_inf),scale)
-) %>% rename(f0 = meanf0, f1 = f1_normed_inf, f2 = f2_normed_inf)
+dat_3syl <- dat_3syl %>% select(F0_reaper, Moras,intensity, duration, f1_normed_inf, f2_normed_inf,syllable_number,Speaker,word_unique,vowel) %>% mutate(across(c(F0_reaper,intensity,duration,f1_normed_inf,f2_normed_inf),scale)
+) %>% rename(f0 = F0_reaper, f1 = f1_normed_inf, f2 = f2_normed_inf)
 
 
 library(nnet)
 
+## Sum coding vowel
+dat_3syl$vowel <- as.factor(dat_3syl$vowel)
+contrasts(dat_3syl$vowel) = contr.sum(5)
+
+
+### Tables of Ns and co-occurrences
+dat_3syl %>% pull(syllable_number) %>% table
+
+dat_3syl %>% .$vowel %>% table
+
+dat_3syl %>% group_by(vowel, syllable_number) %>%
+  summarise(count = n())
+
 # Fit the multinomial logistic regression model
+# Add p-values to 3-syllable and 4-syllable models?
 model <- multinom(syllable_number ~ (intensity + duration + f0 + f1 + f2)*vowel, data = dat_3syl %>% drop_na(intensity))
 model %>% summary
 
+# Add CIs?
 model %>% effects::allEffects(partial.residuals=TRUE) %>% map(~.x %>% plot(multiline = T,rescale.axis=FALSE, residuals.pch=15))
 
 library(caret)
@@ -356,16 +403,32 @@ dat_4syl <- short2 %>% filter(word_syllables == 4, str_length(vowel) == 1, Moras
 
 dat_4syl %>% pull(syllable_number) %>% table
 
-dat_4syl <- dat_4syl %>% select(meanf0, Moras,intensity, duration, f1_normed_inf, f2_normed_inf,syllable_number,Speaker,word_unique,vowel) %>% mutate(across(c(meanf0,intensity,duration,f1_normed_inf,f2_normed_inf),scale)
-) %>% rename(f0 = meanf0, f1 = f1_normed_inf, f2 = f2_normed_inf)
+dat_4syl <- dat_4syl %>% select(F0_reaper, Moras,intensity, duration, f1_normed_inf, f2_normed_inf,syllable_number,Speaker,word_unique,vowel) %>% mutate(across(c(F0_reaper,intensity,duration,f1_normed_inf,f2_normed_inf),scale)
+) %>% rename(f0 = F0_reaper, f1 = f1_normed_inf, f2 = f2_normed_inf)
 
 
 library(nnet)
 
+### Tables of Ns and co-occurrences
+dat_4syl %>% pull(syllable_number) %>% table
+
+dat_4syl %>% .$vowel %>% table
+
+dat_4syl %>% group_by(vowel, syllable_number) %>%
+  summarise(count = n())
+
+
 # Fit the multinomial logistic regression model
 model <- multinom(syllable_number ~ (intensity + duration + f0 + f1 + f2)*vowel, data = dat_4syl %>% drop_na(intensity))
+
+model1 <- multinom(syllable_number ~ intensity + duration + f0, data = dat_4syl %>% drop_na(intensity))
+
+model2 <- multinom(syllable_number ~ (f1 + f2)*vowel, data = dat_4syl %>% drop_na(intensity))
+
+
 model %>% summary
 
+# Add CIs?
 model %>% effects::allEffects(partial.residuals=TRUE) %>% map(~.x %>% plot(multiline = T,rescale.axis=FALSE, residuals.pch=15))
 
 library(caret)
