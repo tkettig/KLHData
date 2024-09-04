@@ -1,6 +1,8 @@
 ## Reading in LV data
 library(tidyverse)
 
+## Getting the F1 and F2 measures from a later output 
+
 setwd("/Users/Thomas/Documents/Hawaiian_Phonetics/KLHData/LV/output_May2023")
 
 seg_info <- read.csv("segmentation_information.csv", header=TRUE, stringsAsFactors=FALSE) %>%
@@ -9,7 +11,7 @@ seg_info <- read.csv("segmentation_information.csv", header=TRUE, stringsAsFacto
 
 # formants <- read.csv("processed_data/aggregated_data.csv", header=TRUE, stringsAsFactors=FALSE) %>% select(-duration,-label,-number,-color,-group)
 
-formants <- aggregatedata_myself() %>%
+formants <- aggregatedata_original() %>%
   select(-duration)
 names(formants)[1] <- "filename"
 formants$filename <- gsub(".wav", "", formants$filename)
@@ -19,9 +21,30 @@ LV1$f0 <- NA
 LV1$intensity <- NA
 
 
-### Add in the f0 measurements from reaper
+## Post-Arjun - getting the intensity measures from dissertation output
 
+setwd("/Users/Thomas/Documents/Hawaiian_Phonetics/KLHData/LV/output_dissertation/")
+
+seg_info <- read.csv("segmentation_information.csv", header=TRUE, stringsAsFactors=FALSE) %>%  select(-inputfile) %>%  rename(filename = outputfile)
+
+# formants <- read.csv("processed_data/aggregated_data.csv", header=TRUE, stringsAsFactors=FALSE) %>% select(-duration,-label,-number,-color,-group)
+
+formants <- aggregatedata_arjun() %>%   
+  select(-duration)
+
+names(formants)[1] <- "filename"
+formants$filename <- gsub(".wav", "", formants$filename)
+LV2 <- left_join(seg_info, formants, by="filename")
+LV <- LV1
+LV$f0 <- LV2$f0
+LV$intensity <- LV2$intensity
+
+setwd("/Users/Thomas/Documents/Hawaiian_Phonetics/Dissertation/R_scripts/")
+
+
+### Add in the f0 measurements from reaper
 setwd("/Users/Thomas/Documents/Hawaiian_Phonetics/KLHData/LV/output_dissertation/sounds/")
+
 
 # Get list of .f0 files
 file_list = list.files(pattern = "*.f0")
@@ -44,31 +67,8 @@ for (i in 1:length(data_list)){
 df <- do.call("rbind", data_list)
 df$filename <- df$filename %>% str_remove(".wav.f0")
 
-LV <- left_join(LV1, df, by="filename")
+LV <- left_join(LV, df, by="filename")
 
-setwd("/Users/Thomas/Documents/Hawaiian_Phonetics/Dissertation/R_scripts/")
+setwd("/Users/Thomas/Documents/Hawaiian_Phonetics/KLHData/R_scripts/")
 
-
-## All this stuff isn't working for some reason. It should be that I can get f0 and intensity measures from this,
-## but it's not liking the files and I can't figure out why
-
-setwd("/Users/Thomas/Documents/Hawaiian_Phonetics/KLHData/LV/output_dissertation")
-
-seg_info <- read.csv("segmentation_information.csv", header=TRUE, stringsAsFactors=FALSE) %>%
-  select(-inputfile) %>%
-  rename(filename = outputfile)
-
-# formants <- read.csv("processed_data/aggregated_data.csv", header=TRUE, stringsAsFactors=FALSE) %>% select(-duration,-label,-number,-color,-group)
-
-formants <- aggregatedata_myself() %>%
-   select(-duration)
-names(formants)[1] <- "filename"
-formants$filename <- gsub(".wav", "", formants$filename)
-
-LV2 <- left_join(seg_info, formants, by="filename")
-
-LV <- LV1
-LV$f0 <- LV2$f0
-LV$intensity <- LV2$intensity
-setwd("/Users/Thomas/Documents/Hawaiian_Phonetics/Dissertation/R_scripts/")
 

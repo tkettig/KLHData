@@ -130,7 +130,7 @@ data <- rbind(AA,DK,HM,IN,JM,LV,RM,SB)
 
 ## Set wd again
 
-setwd("/Users/Thomas/Documents/Hawaiian_Phonetics/Dissertation/R_scripts/")
+setwd("/Users/Thomas/Documents/Hawaiian_Phonetics/KLHData/R_scripts/")
 
 
 

@@ -11,7 +11,8 @@ library(reshape2)
 setwd("/Users/Thomas/Documents/Hawaiian_Phonetics/KLHData/R_scripts/")
 
 ## Has Fast Track aggregation function
-source("aggregatedata.R")
+source("aggregatedata_arjun.R")
+source("aggregatedata_original.R")
 
 # Then load in the data
 

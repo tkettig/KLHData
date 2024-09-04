@@ -1,4 +1,4 @@
-### 26 May 2024
+### 2 Sept 2024
 ### Phonetic correlates of stress in Hawaiian
 library(tidyverse)
 library(phonR)
@@ -7,15 +7,13 @@ library(yarrr)
 library(emmeans)
 library(scales)
 library(cowplot)
+library(caret)
 
-setwd("/Users/Thomas/Documents/Hawaiian_Phonetics/Dissertation/R_scripts/")
+setwd("/Users/Thomas/Documents/Hawaiian_Phonetics/KLHData/R_scripts/")
 
 ## Gonna give myself two types of negated %in% here
 `%!in%` = Negate(`%in%`)
 `%notin%` <- Negate(`%in%`)
-
-## Has Fast Track aggregation function
-source("aggregatedata.R")
 
 ####### Make lists of vowels/mono/diph #######
 
@@ -29,7 +27,7 @@ list_of_short_mono <- c("a","e","i","o","u")
 # source("3_normalize.R")
 
 ## This just gets the .csv with all the data, pre-extracted
-data <- read.csv('all_data_18Nov2023.csv')
+data <- read.csv('all_data_2Sept2024.csv')
 
 #### Find and add in the midpoints #####
 
@@ -62,8 +60,6 @@ data4 <- rbind(max_f1,max_f2,min_f2) %>%
   ungroup() %>%
   select(filename, time:f3)
 
-## Change name of Reaper F0 mean from "meanf0" to "F0_reaper"
-## Change name of Reaper F0 median from "medianf0" to "F0_reaper_median"
 
 data4 <- data4 %>% rename(f1_inf = f1,
                           f2_inf = f2,
@@ -81,13 +77,13 @@ data5 <- left_join(data_midpoints, data4, by="filename") %>%
   select(-midpoint)
 
 ## Rename so itʻs clear that f1/f2/f3 are of the inflection point
-## Rename meanf0 to F0_reaper
 
 data5 <- data5 %>% rename(f1_normed_mid = f1_mid,
                           f2_normed_mid = f2_mid,
                           f3_normed_mid = f3_mid,
-                          F0_reaper = meanf0,
-                          F0_reaper_median = medianf0)
+                          f0_reaper = meanf0,
+                          f0_reaper_median = medianf0,
+                          f0_praat = f0)
 
 
 ### Make column for position/length
@@ -120,46 +116,6 @@ short2 <- only_shortV %>%
   filter(word_unique %in% short1$word_unique) %>%
   arrange(word_unique, interval)
 
-# # Making row for relative intensity
-# short2$rel_intensity <- ifelse(
-#   short2$end == short2$word_end,                                   # If it's at the end of the word, then
-#   lag(short2$intensity, 1) - short2$intensity,                     # get the previous row's intensity minus that row's intensity, otherwise
-#   ifelse(short2$stress == "unstressed",                            # if it's unstressed,
-#          lead(short2$intensity, 1) - short2$intensity,             # get the following row's intensity minus that row's intensity, otherwise
-#          ifelse(short2$stress == "secondary",                      # if it's secondary,
-#                 lead(short2$intensity, 2) - short2$intensity,      # get the one 2 rows ahead minus that row's intensity, otherwise NA
-#                 NA
-#          )     
-#   )
-# )
-# 
-# # Making row for relative f0 (Praat)
-# 
-# short2$rel_f0 <- ifelse(
-#   short2$end == short2$word_end,                                   # If it's at the end of the word, then
-#   lag(short2$f0, 1) - short2$f0,                                   # get the previous row's f0 minus that row's f0, otherwise
-#   ifelse(short2$stress == "unstressed",                            # if it's unstressed,
-#          lead(short2$f0, 1) - short2$f0,                           # get the following row's f0 minus that row's f0, otherwise
-#          ifelse(short2$stress == "secondary",                      # if it's secondary,
-#                 lead(short2$f0, 2) - short2$f0,                    # get the one 2 rows ahead minus that row's f0, otherwise NA
-#                 NA
-#          )
-#   )
-# )
-# 
-# 
-# # Making row for relative f0 (Reaper mean)
-# short2$rel_f0_reaper <- ifelse(
-#   short2$end == short2$word_end,                                   # If it's at the end of the word, then
-#   lag(short2$F0_reaper, 1) - short2$F0_reaper,                                   # get the previous row's f0 minus that row's f0, otherwise
-#   ifelse(short2$stress == "unstressed",                            # if it's unstressed,
-#          lead(short2$F0_reaper, 1) - short2$F0_reaper,                           # get the following row's f0 minus that row's f0, otherwise
-#          ifelse(short2$stress == "secondary",                      # if it's secondary,
-#                 lead(short2$F0_reaper, 2) - short2$F0_reaper,                    # get the one 2 rows ahead minus that row's f0, otherwise NA
-#                 NA
-#          )
-#   )
-# )
 
 ## Renaming syllables
 short2$syllable_stress <- ifelse(short2$syllable_number == -1, "Final Unstressed",
@@ -167,102 +123,6 @@ short2$syllable_stress <- ifelse(short2$syllable_number == -1, "Final Unstressed
                                          ifelse(short2$syllable_number == -3, "Antepen. Unstressed",
                                                 "Secondary Stressed")))
 short2$syllable_stress <- factor(short2$syllable_stress, levels=c("Secondary Stressed","Antepen. Unstressed","Primary Stressed", "Final Unstressed"))
-
-### Now getting a dataset of words which only contain long vowels
-
-only_longV <- data5 %>%
-  filter(Syllabification == "Mono") %>%        # Just monophthongs
-  filter(stress != "0") %>%                    # 0s are either long words or issues with end of word interval != end of last letter
-  filter(next_sound %notin% list_of_vowels, previous_sound %notin% list_of_vowels) %>%  # exclude next to another vowel
-  #  filter(next_sound %notin% problematic_consonants, previous_sound %notin% problematic_consonants) %>% # exclude problematic consonants
-  filter(next_sound != "sil", previous_sound !="sil") %>%  # nothing with silences next to it
-  filter(next_word != "-") %>%               # no utterance-final words
-  filter(word_syllables > 1) %>%            # Just words over 1 syll
-  filter( !grepl(paste(list_of_diphthongs, collapse = "|"),word)) %>%     # Just words without any diphthongs
-  filter( !grepl(paste(list_of_short_mono, collapse = "|"),word))          # Just words without any short vowels
-
-### Filtering so we only have words where we have info for all syllables
-long1 <- only_longV %>%
-  select(word_unique, word_syllables) %>%
-  group_by(word_unique, word_syllables) %>%
-  summarise(count = length(word_unique)) %>%
-  filter(count == word_syllables)
-long2 <- only_longV %>%
-  filter(word_unique %in% long1$word_unique) %>%
-  arrange(word_unique, interval)
-
-# # Making row for relative intensity
-# long2$rel_intensity <- ifelse(
-#   lead(long2$end, 1) == long2$word_end,                                   # If the following row is at the end of the word, then
-#   lead(long2$intensity, 1) - long2$intensity,                             # get the following row's intensity minus that row's intensity, otherwise
-#   ifelse(lead(long2$end, 2) == long2$word_end,                             # if the one 2 rows ahead is at the end of the word, then
-#          lead(long2$intensity, 2) - long2$intensity,             # get the one 2 rows ahead minus the following row's intensity, otherwise NA
-#          NA
-#   )
-# )
-# 
-# # Making row for relative f0
-# long2$rel_f0 <- ifelse(
-#   lead(long2$end, 1) == long2$word_end,                                   # If the following row is at the end of the word, then
-#   lead(long2$f0, 1) - long2$f0,                             # get the following row's intensity minus that row's intensity, otherwise
-#   ifelse(lead(long2$end, 2) == long2$word_end,                             # if the one 2 rows ahead is at the end of the word, then
-#          lead(long2$f0, 2) - long2$f0,             # get the one 2 rows ahead minus the following row's intensity, otherwise NA
-#          NA
-#   )
-# )
-
-
-## Renaming syllables
-long2$syllable_stress <- ifelse(long2$syllable_number == -1, "Final Primary Stressed",
-                                "Secondary Stressed")
-long2$syllable_stress <- factor(long2$syllable_stress, levels=c("Final Primary Stressed","Secondary Stressed"))
-
-
-## Filter out "kuma" words because it's unclear if it should be treated separately
-## Also filter so we're only considering 2-syllable words
-long2 <- long2 %>%
-  filter(word != "kūmā" & word != "kūmāmā") %>%
-  filter(word_syllables == 2)
-
-## Make duration into milliseconds instead of seconds
-long2$duration <- long2$duration *1000
-
-## Get a dataset with the means of intensity for each syllable position
-long_2syll_int_means = long2 %>% 
-  group_by(syllable_stress, position_length, length, syllable_number) %>% 
-  summarise(mean = mean(intensity, na.rm=T), 
-            sd = sd(intensity, na.rm=T), 
-            count = sum(!is.na(intensity)))
-long_2syll_int_means$se <- long_2syll_int_means$sd / sqrt(long_2syll_int_means$count)
-long_2syll_int_means$tval <- qt(0.05/2, df = long_2syll_int_means$count - 1)
-long_2syll_int_means$moe <- long_2syll_int_means$tval * long_2syll_int_means$se * -1
-long_2syll_int_means$upper <- long_2syll_int_means$mean + long_2syll_int_means$moe
-long_2syll_int_means$lower <- long_2syll_int_means$mean - long_2syll_int_means$moe
-
-## Get a dataset with the means of f0 for each syllable position
-long_2syll_f0_means = long2 %>% 
-  group_by(syllable_stress, position_length, length, syllable_number) %>% 
-  summarise(mean = mean(F0_reaper, na.rm=T), 
-            sd = sd(F0_reaper, na.rm=T), 
-            count = sum(!is.na(F0_reaper)))
-long_2syll_f0_means$se <- long_2syll_f0_means$sd / sqrt(long_2syll_f0_means$count)
-long_2syll_f0_means$tval <- qt(0.05/2, df = long_2syll_f0_means$count - 1)
-long_2syll_f0_means$moe <- long_2syll_f0_means$tval * long_2syll_f0_means$se * -1
-long_2syll_f0_means$upper <- long_2syll_f0_means$mean + long_2syll_f0_means$moe
-long_2syll_f0_means$lower <- long_2syll_f0_means$mean - long_2syll_f0_means$moe
-
-## Get a dataset with the means of duration for each syllable position
-long_2syll_dur_means = long2 %>% 
-  group_by(syllable_stress, position_length, length, syllable_number) %>% 
-  summarise(mean = mean(duration, na.rm=T), 
-            sd = sd(duration, na.rm=T), 
-            count = n())
-long_2syll_dur_means$se <- long_2syll_dur_means$sd / sqrt(long_2syll_dur_means$count)
-long_2syll_dur_means$tval <- qt(0.05/2, df = long_2syll_dur_means$count - 1)
-long_2syll_dur_means$moe <- long_2syll_dur_means$tval * long_2syll_dur_means$se * -1
-long_2syll_dur_means$upper <- long_2syll_dur_means$mean + long_2syll_dur_means$moe
-long_2syll_dur_means$lower <- long_2syll_dur_means$mean - long_2syll_dur_means$moe
-
 
 
 #### Arjun Models #####
@@ -274,9 +134,9 @@ short2$log_duration <- log(short2$duration)
 
 dat_2syl <- short2 %>% filter(word_syllables == 2, str_length(vowel) == 1, Moras == 1)
 
-dat_2syl <- dat_2syl %>% select(F0_reaper, Moras,intensity, log_duration, f1_normed_inf, f2_normed_inf,syllable_number,Speaker,word_unique,vowel) %>% mutate(syllable_number = ifelse(syllable_number == -1,0,1),
-                                                                                                                                                      across(c(F0_reaper,intensity,log_duration,f1_normed_inf,f2_normed_inf),scale)
-) %>% rename(f0 = F0_reaper, f1 = f1_normed_inf, f2 = f2_normed_inf, duration = log_duration)
+dat_2syl <- dat_2syl %>% select(f0_reaper, f0_praat, Moras,intensity, log_duration, f1_normed_inf, f2_normed_inf,syllable_number,Speaker,word_unique,vowel) %>% mutate(syllable_number = ifelse(syllable_number == -1,0,1),
+                                                                                                                                                      across(c(f0_reaper,f0_praat, intensity,log_duration,f1_normed_inf,f2_normed_inf),scale)
+) %>% rename(f1 = f1_normed_inf, f2 = f2_normed_inf, duration = log_duration)
 
 ### Tables of Ns and co-occurrences
 dat_2syl %>% pull(syllable_number) %>% table
@@ -285,6 +145,9 @@ dat_2syl %>% .$vowel %>% table
 
 dat_2syl %>% group_by(vowel, syllable_number) %>%
   summarise(count = n())
+
+# map NAs
+dat_2syl %>% map(~sum(is.na(.x)))
 
 ## Sum coding vowel
 dat_2syl$vowel <- as.factor(dat_2syl$vowel)
@@ -295,7 +158,9 @@ contrasts(dat_2syl$vowel) = contr.sum(5)
 
 ## Model with full interactions and no random effects
 
-model1 <- glm(syllable_number ~ (intensity + duration + f0 + f1 + f2)*vowel, data = dat_2syl %>% drop_na(intensity,Moras),family = 'binomial')
+model1_praat <- glm(syllable_number ~ (intensity + duration + f0_praat + f1 + f2)*vowel, data = dat_2syl %>% drop_na(intensity,Moras),family = 'binomial')
+
+model1_reaper <- glm(syllable_number ~ (intensity + duration + f0_reaper + f1 + f2)*vowel, data = dat_2syl %>% drop_na(intensity,Moras),family = 'binomial')
 
 ## Model with vowel interacting only with F1/F2 and no random effects
 
@@ -303,7 +168,9 @@ model2 <- glm(syllable_number ~ intensity + duration + f0 + (f1 + f2)*vowel, dat
 
 ## Model with full interactions and by-speaker and by-utterance random intercept
 
-model3 <- lme4::glmer(syllable_number ~ (intensity + duration + f0 + f1 + f2)*vowel + (1|Speaker) + (1|word_unique), data = dat_2syl %>% drop_na(syllable_number),family = binomial)
+model3_praat <- lme4::glmer(syllable_number ~ (intensity + duration + f0_praat + f1 + f2)*vowel + (1|Speaker) + (1|word_unique), data = dat_2syl %>% drop_na(syllable_number),family = binomial)
+
+model3_reaper <- lme4::glmer(syllable_number ~ (intensity + duration + f0_reaper + f1 + f2)*vowel + (1|Speaker) + (1|word_unique), data = dat_2syl %>% drop_na(syllable_number),family = binomial)
 
 ## Full model summary and effects
 
@@ -311,13 +178,21 @@ model3 %>% summary
 
 effects::allEffects(model3, partial.residuals=TRUE) %>% plot(multiline = T,rescale.axis=FALSE, residuals.pch=15)
 
+effects::allEffects(model3_praat, partial.residuals=TRUE) %>% plot(multiline = T,rescale.axis=FALSE, residuals.pch=15)
+
+effects::allEffects(model3_reaper, partial.residuals=TRUE) %>% plot(multiline = T,rescale.axis=FALSE, residuals.pch=15)
+
+
 lme4::ranef(model3)
 
 ## Plot variable importance from model without random effects
 
 vip::vip(model1, out_var = 1)
 
-varImp_model <- varImp(model1)
+
+varImp_model <- varImp(model1_reaper)
+
+varImp_model <- varImp(model1_praat)
 varImp_data <- varImp_model %>% as.data.frame() %>% arrange(desc(Overall)) %>% rownames_to_column()
 varImp_data %>% ggplot(aes(fct_reorder(rowname,Overall), Overall)) + 
   geom_bar(stat = 'identity') +
@@ -650,6 +525,103 @@ short_4syll_F0_reaper_means$moe <- short_4syll_F0_reaper_means$tval * short_4syl
 short_4syll_F0_reaper_means$upper <- short_4syll_F0_reaper_means$mean + short_4syll_F0_reaper_means$moe
 short_4syll_F0_reaper_means$lower <- short_4syll_F0_reaper_means$mean - short_4syll_F0_reaper_means$moe
 
+
+
+
+### Now getting a dataset of words which only contain long vowels
+
+only_longV <- data5 %>%
+  filter(Syllabification == "Mono") %>%        # Just monophthongs
+  filter(stress != "0") %>%                    # 0s are either long words or issues with end of word interval != end of last letter
+  filter(next_sound %notin% list_of_vowels, previous_sound %notin% list_of_vowels) %>%  # exclude next to another vowel
+  #  filter(next_sound %notin% problematic_consonants, previous_sound %notin% problematic_consonants) %>% # exclude problematic consonants
+  filter(next_sound != "sil", previous_sound !="sil") %>%  # nothing with silences next to it
+  filter(next_word != "-") %>%               # no utterance-final words
+  filter(word_syllables > 1) %>%            # Just words over 1 syll
+  filter( !grepl(paste(list_of_diphthongs, collapse = "|"),word)) %>%     # Just words without any diphthongs
+  filter( !grepl(paste(list_of_short_mono, collapse = "|"),word))          # Just words without any short vowels
+
+### Filtering so we only have words where we have info for all syllables
+long1 <- only_longV %>%
+  select(word_unique, word_syllables) %>%
+  group_by(word_unique, word_syllables) %>%
+  summarise(count = length(word_unique)) %>%
+  filter(count == word_syllables)
+long2 <- only_longV %>%
+  filter(word_unique %in% long1$word_unique) %>%
+  arrange(word_unique, interval)
+
+# # Making row for relative intensity
+# long2$rel_intensity <- ifelse(
+#   lead(long2$end, 1) == long2$word_end,                                   # If the following row is at the end of the word, then
+#   lead(long2$intensity, 1) - long2$intensity,                             # get the following row's intensity minus that row's intensity, otherwise
+#   ifelse(lead(long2$end, 2) == long2$word_end,                             # if the one 2 rows ahead is at the end of the word, then
+#          lead(long2$intensity, 2) - long2$intensity,             # get the one 2 rows ahead minus the following row's intensity, otherwise NA
+#          NA
+#   )
+# )
+# 
+# # Making row for relative f0
+# long2$rel_f0 <- ifelse(
+#   lead(long2$end, 1) == long2$word_end,                                   # If the following row is at the end of the word, then
+#   lead(long2$f0, 1) - long2$f0,                             # get the following row's intensity minus that row's intensity, otherwise
+#   ifelse(lead(long2$end, 2) == long2$word_end,                             # if the one 2 rows ahead is at the end of the word, then
+#          lead(long2$f0, 2) - long2$f0,             # get the one 2 rows ahead minus the following row's intensity, otherwise NA
+#          NA
+#   )
+# )
+
+
+## Renaming syllables
+long2$syllable_stress <- ifelse(long2$syllable_number == -1, "Final Primary Stressed",
+                                "Secondary Stressed")
+long2$syllable_stress <- factor(long2$syllable_stress, levels=c("Final Primary Stressed","Secondary Stressed"))
+
+
+## Filter out "kuma" words because it's unclear if it should be treated separately
+## Also filter so we're only considering 2-syllable words
+long2 <- long2 %>%
+  filter(word != "kūmā" & word != "kūmāmā") %>%
+  filter(word_syllables == 2)
+
+## Make duration into milliseconds instead of seconds
+long2$duration <- long2$duration *1000
+
+## Get a dataset with the means of intensity for each syllable position
+long_2syll_int_means = long2 %>% 
+  group_by(syllable_stress, position_length, length, syllable_number) %>% 
+  summarise(mean = mean(intensity, na.rm=T), 
+            sd = sd(intensity, na.rm=T), 
+            count = sum(!is.na(intensity)))
+long_2syll_int_means$se <- long_2syll_int_means$sd / sqrt(long_2syll_int_means$count)
+long_2syll_int_means$tval <- qt(0.05/2, df = long_2syll_int_means$count - 1)
+long_2syll_int_means$moe <- long_2syll_int_means$tval * long_2syll_int_means$se * -1
+long_2syll_int_means$upper <- long_2syll_int_means$mean + long_2syll_int_means$moe
+long_2syll_int_means$lower <- long_2syll_int_means$mean - long_2syll_int_means$moe
+
+## Get a dataset with the means of f0 for each syllable position
+long_2syll_f0_means = long2 %>% 
+  group_by(syllable_stress, position_length, length, syllable_number) %>% 
+  summarise(mean = mean(F0_reaper, na.rm=T), 
+            sd = sd(F0_reaper, na.rm=T), 
+            count = sum(!is.na(F0_reaper)))
+long_2syll_f0_means$se <- long_2syll_f0_means$sd / sqrt(long_2syll_f0_means$count)
+long_2syll_f0_means$tval <- qt(0.05/2, df = long_2syll_f0_means$count - 1)
+long_2syll_f0_means$moe <- long_2syll_f0_means$tval * long_2syll_f0_means$se * -1
+long_2syll_f0_means$upper <- long_2syll_f0_means$mean + long_2syll_f0_means$moe
+long_2syll_f0_means$lower <- long_2syll_f0_means$mean - long_2syll_f0_means$moe
+
+## Get a dataset with the means of duration for each syllable position
+long_2syll_dur_means = long2 %>% 
+  group_by(syllable_stress, position_length, length, syllable_number) %>% 
+  summarise(mean = mean(duration, na.rm=T), 
+            sd = sd(duration, na.rm=T), 
+            count = n())
+long_2syll_dur_means$se <- long_2syll_dur_means$sd / sqrt(long_2syll_dur_means$count)
+long_2syll_dur_means$tval <- qt(0.05/2, df = long_2syll_dur_means$count - 1)
+long_2syll_dur_means$moe <- long_2syll_dur_means$tval * long_2syll_dur_means$se * -1
+long_2syll_dur_means$upper <- long_2syll_dur_means$mean + long_2syll_dur_means$moe
+long_2syll_dur_means$lower <- long_2syll_dur_means$mean - long_2syll_dur_means$moe
 
 
 
@@ -1605,3 +1577,44 @@ short_hypothesis (
 
 
 
+
+# # Making row for relative intensity
+# short2$rel_intensity <- ifelse(
+#   short2$end == short2$word_end,                                   # If it's at the end of the word, then
+#   lag(short2$intensity, 1) - short2$intensity,                     # get the previous row's intensity minus that row's intensity, otherwise
+#   ifelse(short2$stress == "unstressed",                            # if it's unstressed,
+#          lead(short2$intensity, 1) - short2$intensity,             # get the following row's intensity minus that row's intensity, otherwise
+#          ifelse(short2$stress == "secondary",                      # if it's secondary,
+#                 lead(short2$intensity, 2) - short2$intensity,      # get the one 2 rows ahead minus that row's intensity, otherwise NA
+#                 NA
+#          )     
+#   )
+# )
+# 
+# # Making row for relative f0 (Praat)
+# 
+# short2$rel_f0 <- ifelse(
+#   short2$end == short2$word_end,                                   # If it's at the end of the word, then
+#   lag(short2$f0, 1) - short2$f0,                                   # get the previous row's f0 minus that row's f0, otherwise
+#   ifelse(short2$stress == "unstressed",                            # if it's unstressed,
+#          lead(short2$f0, 1) - short2$f0,                           # get the following row's f0 minus that row's f0, otherwise
+#          ifelse(short2$stress == "secondary",                      # if it's secondary,
+#                 lead(short2$f0, 2) - short2$f0,                    # get the one 2 rows ahead minus that row's f0, otherwise NA
+#                 NA
+#          )
+#   )
+# )
+# 
+# 
+# # Making row for relative f0 (Reaper mean)
+# short2$rel_f0_reaper <- ifelse(
+#   short2$end == short2$word_end,                                   # If it's at the end of the word, then
+#   lag(short2$F0_reaper, 1) - short2$F0_reaper,                                   # get the previous row's f0 minus that row's f0, otherwise
+#   ifelse(short2$stress == "unstressed",                            # if it's unstressed,
+#          lead(short2$F0_reaper, 1) - short2$F0_reaper,                           # get the following row's f0 minus that row's f0, otherwise
+#          ifelse(short2$stress == "secondary",                      # if it's secondary,
+#                 lead(short2$F0_reaper, 2) - short2$F0_reaper,                    # get the one 2 rows ahead minus that row's f0, otherwise NA
+#                 NA
+#          )
+#   )
+# )

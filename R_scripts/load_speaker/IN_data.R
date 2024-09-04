@@ -9,7 +9,7 @@ seg_info <- read.csv("segmentation_information.csv", header=TRUE, stringsAsFacto
 
 # formants <- read.csv("processed_data/aggregated_data.csv", header=TRUE, stringsAsFactors=FALSE) %>% select(-duration,-label,-number,-color,-group)
 
-formants <- aggregatedata_myself() %>%
+formants <- aggregatedata_original() %>%
   select(-duration)
 names(formants)[1] <- "filename"
 formants$filename <- gsub(".wav", "", formants$filename) 
