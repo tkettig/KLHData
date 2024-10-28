@@ -2,7 +2,7 @@
 ### Phonetic correlates of stress in Hawaiian
 library(tidyverse)
 library(phonR)
-library(lme4)
+library(lmerTest)
 library(yarrr)
 library(emmeans)
 library(scales)
@@ -15,21 +15,21 @@ setwd("/Users/Thomas/Documents/Hawaiian_Phonetics/KLHData/R_scripts/")
 `%!in%` = Negate(`%in%`)
 `%notin%` <- Negate(`%in%`)
 
-####### Make lists of vowels/mono/diph #######
-
-list_of_monophthongs <- c("ā","ē","ī","ō","ū","a","e","i","o","u")
-list_of_diphthongs <- c("ai","au","ao","ae","ei", "ou","eu","oi","iu","āi","āe","āu","āo","ēi","ōu")
-list_of_vowels <- c("ā","ē","ī","ō","ū","a","e","i","o","u","ai","au","ao","ae","ei", "ou","eu","oi","iu","āi","āe","āu","āo","ēi","ōu")
-list_of_long_mono <- c("ā","ē","ī","ō","ū")
-list_of_short_mono <- c("a","e","i","o","u")
-
 ## This takes a few minutes to run all the data extraction
 # source("3_normalize.R")
 
 ## This just gets the .csv with all the data, pre-extracted
 data <- read.csv('all_data_2Sept2024.csv')
 
-#### Find and add in the midpoints #####
+#### Data Preparation #####
+
+## Make lists of vowels/mono/diph
+
+list_of_monophthongs <- c("ā","ē","ī","ō","ū","a","e","i","o","u")
+list_of_diphthongs <- c("ai","au","ao","ae","ei", "ou","eu","oi","iu","āi","āe","āu","āo","ēi","ōu")
+list_of_vowels <- c("ā","ē","ī","ō","ū","a","e","i","o","u","ai","au","ao","ae","ei", "ou","eu","oi","iu","āi","āe","āu","āo","ēi","ōu")
+list_of_long_mono <- c("ā","ē","ī","ō","ū")
+list_of_short_mono <- c("a","e","i","o","u")
 
 ## Getting which point is the midpoint for each vowel, since some of the midpoints have now been excluded due to being outliers
 
@@ -76,6 +76,11 @@ data4 <- data4 %>% rename(f1_inf = f1,
 data5 <- left_join(data_midpoints, data4, by="filename") %>%
   select(-midpoint)
 
+
+### Make durations into ms and log-transform
+data5$raw_duration <- 1000*(data5$duration)
+data5$log_duration <- log(data5$duration)
+
 ## Rename so itʻs clear that f1/f2/f3 are of the inflection point
 
 data5 <- data5 %>% rename(f1_normed_mid = f1_mid,
@@ -91,6 +96,31 @@ data5 <- data5 %>% rename(f1_normed_mid = f1_mid,
 data5$length <- ifelse(data5$Syllabification == "Diph", "diph",
                        ifelse(data5$Moras == 2, "long", "short"))
 data5$position_length <- paste(data5$syllable_number, data5$length, sep=".")
+
+### Explore f0 measurements a bit
+
+NA_for_Praat <- data5 %>%
+  filter(is.na(f0_praat))
+NA_for_Reaper <- data5 %>%
+  filter(is.na(f0_reaper))
+
+hist(data5$f0_reaper, breaks = 300)
+hist(data5$f0_praat, breaks = 300)
+
+hist(NA_for_Praat$f0_reaper, breaks = 300)
+hist(NA_for_Reaper$f0_praat, breaks = 300)
+
+ggplot(data5, aes(x = f0_praat, y = f0_reaper)) +
+  geom_point() +  # Scatter plot of points
+  geom_abline(slope = 0.5, intercept = 0, color = "blue", linetype = "dashed") +
+  geom_abline(slope = 1, intercept = 0, color = "red") +
+  geom_abline(slope = 2, intercept = 0, color = "green", linetype = "dashed") +
+  labs(title = "Scatterplot of f0_reaper vs. f0_praat",
+       x = "f0_praat",
+       y = "f0_reaper") +
+  theme_minimal()
+
+
 
 ### Getting a datset of words which only contain short vowels
 
@@ -117,7 +147,7 @@ short2 <- only_shortV %>%
   arrange(word_unique, interval)
 
 
-## Renaming syllables
+## Adding syllable names and positions
 short2$syllable_stress <- ifelse(short2$syllable_number == -1, "Final Unstressed",
                                   ifelse(short2$syllable_number == -2, "Primary Stressed",
                                          ifelse(short2$syllable_number == -3, "Antepen. Unstressed",
@@ -125,18 +155,474 @@ short2$syllable_stress <- ifelse(short2$syllable_number == -1, "Final Unstressed
 short2$syllable_stress <- factor(short2$syllable_stress, levels=c("Secondary Stressed","Antepen. Unstressed","Primary Stressed", "Final Unstressed"))
 
 
+## Get 2 syllable dataset
+
+dat_2syl <- short2 %>% 
+  filter(word_syllables == 2, str_length(vowel) == 1, Moras == 1)
+
+dat_2syl <- dat_2syl %>% 
+  select(Speaker,
+         word_unique,
+         vowel,
+         syllable_number,
+         word_syllables,
+         stress,
+         syllable_stress,
+         Moras,
+         length,
+         f0_reaper, 
+         f0_praat,
+         intensity, 
+         raw_duration, 
+         log_duration, 
+         f1_normed_inf, 
+         f2_normed_inf
+  ) %>% 
+  # mutate(syllable_number = ifelse(syllable_number == -1,0,1),                                                                                                                         across(c(f0_reaper,f0_praat, intensity,log_duration,f1_normed_inf,f2_normed_inf),scale)) %>% 
+#  mutate(across(c(f0_reaper,f0_praat, intensity,log_duration,f1_normed_inf,f2_normed_inf),scale)) %>%
+  rename(f1 = f1_normed_inf, f2 = f2_normed_inf, duration = log_duration)
+
+dat_2syl$syllable_number <- as.factor(dat_2syl$syllable_number)
+
+
+
+## Get 3 syllable dataset
+
+dat_3syl <- short2 %>% filter(word_syllables == 3, str_length(vowel) == 1, Moras == 1)
+
+dat_3syl %>% pull(syllable_number) %>% table
+
+dat_3syl <- dat_3syl %>% 
+  select(Speaker,
+         word_unique,
+         vowel,
+         syllable_number,
+         word_syllables,
+         stress,
+         syllable_stress,
+         Moras,
+         length,
+         f0_reaper, 
+         f0_praat,
+         intensity, 
+         raw_duration, 
+         log_duration, 
+         f1_normed_inf, 
+         f2_normed_inf
+  ) %>% 
+#  mutate(across(c(f0_reaper,f0_praat, intensity,log_duration,f1_normed_inf,f2_normed_inf),scale)) %>%
+  rename(f1 = f1_normed_inf, f2 = f2_normed_inf, duration = log_duration)
+
+
+dat_3syl$syllable_number <- as.factor(dat_3syl$syllable_number)
+
+
+## Get 4 syllable dataset
+
+dat_4syl <- short2 %>% 
+  filter(word_syllables == 4, str_length(vowel) == 1, Moras == 1)
+
+dat_4syl %>% pull(syllable_number) %>% table
+
+dat_4syl <- dat_4syl %>% 
+  select(Speaker,
+         word_unique,
+         vowel,
+         syllable_number,
+         word_syllables,
+         stress,
+         syllable_stress,
+         Moras,
+         length,
+         f0_reaper, 
+         f0_praat,
+         intensity, 
+         raw_duration, 
+         log_duration, 
+         f1_normed_inf, 
+         f2_normed_inf
+  ) %>% 
+#  mutate(across(c(f0_reaper,f0_praat, intensity,log_duration,f1_normed_inf,f2_normed_inf),scale)) %>%
+  rename(f1 = f1_normed_inf, f2 = f2_normed_inf, duration = log_duration)
+
+
+dat_4syl$syllable_number <- as.factor(dat_4syl$syllable_number)
+
+
+### Now getting a dataset of words which only contain long vowels
+
+only_longV <- data5 %>%
+  filter(Syllabification == "Mono") %>%        # Just monophthongs
+  filter(stress != "0") %>%                    # 0s are either long words or issues with end of word interval != end of last letter
+  filter(next_sound %notin% list_of_vowels, previous_sound %notin% list_of_vowels) %>%  # exclude next to another vowel
+  #  filter(next_sound %notin% problematic_consonants, previous_sound %notin% problematic_consonants) %>% # exclude problematic consonants
+  filter(next_sound != "sil", previous_sound !="sil") %>%  # nothing with silences next to it
+  filter(next_word != "-") %>%               # no utterance-final words
+  filter(word_syllables > 1) %>%            # Just words over 1 syll
+  filter( !grepl(paste(list_of_diphthongs, collapse = "|"),word)) %>%     # Just words without any diphthongs
+  filter( !grepl(paste(list_of_short_mono, collapse = "|"),word))          # Just words without any short vowels
+
+### Filtering so we only have words where we have info for all syllables
+long1 <- only_longV %>%
+  select(word_unique, word_syllables) %>%
+  group_by(word_unique, word_syllables) %>%
+  summarise(count = length(word_unique)) %>%
+  filter(count == word_syllables)
+long2 <- only_longV %>%
+  filter(word_unique %in% long1$word_unique) %>%
+  arrange(word_unique, interval)
+
+
+## Adding syllable names and positions
+long2$syllable_stress <- ifelse(long2$syllable_number == -1, "Final Stressed",
+                                 ifelse(long2$syllable_number == -2, "Penultimate Secondary",
+                                        ifelse(short2$syllable_number == -3, "Antepen. Secondary",
+                                               "Secondary")))
+long2$syllable_stress <- factor(long2$syllable_stress, levels=c("Final Stressed","Penultimate Secondary","Antepen. Secondary", "Secondary"))
+
+## Get 2 syllable long dataset
+
+dat_2syl_long <- long2 %>% 
+  filter(word_syllables == 2, str_length(vowel) == 1, Moras == 2) %>% 
+  select(Speaker,
+         word_unique,
+         vowel,
+         syllable_number,
+         word_syllables,
+         stress,
+         syllable_stress,
+         Moras,
+         length,
+         f0_reaper, 
+         f0_praat,
+         intensity, 
+         raw_duration, 
+         log_duration, 
+         f1_normed_inf, 
+         f2_normed_inf
+) %>% 
+#  mutate(across(c(f0_reaper,f0_praat, intensity,log_duration,f1_normed_inf,f2_normed_inf),scale)) %>%
+  rename(f1 = f1_normed_inf, 
+         f2 = f2_normed_inf, 
+         duration = log_duration)
+
+
+dat_2syl_long$syllable_number <- as.factor(dat_2syl_long$syllable_number)
+
+
+## 2 short & 2 long together for comparison
+
+dat_2syll_shortlong <- rbind(dat_2syl, dat_2syl_long)
+
+dat_2syll_shortlong$syll_length <- paste(dat_2syll_shortlong$syllable_number, dat_2syll_shortlong$length, sep = ".")
+
+
+## 4 short + 2 long together for comparison
+
+dat_4syll_shortlong <- rbind(dat_4syl, dat_2syl_long)
+
+dat_4syll_shortlong$syll_length <- paste(dat_4syll_shortlong$syllable_number, dat_4syll_shortlong$length, sep = ".")
+
+## 4 short + 3 short together for comparison
+
+
+dat_34syll <- rbind(dat_4syl, dat_3syl)
+
+dat_34syll$syll_comp <- paste(dat_34syll$syllable_number, dat_34syll$word_syllables, sep = "_")
+
+
+
+
+
+
+
+
+#### Simple models ####
+
+### Intensity
+## 2-syllable words with just short vowels, intensity
+# Stats
+p <- lmer(intensity ~ syllable_number*vowel + (1|Speaker) + (1|word_unique),
+          data = dat_2syl)
+summary(p)
+emmeans(p, specs = pairwise ~ syllable_number)
+
+
+## 3-syllable words with just short vowels, intensity
+# Stats
+p <- lmer(intensity ~ syllable_number*vowel + (1|Speaker) + (1|word_unique),
+          data = dat_3syl)
+summary(p)
+emmeans(p, specs = pairwise ~ syllable_number)
+
+
+## 4-syllable words with just short vowels, intensity
+# Stats
+p <- lmer(intensity ~ syllable_number*vowel + (1|Speaker) + (1|word_unique),
+          data = dat_4syl)
+summary(p)
+emmeans(p, specs = pairwise ~ syllable_number)
+
+
+## 2-syllable words with just long vowels, intensity
+
+p <- lmer(intensity ~ syllable_number + (1|Speaker) + (1|word_unique)  + (1|vowel),
+          data = dat_2syl_long)
+summary(p)
+emmeans(p, specs = pairwise ~ syllable_number)
+
+
+## 2-syllable short vs. 2-syllable long, intensity
+p <- lmer(intensity ~ syllable_number*length + (1|Speaker) + (1|word_unique)  + (1|vowel),
+          data = dat_2syll_shortlong)
+summary(p)
+emmeans(p, specs = pairwise ~ syllable_number*length)
+
+
+## 4-syll short vs. 2-syll long, intensity
+p <- lmer(intensity ~ syll_length + (1|Speaker) + (1|word_unique)  + (1|vowel),
+          data = dat_4syll_shortlong)
+summary(p)
+emmeans(p, specs = pairwise ~ syll_length)
+
+
+## 3-syll short vs. 4-syll short, intensity
+p <- lmer(intensity ~ syll_comp*vowel + (1|Speaker) + (1|word_unique),
+          data = dat_34syll)
+summary(p)
+emmeans(p, specs = pairwise ~ syll_comp)
+
+
+
+### F0 Reaper
+## 2-syllable words with just short vowels, f0_reaper
+# Stats
+p <- lmer(f0_reaper ~ syllable_number*vowel + (1|Speaker) + (1|word_unique),
+          data = dat_2syl)
+summary(p)
+emmeans(p, specs = pairwise ~ syllable_number)
+
+## 3-syllable words with just short vowels, f0_reaper
+# Stats
+p <- lmer(f0_reaper ~ syllable_number*vowel + (1|Speaker) + (1|word_unique),
+          data = dat_3syl)
+summary(p)
+emmeans(p, specs = pairwise ~ syllable_number)
+
+## 4-syllable words with just short vowels, f0_reaper
+# Stats
+p <- lmer(f0_reaper ~ syllable_number*vowel + (1|Speaker) + (1|word_unique),
+          data = dat_4syl)
+summary(p)
+emmeans(p, specs = pairwise ~ syllable_number)
+
+## 2-syllable words with just long vowels, f0_reaper
+
+p <- lmer(f0_reaper ~ syllable_number + (1|Speaker) + (1|word_unique)  + (1|vowel),
+          data = dat_2syl_long)
+summary(p)
+emmeans(p, specs = pairwise ~ syllable_number)
+
+## 2-syllable short vs. 2-syllable long, f0_reaper
+p <- lmer(f0_reaper ~ syllable_number*length + (1|Speaker) + (1|word_unique)  + (1|vowel),
+          data = dat_2syll_shortlong)
+summary(p)
+emmeans(p, specs = pairwise ~ syllable_number*length)
+
+
+## 4-syll short vs. 2-syll long, f0_reaper
+p <- lmer(f0_reaper ~ syll_length + (1|Speaker) + (1|word_unique)  + (1|vowel),
+          data = dat_4syll_shortlong)
+summary(p)
+emmeans(p, specs = pairwise ~ syll_length)
+
+
+## 3-syll short vs. 4-syll short, f0_reaper
+p <- lmer(f0_reaper ~ syll_comp*vowel + (1|Speaker) + (1|word_unique),
+          data = dat_34syll)
+summary(p)
+emmeans(p, specs = pairwise ~ syll_comp)
+
+
+
+
+### F0 Praat
+## 2-syllable words with just short vowels, intensity
+# Stats
+p <- lmer(f0_praat ~ syllable_number*vowel + (1|Speaker) + (1|word_unique),
+          data = dat_2syl)
+summary(p)
+emmeans(p, specs = pairwise ~ syllable_number)
+
+## 3-syllable words with just short vowels, f0_praat
+# Stats
+p <- lmer(f0_praat ~ syllable_number*vowel + (1|Speaker) + (1|word_unique),
+          data = dat_3syl)
+summary(p)
+emmeans(p, specs = pairwise ~ syllable_number)
+
+## 4-syllable words with just short vowels, f0_praat
+# Stats
+p <- lmer(f0_praat ~ syllable_number*vowel + (1|Speaker) + (1|word_unique),
+          data = dat_4syl)
+summary(p)
+emmeans(p, specs = pairwise ~ syllable_number)
+
+## 2-syllable words with just long vowels, f0_praat
+
+p <- lmer(f0_praat ~ syllable_number + (1|Speaker) + (1|word_unique)  + (1|vowel),
+          data = dat_2syl_long)
+summary(p)
+emmeans(p, specs = pairwise ~ syllable_number)
+
+## 2-syllable short vs. 2-syllable long, f0_praat
+p <- lmer(f0_praat ~ syllable_number*length + (1|Speaker) + (1|word_unique)  + (1|vowel),
+          data = dat_2syll_shortlong)
+summary(p)
+emmeans(p, specs = pairwise ~ syllable_number*length)
+
+
+## 4-syll short vs. 2-syll long, f0_praat
+p <- lmer(f0_praat ~ syll_length + (1|Speaker) + (1|word_unique)  + (1|vowel),
+          data = dat_4syll_shortlong)
+summary(p)
+emmeans(p, specs = pairwise ~ syll_length)
+
+
+## 3-syll short vs. 4-syll short, f0_praat
+p <- lmer(f0_praat ~ syll_comp*vowel + (1|Speaker) + (1|word_unique),
+          data = dat_34syll)
+summary(p)
+emmeans(p, specs = pairwise ~ syll_comp)
+
+
+
+
+### Duration
+## 2-syllable words with just short vowels, intensity
+# Stats
+p <- lmer(duration ~ syllable_number*vowel + (1|Speaker) + (1|word_unique),
+          data = dat_2syl)
+#          data = subset(dat_2syl, raw_duration < 250 ))
+summary(p)
+emmeans(p, specs = pairwise ~ syllable_number)
+
+## 3-syllable words with just short vowels, duration
+# Stats
+p <- lmer(duration ~ syllable_number*vowel + (1|Speaker) + (1|word_unique),
+          data = dat_3syl)
+#          data = subset(dat_3syl, raw_duration < 250 ))
+summary(p)
+emmeans(p, specs = pairwise ~ syllable_number)
+
+
+## 4-syllable words with just short vowels, duration
+# Stats
+p <- lmer(duration ~ syllable_number*vowel + (1|Speaker) + (1|word_unique),
+          data = dat_4syl)
+#          data = subset(dat_4syl, raw_duration < 250 ))
+summary(p)
+emmeans(p, specs = pairwise ~ syllable_number)
+
+## 2-syllable words with just long vowels, duration
+
+p <- lmer(duration ~ syllable_number + (1|Speaker) + (1|word_unique)  + (1|vowel),
+          data = dat_2syl_long)
+summary(p)
+emmeans(p, specs = pairwise ~ syllable_number)
+
+## 2-syllable short vs. 2-syllable long, duration
+p <- lmer(duration ~ syllable_number*length + (1|Speaker) + (1|word_unique)  + (1|vowel),
+          data = dat_2syll_shortlong)
+summary(p)
+emmeans(p, specs = pairwise ~ syllable_number*length)
+
+
+## 4-syll short vs. 2-syll long, duration
+p <- lmer(duration ~ syll_length + (1|Speaker) + (1|word_unique)  + (1|vowel),
+          data = dat_4syll_shortlong)
+summary(p)
+emmeans(p, specs = pairwise ~ syll_length)
+
+
+## 3-syll short vs. 4-syll short, duration
+p <- lmer(duration ~ syll_comp*vowel + (1|Speaker) + (1|word_unique),
+          data = dat_34syll)
+summary(p)
+emmeans(p, specs = pairwise ~ syll_comp)
+
+
+
+### F1
+## 2-syllable words with just short vowels, intensity
+# Stats
+p <- lmer(f1 ~ syllable_number*vowel + (1|Speaker) + (1|word_unique),
+          data = dat_2syl)
+summary(p)
+emmeans(p, specs = pairwise ~ syllable_number*vowel)
+
+## 3-syllable words with just short vowels, f1
+# Stats
+p <- lmer(f1 ~ syllable_number*vowel + (1|Speaker) + (1|word_unique),
+          data = dat_3syl)
+summary(p)
+emmeans(p, specs = pairwise ~ syllable_number*vowel)
+
+## 4-syllable words with just short vowels, f1
+# Stats
+p <- lmer(f1 ~ syllable_number*vowel + (1|Speaker) + (1|word_unique),
+          data = dat_4syl)
+summary(p)
+emmeans(p, specs = pairwise ~ syllable_number*vowel)
+
+## 2-syllable words with just long vowels, f1
+
+p <- lmer(f1 ~ syllable_number*vowel + (1|Speaker) + (1|word_unique),
+          data = dat_2syl_long)
+summary(p)
+emmeans(p, specs = pairwise ~ syllable_number)
+
+
+
+### F2
+## 2-syllable words with just short vowels, intensity
+# Stats
+p <- lmer(f2 ~ syllable_number*vowel + (1|Speaker) + (1|word_unique),
+          data = dat_2syl)
+summary(p)
+emmeans(p, specs = pairwise ~ syllable_number*vowel)
+
+## 3-syllable words with just short vowels, f2
+# Stats
+p <- lmer(f2 ~ syllable_number*vowel + (1|Speaker) + (1|word_unique),
+          data = dat_3syl)
+summary(p)
+emmeans(p, specs = pairwise ~ syllable_number*vowel)
+
+## 4-syllable words with just short vowels, f2
+# Stats
+p <- lmer(f2 ~ syllable_number*vowel + (1|Speaker) + (1|word_unique),
+          data = dat_4syl)
+summary(p)
+emmeans(p, specs = pairwise ~ syllable_number*vowel)
+
+## 2-syllable words with just long vowels, f2
+
+p <- lmer(f2 ~ syllable_number*vowel + (1|Speaker) + (1|word_unique),
+          data = dat_2syl_long)
+summary(p)
+emmeans(p, specs = pairwise ~ syllable_number)
+
+
+
+
+
+
+
+
+
 #### Arjun Models #####
 
-## Choose to either log transform or get rid of some duration outliers
-short2$log_duration <- log(short2$duration)
-
-##### 2 syllables ######
-
-dat_2syl <- short2 %>% filter(word_syllables == 2, str_length(vowel) == 1, Moras == 1)
-
-dat_2syl <- dat_2syl %>% select(f0_reaper, f0_praat, Moras,intensity, log_duration, f1_normed_inf, f2_normed_inf,syllable_number,Speaker,word_unique,vowel) %>% mutate(syllable_number = ifelse(syllable_number == -1,0,1),
-                                                                                                                                                      across(c(f0_reaper,f0_praat, intensity,log_duration,f1_normed_inf,f2_normed_inf),scale)
-) %>% rename(f1 = f1_normed_inf, f2 = f2_normed_inf, duration = log_duration)
 
 ### Tables of Ns and co-occurrences
 dat_2syl %>% pull(syllable_number) %>% table
@@ -164,7 +650,10 @@ model1_reaper <- glm(syllable_number ~ (intensity + duration + f0_reaper + f1 + 
 
 ## Model with vowel interacting only with F1/F2 and no random effects
 
-model2 <- glm(syllable_number ~ intensity + duration + f0 + (f1 + f2)*vowel, data = dat_2syl %>% drop_na(intensity,Moras),family = 'binomial')
+model2_praat <- glm(syllable_number ~ intensity + duration + f0_praat + (f1 + f2)*vowel, data = dat_2syl %>% drop_na(intensity,Moras),family = 'binomial')
+
+model2_reaper <- glm(syllable_number ~ intensity + duration + f0_reaper + (f1 + f2)*vowel, data = dat_2syl %>% drop_na(intensity,Moras),family = 'binomial')
+
 
 ## Model with full interactions and by-speaker and by-utterance random intercept
 
@@ -174,16 +663,16 @@ model3_reaper <- lme4::glmer(syllable_number ~ (intensity + duration + f0_reaper
 
 ## Full model summary and effects
 
-model3 %>% summary
+model3_praat %>% summary
 
-effects::allEffects(model3, partial.residuals=TRUE) %>% plot(multiline = T,rescale.axis=FALSE, residuals.pch=15)
+model3_reaper %>% summary
+
 
 effects::allEffects(model3_praat, partial.residuals=TRUE) %>% plot(multiline = T,rescale.axis=FALSE, residuals.pch=15)
 
 effects::allEffects(model3_reaper, partial.residuals=TRUE) %>% plot(multiline = T,rescale.axis=FALSE, residuals.pch=15)
 
-
-lme4::ranef(model3)
+lme4::ranef(model3_praat)
 
 ## Plot variable importance from model without random effects
 
@@ -201,7 +690,7 @@ varImp_data %>% ggplot(aes(fct_reorder(rowname,Overall), Overall)) +
 ## Doesn't work yet, but seeing if I can use predict() to see how good this model is as predicting the actual outcome
 ## Write contingency table
 
-predict(model3)
+predict(model3_praat)
 
 data = dat_2syl %>% drop_na(syllable_number)
 
@@ -225,14 +714,7 @@ emmeans::emmeans(model,~vowel|f0|f1|f2)
 
 
 
-# 3 syllables
 
-dat_3syl <- short2 %>% filter(word_syllables == 3, str_length(vowel) == 1, Moras == 1)
-
-dat_3syl %>% pull(syllable_number) %>% table
-
-dat_3syl <- dat_3syl %>% select(F0_reaper, Moras,intensity, duration, f1_normed_inf, f2_normed_inf,syllable_number,Speaker,word_unique,vowel) %>% mutate(across(c(F0_reaper,intensity,duration,f1_normed_inf,f2_normed_inf),scale)
-) %>% rename(f0 = F0_reaper, f1 = f1_normed_inf, f2 = f2_normed_inf)
 
 
 library(nnet)
@@ -272,14 +754,6 @@ varImp_data %>% ggplot(aes(fct_reorder(rowname,Overall), Overall)) +
   geom_bar(stat = 'identity') +
   coord_flip()
 
-# 4 syllables
-
-dat_4syl <- short2 %>% filter(word_syllables == 4, str_length(vowel) == 1, Moras == 1)
-
-dat_4syl %>% pull(syllable_number) %>% table
-
-dat_4syl <- dat_4syl %>% select(F0_reaper, Moras,intensity, duration, f1_normed_inf, f2_normed_inf,syllable_number,Speaker,word_unique,vowel) %>% mutate(across(c(F0_reaper,intensity,duration,f1_normed_inf,f2_normed_inf),scale)
-) %>% rename(f0 = F0_reaper, f1 = f1_normed_inf, f2 = f2_normed_inf)
 
 
 library(nnet)
@@ -294,7 +768,7 @@ dat_4syl %>% group_by(vowel, syllable_number) %>%
 
 
 # Fit the multinomial logistic regression model
-model <- multinom(syllable_number ~ (intensity + duration + f0 + f1 + f2)*vowel, data = dat_4syl %>% drop_na(intensity))
+model <- multinom(syllable_number ~ (intensity + duration + f0_praat + f1 + f2)*vowel, data = dat_4syl %>% drop_na(intensity))
 
 model1 <- multinom(syllable_number ~ intensity + duration + f0, data = dat_4syl %>% drop_na(intensity))
 
@@ -332,7 +806,7 @@ varImp_data %>% ggplot(aes(fct_reorder(rowname,Overall), Overall)) +
 
 
 
-###### Stuff from before Arjun #######
+#### Plots #######
 
 ## Making a ggplot theme
 apatheme=theme_bw()+
@@ -356,7 +830,7 @@ short_3syll_int <- filter(short2, word_syllables == 3)
 short_4syll_int <- filter(short2, word_syllables == 4)
 
 
-short_2syll_int_means = short_2syll_int %>% 
+short_2syll_int_means = dat_2syl %>% 
   group_by(syllable_stress, position_length, length, syllable_number, word_syllables) %>% 
   summarise(mean = mean(intensity, na.rm=T), 
             sd = sd(intensity, na.rm=T), 
@@ -453,24 +927,24 @@ short_4syll_dur_means$lower <- short_4syll_dur_means$mean - short_4syll_dur_mean
 
 #### Setting up F0 from Reaper measures, short ####
 
-hist(short2$F0_reaper)
+hist(short2$f0_reaper)
 
-ggplot(short2,aes(x=F0_reaper))+geom_histogram(bins=30)+facet_grid(.~Speaker)
+ggplot(short2,aes(x=f0_reaper))+geom_histogram(bins=30)+facet_grid(.~Speaker)
 
 ## Exclude outliers past 3sd from the mean internal to each person
 
 cutoffs <- short2 %>%
   group_by(Speaker) %>%
-  summarise(upperThreshold = mean(F0_reaper, na.rm=T) + 3*sd(F0_reaper, na.rm=T),
-            lowerThreshold = mean(F0_reaper, na.rm=T) - 3*sd(F0_reaper, na.rm=T))
+  summarise(upperThreshold = mean(f0_reaper, na.rm=T) + 3*sd(f0_reaper, na.rm=T),
+            lowerThreshold = mean(f0_reaper, na.rm=T) - 3*sd(f0_reaper, na.rm=T))
 
 short4 <- left_join(short2, cutoffs, by = "Speaker")
 
 short4 <- short4 %>%
-  filter(F0_reaper > lowerThreshold) %>%
-  filter(F0_reaper < upperThreshold)
-#  filter(Speaker != "IN") # IN F0_reaper tracking was bad
-#  filter( ! (Speaker == "DK" & F0_reaper < 90)) # Get some bad ones from DK out, if we want? should do for others too though
+  filter(f0_reaper > lowerThreshold) %>%
+  filter(f0_reaper < upperThreshold)
+#  filter(Speaker != "IN") # IN f0_reaper tracking was bad
+#  filter( ! (Speaker == "DK" & f0_reaper < 90)) # Get some bad ones from DK out, if we want? should do for others too though
 
 
 
@@ -483,73 +957,50 @@ short1 <- short4 %>%
 short4 <- short4 %>%
   filter(word_unique %in% short1$word_unique) %>%
   arrange(word_unique, interval)
-ggplot(short4,aes(x=F0_reaper))+geom_histogram(bins=30)+facet_grid(.~Speaker)
+ggplot(short4,aes(x=f0_reaper))+geom_histogram(bins=30)+facet_grid(.~Speaker)
 
 
-short_2syll_F0_reaper <- filter(short4, word_syllables == 2)
-short_3syll_F0_reaper <- filter(short4, word_syllables == 3)
-short_4syll_F0_reaper <- filter(short4, word_syllables == 4)
+short_2syll_f0_reaper <- filter(short4, word_syllables == 2)
+short_3syll_f0_reaper <- filter(short4, word_syllables == 3)
+short_4syll_f0_reaper <- filter(short4, word_syllables == 4)
 
 
 
-short_2syll_F0_reaper_means = short_2syll_F0_reaper %>% 
+short_2syll_f0_reaper_means = short_2syll_f0_reaper %>% 
   group_by(syllable_stress, position_length, length, syllable_number, word_syllables) %>% 
-  summarise(mean = mean(F0_reaper), 
-            sd = sd(F0_reaper), 
+  summarise(mean = mean(f0_reaper), 
+            sd = sd(f0_reaper), 
             count = n())
-short_2syll_F0_reaper_means$se <- short_2syll_F0_reaper_means$sd / sqrt(short_2syll_F0_reaper_means$count)
-short_2syll_F0_reaper_means$tval <- qt(0.05/2, df = short_2syll_F0_reaper_means$count - 1)
-short_2syll_F0_reaper_means$moe <- short_2syll_F0_reaper_means$tval * short_2syll_F0_reaper_means$se * -1
-short_2syll_F0_reaper_means$upper <- short_2syll_F0_reaper_means$mean + short_2syll_F0_reaper_means$moe
-short_2syll_F0_reaper_means$lower <- short_2syll_F0_reaper_means$mean - short_2syll_F0_reaper_means$moe
+short_2syll_f0_reaper_means$se <- short_2syll_f0_reaper_means$sd / sqrt(short_2syll_f0_reaper_means$count)
+short_2syll_f0_reaper_means$tval <- qt(0.05/2, df = short_2syll_f0_reaper_means$count - 1)
+short_2syll_f0_reaper_means$moe <- short_2syll_f0_reaper_means$tval * short_2syll_f0_reaper_means$se * -1
+short_2syll_f0_reaper_means$upper <- short_2syll_f0_reaper_means$mean + short_2syll_f0_reaper_means$moe
+short_2syll_f0_reaper_means$lower <- short_2syll_f0_reaper_means$mean - short_2syll_f0_reaper_means$moe
 
-short_3syll_F0_reaper_means = short_3syll_F0_reaper %>% 
+short_3syll_f0_reaper_means = short_3syll_f0_reaper %>% 
   group_by(syllable_stress, position_length, length, syllable_number, word_syllables) %>% 
-  summarise(mean = mean(F0_reaper), 
-            sd = sd(F0_reaper), 
+  summarise(mean = mean(f0_reaper), 
+            sd = sd(f0_reaper), 
             count = n())
-short_3syll_F0_reaper_means$se <- short_3syll_F0_reaper_means$sd / sqrt(short_3syll_F0_reaper_means$count)
-short_3syll_F0_reaper_means$tval <- qt(0.05/2, df = short_3syll_F0_reaper_means$count - 1)
-short_3syll_F0_reaper_means$moe <- short_3syll_F0_reaper_means$tval * short_3syll_F0_reaper_means$se * -1
-short_3syll_F0_reaper_means$upper <- short_3syll_F0_reaper_means$mean + short_3syll_F0_reaper_means$moe
-short_3syll_F0_reaper_means$lower <- short_3syll_F0_reaper_means$mean - short_3syll_F0_reaper_means$moe
+short_3syll_f0_reaper_means$se <- short_3syll_f0_reaper_means$sd / sqrt(short_3syll_f0_reaper_means$count)
+short_3syll_f0_reaper_means$tval <- qt(0.05/2, df = short_3syll_f0_reaper_means$count - 1)
+short_3syll_f0_reaper_means$moe <- short_3syll_f0_reaper_means$tval * short_3syll_f0_reaper_means$se * -1
+short_3syll_f0_reaper_means$upper <- short_3syll_f0_reaper_means$mean + short_3syll_f0_reaper_means$moe
+short_3syll_f0_reaper_means$lower <- short_3syll_f0_reaper_means$mean - short_3syll_f0_reaper_means$moe
 
-short_4syll_F0_reaper_means = short_4syll_F0_reaper %>% 
+short_4syll_f0_reaper_means = short_4syll_f0_reaper %>% 
   group_by(syllable_stress, position_length, length, syllable_number, word_syllables) %>% 
-  summarise(mean = mean(F0_reaper), 
-            sd = sd(F0_reaper), 
+  summarise(mean = mean(f0_reaper), 
+            sd = sd(f0_reaper), 
             count = n())
-short_4syll_F0_reaper_means$se <- short_4syll_F0_reaper_means$sd / sqrt(short_4syll_F0_reaper_means$count)
-short_4syll_F0_reaper_means$tval <- qt(0.05/2, df = short_4syll_F0_reaper_means$count - 1)
-short_4syll_F0_reaper_means$moe <- short_4syll_F0_reaper_means$tval * short_4syll_F0_reaper_means$se * -1
-short_4syll_F0_reaper_means$upper <- short_4syll_F0_reaper_means$mean + short_4syll_F0_reaper_means$moe
-short_4syll_F0_reaper_means$lower <- short_4syll_F0_reaper_means$mean - short_4syll_F0_reaper_means$moe
+short_4syll_f0_reaper_means$se <- short_4syll_f0_reaper_means$sd / sqrt(short_4syll_f0_reaper_means$count)
+short_4syll_f0_reaper_means$tval <- qt(0.05/2, df = short_4syll_f0_reaper_means$count - 1)
+short_4syll_f0_reaper_means$moe <- short_4syll_f0_reaper_means$tval * short_4syll_f0_reaper_means$se * -1
+short_4syll_f0_reaper_means$upper <- short_4syll_f0_reaper_means$mean + short_4syll_f0_reaper_means$moe
+short_4syll_f0_reaper_means$lower <- short_4syll_f0_reaper_means$mean - short_4syll_f0_reaper_means$moe
 
 
 
-
-### Now getting a dataset of words which only contain long vowels
-
-only_longV <- data5 %>%
-  filter(Syllabification == "Mono") %>%        # Just monophthongs
-  filter(stress != "0") %>%                    # 0s are either long words or issues with end of word interval != end of last letter
-  filter(next_sound %notin% list_of_vowels, previous_sound %notin% list_of_vowels) %>%  # exclude next to another vowel
-  #  filter(next_sound %notin% problematic_consonants, previous_sound %notin% problematic_consonants) %>% # exclude problematic consonants
-  filter(next_sound != "sil", previous_sound !="sil") %>%  # nothing with silences next to it
-  filter(next_word != "-") %>%               # no utterance-final words
-  filter(word_syllables > 1) %>%            # Just words over 1 syll
-  filter( !grepl(paste(list_of_diphthongs, collapse = "|"),word)) %>%     # Just words without any diphthongs
-  filter( !grepl(paste(list_of_short_mono, collapse = "|"),word))          # Just words without any short vowels
-
-### Filtering so we only have words where we have info for all syllables
-long1 <- only_longV %>%
-  select(word_unique, word_syllables) %>%
-  group_by(word_unique, word_syllables) %>%
-  summarise(count = length(word_unique)) %>%
-  filter(count == word_syllables)
-long2 <- only_longV %>%
-  filter(word_unique %in% long1$word_unique) %>%
-  arrange(word_unique, interval)
 
 # # Making row for relative intensity
 # long2$rel_intensity <- ifelse(
@@ -602,9 +1053,9 @@ long_2syll_int_means$lower <- long_2syll_int_means$mean - long_2syll_int_means$m
 ## Get a dataset with the means of f0 for each syllable position
 long_2syll_f0_means = long2 %>% 
   group_by(syllable_stress, position_length, length, syllable_number) %>% 
-  summarise(mean = mean(F0_reaper, na.rm=T), 
-            sd = sd(F0_reaper, na.rm=T), 
-            count = sum(!is.na(F0_reaper)))
+  summarise(mean = mean(f0_reaper, na.rm=T), 
+            sd = sd(f0_reaper, na.rm=T), 
+            count = sum(!is.na(f0_reaper)))
 long_2syll_f0_means$se <- long_2syll_f0_means$sd / sqrt(long_2syll_f0_means$count)
 long_2syll_f0_means$tval <- qt(0.05/2, df = long_2syll_f0_means$count - 1)
 long_2syll_f0_means$moe <- long_2syll_f0_means$tval * long_2syll_f0_means$se * -1
@@ -828,60 +1279,60 @@ emmeans(p, specs = pairwise ~ syll_comp)
 #### F0 stats and plots ####
 
 
-## 2-syllable words with just short vowels, F0_reaper
+## 2-syllable words with just short vowels, f0_reaper
 # Stats
-short_2syll_F0_reaper$syllable_stress <- as.factor(short_2syll_F0_reaper$syllable_stress)
-p <- lmer(F0_reaper ~ syllable_stress + (1|Speaker) + (1|word_unique) + (1|vowel),
-          data = short_2syll_F0_reaper)
+short_2syll_f0_reaper$syllable_stress <- as.factor(short_2syll_f0_reaper$syllable_stress)
+p <- lmer(f0_reaper ~ syllable_stress + (1|Speaker) + (1|word_unique) + (1|vowel),
+          data = short_2syll_f0_reaper)
 summary(p)
 emmeans(p, specs = pairwise ~ syllable_stress)
 # Plot
 my_colors <- c( "#009E73")
-ggplot(data = short_2syll_F0_reaper_means, aes(x = syllable_stress, y = mean, fill = length))+
+ggplot(data = short_2syll_f0_reaper_means, aes(x = syllable_stress, y = mean, fill = length))+
   apatheme+
   labs(x = "Syllable position", y = "f0, Hz") +
-  geom_violin(data = short_2syll_F0_reaper, aes(x = syllable_stress, y = F0_reaper))+
-  geom_point(data = short_2syll_F0_reaper_means, aes(y = mean, x=syllable_stress), size = 3) +
-  geom_errorbar(ymax= short_2syll_F0_reaper_means$upper, ymin=short_2syll_F0_reaper_means$lower, width = 0.5) +
+  geom_violin(data = short_2syll_f0_reaper, aes(x = syllable_stress, y = f0_reaper))+
+  geom_point(data = short_2syll_f0_reaper_means, aes(y = mean, x=syllable_stress), size = 3) +
+  geom_errorbar(ymax= short_2syll_f0_reaper_means$upper, ymin=short_2syll_f0_reaper_means$lower, width = 0.5) +
   scale_x_discrete(labels = label_wrap(5))+
   scale_fill_manual(values=my_colors) +
   theme(legend.position = "none")
 
-## 3-syllable words with just short vowels, F0_reaper
+## 3-syllable words with just short vowels, f0_reaper
 # Stats
-short_3syll_F0_reaper$syllable_stress <- as.factor(short_3syll_F0_reaper$syllable_stress)
-p <- lmer(F0_reaper ~ syllable_stress + (1|Speaker) + (1|word_unique) + (1|vowel),
-          data = short_3syll_F0_reaper)
+short_3syll_f0_reaper$syllable_stress <- as.factor(short_3syll_f0_reaper$syllable_stress)
+p <- lmer(f0_reaper ~ syllable_stress + (1|Speaker) + (1|word_unique) + (1|vowel),
+          data = short_3syll_f0_reaper)
 summary(p)
 emmeans(p, specs = pairwise ~ syllable_stress)
 # Plot
 my_colors <- c( "#009E73")
-ggplot(data = short_3syll_F0_reaper_means, aes(x = syllable_stress, y = mean, fill = length))+
+ggplot(data = short_3syll_f0_reaper_means, aes(x = syllable_stress, y = mean, fill = length))+
   apatheme+
   labs(x = "Syllable position", y = "f0, Hz") +
-  geom_violin(data = short_3syll_F0_reaper, aes(x = syllable_stress, y = F0_reaper))+
-  geom_point(data = short_3syll_F0_reaper_means, aes(y = mean, x=syllable_stress), size = 3) +
-  geom_errorbar(ymax= short_3syll_F0_reaper_means$upper, ymin=short_3syll_F0_reaper_means$lower, width = 0.5) +
+  geom_violin(data = short_3syll_f0_reaper, aes(x = syllable_stress, y = f0_reaper))+
+  geom_point(data = short_3syll_f0_reaper_means, aes(y = mean, x=syllable_stress), size = 3) +
+  geom_errorbar(ymax= short_3syll_f0_reaper_means$upper, ymin=short_3syll_f0_reaper_means$lower, width = 0.5) +
   scale_x_discrete(labels = label_wrap(5)) +
   scale_fill_manual(values=my_colors) +
   theme(legend.position = "none")
 
 
-## 4-syllable words with just short vowels, F0_reaper
+## 4-syllable words with just short vowels, f0_reaper
 # Stats
-short_4syll_F0_reaper$syllable_stress <- as.factor(short_4syll_F0_reaper$syllable_stress)
-p <- lmer(F0_reaper ~ syllable_stress + (1|Speaker) + (1|word_unique) + (1|vowel),
-          data = short_4syll_F0_reaper)
+short_4syll_f0_reaper$syllable_stress <- as.factor(short_4syll_f0_reaper$syllable_stress)
+p <- lmer(f0_reaper ~ syllable_stress + (1|Speaker) + (1|word_unique) + (1|vowel),
+          data = short_4syll_f0_reaper)
 summary(p)
 emmeans(p, specs = pairwise ~ syllable_stress)
 # Plot
 my_colors <- c( "#009E73")
-ggplot(data = short_4syll_F0_reaper_means, aes(x = syllable_stress, y = mean, fill = length))+
+ggplot(data = short_4syll_f0_reaper_means, aes(x = syllable_stress, y = mean, fill = length))+
   apatheme+
   labs(x = "Syllable position", y = "f0, Hz") +
-  geom_violin(data = short_4syll_F0_reaper, aes(x = syllable_stress, y = F0_reaper)) +
-  geom_point(data = short_4syll_F0_reaper_means, aes(y = mean, x=syllable_stress), size = 3) +
-  geom_errorbar(ymax= short_4syll_F0_reaper_means$upper, ymin=short_4syll_F0_reaper_means$lower, width = 0.8) +
+  geom_violin(data = short_4syll_f0_reaper, aes(x = syllable_stress, y = f0_reaper)) +
+  geom_point(data = short_4syll_f0_reaper_means, aes(y = mean, x=syllable_stress), size = 3) +
+  geom_errorbar(ymax= short_4syll_f0_reaper_means$upper, ymin=short_4syll_f0_reaper_means$lower, width = 0.8) +
   scale_x_discrete(labels = label_wrap(5)) +
   scale_fill_manual(values=my_colors) +
   theme(legend.position = "none")
@@ -891,7 +1342,7 @@ ggplot(data = short_4syll_F0_reaper_means, aes(x = syllable_stress, y = mean, fi
 
 ## 2-syllable words with just long vowels, f0 (Reaper)
 long2$syllable_stress <- as.factor(long2$syllable_stress)
-p <- lmer(F0_reaper ~ syllable_stress + (1|Speaker) + (1|word_unique)  + (1|vowel),
+p <- lmer(f0_reaper ~ syllable_stress + (1|Speaker) + (1|word_unique)  + (1|vowel),
           data = long2)
 summary(p)
 emmeans(p, specs = pairwise ~ syllable_stress)
@@ -901,7 +1352,7 @@ my_colors <- c("#56B4E9")
 ggplot(data = long_2syll_f0_means, aes(x = syllable_stress, y = mean, fill = length))+
   apatheme+
   labs(x = "Syllable position", y = "f0, Hz") +
-  geom_violin(data = long2, aes(x = syllable_stress, y = F0_reaper))+
+  geom_violin(data = long2, aes(x = syllable_stress, y = f0_reaper))+
   geom_point(data = long_2syll_f0_means, aes(y = mean, x=syllable_stress), size = 3) +
   geom_errorbar(ymax= long_2syll_f0_means$upper, ymin=long_2syll_f0_means$lower, width = 0.5) +
   scale_x_discrete(labels = label_wrap(5)) +
@@ -912,15 +1363,15 @@ ggplot(data = long_2syll_f0_means, aes(x = syllable_stress, y = mean, fill = len
 
 
 ## 2-syll short vs. 2-syll long
-short_2syll_f0_comp <- short_2syll_F0_reaper %>% 
+short_2syll_f0_comp <- short_2syll_f0_reaper %>% 
   select(-rel_f0_reaper, -vowel.stress, -upperThreshold, -lowerThreshold)
 
 long_short_f0 <- rbind(short_2syll_f0_comp, long2)
 
-short_2syll_F0_reaper_means$length <- "short"
+short_2syll_f0_reaper_means$length <- "short"
 long_2syll_f0_means$length <- "long"
 
-long_short_f0_means <- rbind(short_2syll_F0_reaper_means, long_2syll_f0_means)
+long_short_f0_means <- rbind(short_2syll_f0_reaper_means, long_2syll_f0_means)
 
 long_short_f0_means$position_length = factor(long_short_f0_means$position_length, levels= c("-2.long", "-2.short","-1.long","-1.short"))
 long_short_f0$position_length = factor(long_short_f0$position_length, levels= c("-2.long", "-2.short","-1.long","-1.short"))
@@ -930,7 +1381,7 @@ my_colors <- c("#56B4E9", "#009E73")
 ggplot(data = long_short_f0_means, aes(x = position_length, y = mean, fill = length))+
   apatheme+
   labs(x = "Syllable position", y = "f0, Hz") +
-  geom_violin(data = long_short_f0, aes(x = position_length, y = F0_reaper, fill = length))+
+  geom_violin(data = long_short_f0, aes(x = position_length, y = f0_reaper, fill = length))+
   geom_point(data = long_short_f0_means, aes(y = mean, x=position_length, fill = length), size = 3) +
   geom_errorbar(ymax= long_short_f0_means$upper, ymin=long_short_f0_means$lower, width = 0.5) +
   scale_x_discrete(labels = label_wrap(5)) +
@@ -938,7 +1389,7 @@ ggplot(data = long_short_f0_means, aes(x = position_length, y = mean, fill = len
   theme(legend.position = "right")
 
 # Stats
-p <- lmerTest::lmer(F0_reaper ~ length * syllable_number + (1|Speaker) + (1|word_unique)  + (1|vowel),
+p <- lmerTest::lmer(f0_reaper ~ length * syllable_number + (1|Speaker) + (1|word_unique)  + (1|vowel),
                 data = long_short_f0)
 summary(p)
 emmeans(p, specs = pairwise ~ length)
@@ -948,15 +1399,15 @@ emmeans(p, specs = pairwise ~ length * syllable_number)
 
 
 ## 4-syll short vs. 2-syll long
-short_4syll_f0_comp <- short_4syll_F0_reaper %>% 
+short_4syll_f0_comp <- short_4syll_f0_reaper %>% 
   select(-rel_f0_reaper, -vowel.stress, -upperThreshold, -lowerThreshold)
 
 long2_short4_f0 <- rbind(short_4syll_f0_comp, long2)
 
-short_4syll_F0_reaper_means$length <- "short"
+short_4syll_f0_reaper_means$length <- "short"
 long_2syll_f0_means$length <- "long"
 
-long2_short4_means_f0 <- rbind(short_4syll_F0_reaper_means, long_2syll_f0_means)
+long2_short4_means_f0 <- rbind(short_4syll_f0_reaper_means, long_2syll_f0_means)
 
 long2_short4_means_f0$position_length = factor(long2_short4_means_f0$position_length, levels= c("-4.short","-3.short", "-2.long", "-2.short","-1.long","-1.short"))
 long2_short4_f0$position_length = factor(long2_short4_f0$position_length, levels= c("-4.short","-3.short","-2.long", "-2.short","-1.long","-1.short"))
@@ -966,7 +1417,7 @@ my_colors <- c("#56B4E9", "#009E73")
 ggplot(data = long2_short4_means_f0, aes(x = position_length, y = mean, fill = length))+
   apatheme+
   labs(x = "Syllable position", y = "F0, Hz") +
-  geom_violin(data = long2_short4_f0, aes(x = position_length, y = F0_reaper, fill = length))+
+  geom_violin(data = long2_short4_f0, aes(x = position_length, y = f0_reaper, fill = length))+
   geom_point(data = long2_short4_means_f0, aes(y = mean, x=position_length, fill = length), size = 3) +
   geom_errorbar(ymax= long2_short4_means_f0$upper, ymin=long2_short4_means_f0$lower, width = 0.5) +
   scale_x_discrete(labels = label_wrap(5))+
@@ -975,7 +1426,7 @@ ggplot(data = long2_short4_means_f0, aes(x = position_length, y = mean, fill = l
 
 # Stats
 
-p <- lmer(F0_reaper ~ position_length + (1|Speaker) + (1|word_unique)  + (1|vowel),
+p <- lmer(f0_reaper ~ position_length + (1|Speaker) + (1|word_unique)  + (1|vowel),
           data = long2_short4_f0)
 summary(p)
 emmeans(p, specs = pairwise ~ position_length)
@@ -984,17 +1435,17 @@ emmeans(p, specs = pairwise ~ position_length)
 
 ## 3-syll short vs. 4-syll short
 
-short_4syll_f0_comp <- short_4syll_F0_reaper %>% 
+short_4syll_f0_comp <- short_4syll_f0_reaper %>% 
   select(-rel_f0_reaper, -vowel.stress)
 
-short_3syll_f0_comp <- short_3syll_F0_reaper %>% 
+short_3syll_f0_comp <- short_3syll_f0_reaper %>% 
   select(-rel_f0_reaper, -vowel.stress)
 
 short3_short4_f0 <- rbind(short_4syll_f0_comp, short_3syll_f0_comp)
 short3_short4_f0$syll_comp <- paste(short3_short4_f0$syllable_number, short3_short4_f0$word_syllables, sep = "_")
 short3_short4_f0$word_syllables <- as.factor(short3_short4_f0$word_syllables)
 
-short3_short4_means_f0 <- rbind(short_4syll_F0_reaper_means, short_3syll_F0_reaper_means)
+short3_short4_means_f0 <- rbind(short_4syll_f0_reaper_means, short_3syll_f0_reaper_means)
 short3_short4_means_f0$syll_comp <- paste(short3_short4_means_f0$syllable_number, short3_short4_means_f0$word_syllables, sep = "_")
 short3_short4_means_f0$word_syllables <- as.factor(short3_short4_means_f0$word_syllables)
 
@@ -1003,7 +1454,7 @@ my_colors <- c("#a1d99b", "#009E73")
 ggplot(data = short3_short4_means_f0, aes(x = syll_comp, y = mean, fill = word_syllables))+
   apatheme+
   labs(x = "Syllable position", y = "F0, Hz") +
-  geom_violin(data = short3_short4_f0, aes(x = syll_comp, y = F0_reaper, fill = word_syllables))+
+  geom_violin(data = short3_short4_f0, aes(x = syll_comp, y = f0_reaper, fill = word_syllables))+
   geom_point(data = short3_short4_means_f0, aes(y = mean, x=syll_comp, fill = word_syllables), size = 3) +
   geom_errorbar(ymax= short3_short4_means_f0$upper, ymin=short3_short4_means_f0$lower, width = 0.5) +
   scale_x_discrete(limits = rev)+
@@ -1013,7 +1464,7 @@ ggplot(data = short3_short4_means_f0, aes(x = syll_comp, y = mean, fill = word_s
 
 # Stats
 
-p <- lmer(F0_reaper ~ syll_comp + (1|Speaker) + (1|word_unique)  + (1|vowel),
+p <- lmer(f0_reaper ~ syll_comp + (1|Speaker) + (1|word_unique)  + (1|vowel),
           data = short3_short4_f0)
 summary(p)
 emmeans(p, specs = pairwise ~ syll_comp)
@@ -1377,7 +1828,7 @@ emmeans(p, specs = pairwise ~ word_syllables)
 #   scale_x_discrete(labels = label_wrap(5))
 
 
-# short4 filtered out outlier F0_reapers
+# short4 filtered out outlier f0_reapers
 
 primary_f0 <- short4 %>% 
   filter(word_syllables == 2 | word_syllables == 3 | word_syllables == 4) %>%
@@ -1387,9 +1838,9 @@ primary_f0 <- short4 %>%
 primary_f0$word_syllables <- as.factor(primary_f0$word_syllables)
 
 yarrr::pirateplot(data = primary_f0,
-                  formula = F0_reaper ~ word_syllables)
+                  formula = f0_reaper ~ word_syllables)
 
-p <- lmer(F0_reaper ~ word_syllables + (1|Speaker) + (1|vowel),
+p <- lmer(f0_reaper ~ word_syllables + (1|Speaker) + (1|vowel),
           data = primary_f0)
 summary(p)
 emmeans(p, specs = pairwise ~ word_syllables)
@@ -1609,11 +2060,11 @@ short_hypothesis (
 # # Making row for relative f0 (Reaper mean)
 # short2$rel_f0_reaper <- ifelse(
 #   short2$end == short2$word_end,                                   # If it's at the end of the word, then
-#   lag(short2$F0_reaper, 1) - short2$F0_reaper,                                   # get the previous row's f0 minus that row's f0, otherwise
+#   lag(short2$f0_reaper, 1) - short2$f0_reaper,                                   # get the previous row's f0 minus that row's f0, otherwise
 #   ifelse(short2$stress == "unstressed",                            # if it's unstressed,
-#          lead(short2$F0_reaper, 1) - short2$F0_reaper,                           # get the following row's f0 minus that row's f0, otherwise
+#          lead(short2$f0_reaper, 1) - short2$f0_reaper,                           # get the following row's f0 minus that row's f0, otherwise
 #          ifelse(short2$stress == "secondary",                      # if it's secondary,
-#                 lead(short2$F0_reaper, 2) - short2$F0_reaper,                    # get the one 2 rows ahead minus that row's f0, otherwise NA
+#                 lead(short2$f0_reaper, 2) - short2$f0_reaper,                    # get the one 2 rows ahead minus that row's f0, otherwise NA
 #                 NA
 #          )
 #   )
