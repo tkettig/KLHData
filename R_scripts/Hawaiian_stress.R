@@ -103,22 +103,45 @@ NA_for_Praat <- data5 %>%
   filter(is.na(f0_praat))
 NA_for_Reaper <- data5 %>%
   filter(is.na(f0_reaper))
+NA_for_Reaper_median <- data5 %>%
+  filter(is.na(f0_reaper_median))
 
 hist(data5$f0_reaper, breaks = 300)
 hist(data5$f0_praat, breaks = 300)
+hist(data5$f0_reaper_median, breaks = 300)
+
 
 hist(NA_for_Praat$f0_reaper, breaks = 300)
+hist(NA_for_Praat$f0_reaper_median, breaks = 300)
 hist(NA_for_Reaper$f0_praat, breaks = 300)
+hist(NA_for_Reaper_median$f0_praat, breaks = 300)
+
 
 ggplot(data5, aes(x = f0_praat, y = f0_reaper)) +
   geom_point() +  # Scatter plot of points
   geom_abline(slope = 0.5, intercept = 0, color = "blue", linetype = "dashed") +
+  geom_abline(slope = 0.75, intercept = 0, color = "purple") +
+  geom_abline(slope = 1.5, intercept = 0, color = "purple") +
   geom_abline(slope = 1, intercept = 0, color = "red") +
   geom_abline(slope = 2, intercept = 0, color = "green", linetype = "dashed") +
   labs(title = "Scatterplot of f0_reaper vs. f0_praat",
        x = "f0_praat",
        y = "f0_reaper") +
-  theme_minimal()
+  theme_minimal() +
+  facet_wrap(~ Speaker) 
+
+ggplot(short2, aes(x = f0_reaper, y = f0_praat)) +
+  geom_point() +  # Scatter plot of points
+  geom_abline(slope = 0.5, intercept = 0, color = "blue", linetype = "dashed") +
+  geom_abline(slope = 1.5, intercept = 0, color = "purple") +
+  geom_abline(slope = 0.75, intercept = 0, color = "purple") +
+  geom_abline(slope = 1, intercept = 0, color = "red") +
+  geom_abline(slope = 2, intercept = 0, color = "green", linetype = "dashed") +
+  labs(title = "Scatterplot of f0_reaper vs. f0_praat",
+       x = "f0_reaper",
+       y = "f0_praat") +
+  theme_minimal() + 
+  facet_wrap(~ Speaker) 
 
 
 
@@ -332,26 +355,34 @@ dat_34syll$syll_comp <- paste(dat_34syll$syllable_number, dat_34syll$word_syllab
 
 
 
-
-
-
-
-
 #### Simple models ####
 
 ### Intensity
 ## 2-syllable words with just short vowels, intensity
 # Stats
-p <- lmer(intensity ~ syllable_number*vowel + (1|Speaker) + (1|word_unique),
+p1 <- lmer(intensity ~ syllable_number*vowel + (1|Speaker) + (1|word_unique),
           data = dat_2syl)
+
+p2 <- lmer(intensity ~ syllable_number*vowel + (1 + syllable_number|Speaker) + (1|word_unique),
+          data = dat_2syl)
+
+anova(p1,p2)
+
 summary(p)
-emmeans(p, specs = pairwise ~ syllable_number)
+emmeans(p2, specs = pairwise ~ syllable_number)
 
 
 ## 3-syllable words with just short vowels, intensity
 # Stats
-p <- lmer(intensity ~ syllable_number*vowel + (1|Speaker) + (1|word_unique),
+
+p1 <- lmer(intensity ~ syllable_number*vowel + (1|Speaker) + (1|word_unique),
           data = dat_3syl)
+
+p2 <- lmer(intensity ~ syllable_number*vowel + (1 + syllable_number|Speaker) + (1|word_unique),
+          data = dat_3syl)
+
+anova(p1,p2)
+
 summary(p)
 emmeans(p, specs = pairwise ~ syllable_number)
 
@@ -468,6 +499,10 @@ p <- lmer(f0_praat ~ syllable_number*vowel + (1|Speaker) + (1|word_unique),
 summary(p)
 emmeans(p, specs = pairwise ~ syllable_number)
 
+yarrr::pirateplot(f0_praat ~ syllable_number, data = dat_4syl)
+yarrr::pirateplot(f0_reaper ~ syllable_number, data = dat_4syl)
+
+
 ## 2-syllable words with just long vowels, f0_praat
 
 p <- lmer(f0_praat ~ syllable_number + (1|Speaker) + (1|word_unique)  + (1|vowel),
@@ -526,7 +561,7 @@ emmeans(p, specs = pairwise ~ syllable_number)
 
 ## 2-syllable words with just long vowels, duration
 
-p <- lmer(duration ~ syllable_number + (1|Speaker) + (1|word_unique)  + (1|vowel),
+p <- lmer(duration ~ syllable_number + vowel + (1|Speaker) + (1|word_unique),
           data = dat_2syl_long)
 summary(p)
 emmeans(p, specs = pairwise ~ syllable_number)
@@ -534,6 +569,10 @@ emmeans(p, specs = pairwise ~ syllable_number)
 ## 2-syllable short vs. 2-syllable long, duration
 p <- lmer(duration ~ syllable_number*length + (1|Speaker) + (1|word_unique)  + (1|vowel),
           data = dat_2syll_shortlong)
+
+p <- lmer(duration ~ syllable_number*length*vowel + (1|Speaker) + (1|word_unique),
+          data = dat_2syll_shortlong)
+
 summary(p)
 emmeans(p, specs = pairwise ~ syllable_number*length)
 
@@ -543,6 +582,9 @@ p <- lmer(duration ~ syll_length + (1|Speaker) + (1|word_unique)  + (1|vowel),
           data = dat_4syll_shortlong)
 summary(p)
 emmeans(p, specs = pairwise ~ syll_length)
+
+yarrr::pirateplot(duration ~ syll_length, data = dat_4syll_shortlong)
+
 
 
 ## 3-syll short vs. 4-syll short, duration
