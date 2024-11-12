@@ -839,15 +839,6 @@ varImp_data %>% ggplot(aes(fct_reorder(rowname,Overall), Overall)) +
 
 
 
-
-
-
-
-
-
-
-
-
 #### Plots #######
 
 ## Making a ggplot theme
