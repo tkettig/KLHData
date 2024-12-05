@@ -95,6 +95,13 @@ data5 <- data5 %>% rename(f1_normed_mid = f1_mid,
 
 data5$length <- ifelse(data5$Syllabification == "Diph", "diph",
                        ifelse(data5$Moras == 2, "long", "short"))
+data5$vowel_collapsed <- ifelse(data5$vowel == "ā", "a",
+                                ifelse(data5$vowel == "ō", "o",
+                                       ifelse(data5$vowel == "ū", "u",
+                                              ifelse(data5$vowel == "ī", "i",
+                                                     ifelse(data5$vowel == "ē", "e",
+                                                            data5$vowel)))))
+  
 data5$position_length <- paste(data5$syllable_number, data5$length, sep=".")
 
 ### Explore f0 measurements a bit
@@ -117,7 +124,7 @@ hist(NA_for_Reaper$f0_praat, breaks = 300)
 hist(NA_for_Reaper_median$f0_praat, breaks = 300)
 
 
-ggplot(data5, aes(x = f0_praat, y = f0_reaper)) +
+ggplot(data5, aes(x = f0_praat, y = f0_reaper, color = out_of_range)) +
   geom_point() +  # Scatter plot of points
   geom_abline(slope = 0.5, intercept = 0, color = "blue", linetype = "dashed") +
   geom_abline(slope = 0.75, intercept = 0, color = "purple") +
@@ -128,21 +135,25 @@ ggplot(data5, aes(x = f0_praat, y = f0_reaper)) +
        x = "f0_praat",
        y = "f0_reaper") +
   theme_minimal() +
+  scale_color_manual(values = c("FALSE" = "black", "TRUE" = "red"))  +
   facet_wrap(~ Speaker) 
 
-ggplot(short2, aes(x = f0_reaper, y = f0_praat)) +
-  geom_point() +  # Scatter plot of points
-  geom_abline(slope = 0.5, intercept = 0, color = "blue", linetype = "dashed") +
-  geom_abline(slope = 1.5, intercept = 0, color = "purple") +
-  geom_abline(slope = 0.75, intercept = 0, color = "purple") +
-  geom_abline(slope = 1, intercept = 0, color = "red") +
-  geom_abline(slope = 2, intercept = 0, color = "green", linetype = "dashed") +
-  labs(title = "Scatterplot of f0_reaper vs. f0_praat",
-       x = "f0_reaper",
-       y = "f0_praat") +
-  theme_minimal() + 
-  facet_wrap(~ Speaker) 
 
+
+### Find and assign F0 outliers by speaker
+
+data5 <- data5 %>%
+  group_by(Speaker) %>%
+  mutate(
+    mean_f0 = mean(f0_praat, na.rm = TRUE),
+    sd_f0 = sd(f0_praat, na.rm = TRUE),
+    out_of_range = abs(f0_praat - mean_f0) > 2 * sd_f0
+  ) %>%
+  ungroup() 
+
+counts <- data5 %>%
+  select(Speaker, out_of_range) %>%
+  count(Speaker, out_of_range)
 
 
 ### Getting a datset of words which only contain short vowels

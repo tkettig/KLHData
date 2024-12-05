@@ -43,4 +43,24 @@ df$filename <- df$filename %>% str_remove(".wav.f0")
 AA <- left_join(AA, df, by="filename")
 
 
+## Get new f0 measures instead of trusting the ones from FastTrack
+## AA is now extracted with 75-320 as min and max in Praat
+
+df <- read.delim("f0_measurements.txt", sep = "\t")
+
+df <- df %>% 
+  select(-syll) %>%
+  mutate_at(c(3:11), as.numeric)
+
+df <- df %>%
+  rowwise() %>% 
+  mutate(f0_praat = median(c(f0_2, f0_3, f0_4, f0_5, f0_6,f0_7, f0_8), na.rm = TRUE))
+
+df <- df %>%
+  select(filename, f0_praat)
+
+df$filename <- str_replace(df$filename, ".wav", "") 
+
+AA <- left_join(AA, df, by="filename")
+
 setwd("/Users/Thomas/Documents/Hawaiian_Phonetics/KLHData/R_scripts/")

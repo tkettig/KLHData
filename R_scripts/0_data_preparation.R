@@ -3,6 +3,7 @@
 ## aggregated into 9 bins.
 library(tidyverse)
 library(reshape2)
+library(matrixStats)
 
 ## Gonna give myself two types of negated %in% here
 `%!in%` = Negate(`%in%`)

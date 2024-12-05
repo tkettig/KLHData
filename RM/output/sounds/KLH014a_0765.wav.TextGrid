@@ -4,9 +4,19 @@ Object class = "TextGrid"
 xmin = 0 
 xmax = 0.34798185941043086 
 tiers? <exists> 
-size = 2 
+size = 3 
 item []: 
     item [1]:
+        class = "IntervalTier" 
+        name = "" 
+        xmin = 0 
+        xmax = 0.34798185941043086 
+        intervals: size = 1 
+        intervals [1]:
+            xmin = 0 
+            xmax = 0.34798185941043086 
+            text = "" 
+    item [2]:
         class = "TextTier" 
         name = "GCIs" 
         xmin = 0 
@@ -177,7 +187,7 @@ item []:
         points [55]:
             number = 0.312608 
             mark = "" 
-    item [2]:
+    item [3]:
         class = "IntervalTier" 
         name = "Phonation" 
         xmin = 0 
