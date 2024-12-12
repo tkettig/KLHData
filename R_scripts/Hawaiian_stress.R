@@ -19,7 +19,7 @@ setwd("/Users/Thomas/Documents/Hawaiian_Phonetics/KLHData/R_scripts/")
 # source("3_normalize.R")
 
 ## This just gets the .csv with all the data, pre-extracted
-data <- read.csv('all_data_2Sept2024.csv')
+data <- read.csv('all_data_10Dec2024.csv')
 
 #### Data Preparation #####
 
@@ -88,7 +88,7 @@ data5 <- data5 %>% rename(f1_normed_mid = f1_mid,
                           f3_normed_mid = f3_mid,
                           f0_reaper = meanf0,
                           f0_reaper_median = medianf0,
-                          f0_praat = f0)
+                          f0_fasttrack = f0)
 
 
 ### Make column for position/length
@@ -123,8 +123,26 @@ hist(NA_for_Praat$f0_reaper_median, breaks = 300)
 hist(NA_for_Reaper$f0_praat, breaks = 300)
 hist(NA_for_Reaper_median$f0_praat, breaks = 300)
 
+### Find and assign F0 outliers by speaker
 
-ggplot(data5, aes(x = f0_praat, y = f0_reaper, color = out_of_range)) +
+# data5 <- data5 %>%
+#   group_by(Speaker) %>%
+#   mutate(
+#     mean_f0 = mean(f0_praat, na.rm = TRUE),
+#     sd_f0 = sd(f0_praat, na.rm = TRUE),
+#     out_of_range = abs(f0_praat - mean_f0) > 2 * sd_f0
+#   ) %>%
+#   ungroup() 
+# 
+# blurb <- data5 %>%
+#   select(filename, Speaker, out_of_range, f0_praat, vowel, word, Speaker, start)
+# 
+# counts <- data5 %>%
+#   select(Speaker, out_of_range) %>%
+#   count(Speaker, out_of_range)
+
+### Compare praat readings to reaper readings
+ggplot(data5, aes(x = f0_praat, y = f0_reaper)) +
   geom_point() +  # Scatter plot of points
   geom_abline(slope = 0.5, intercept = 0, color = "blue", linetype = "dashed") +
   geom_abline(slope = 0.75, intercept = 0, color = "purple") +
@@ -139,21 +157,22 @@ ggplot(data5, aes(x = f0_praat, y = f0_reaper, color = out_of_range)) +
   facet_wrap(~ Speaker) 
 
 
+ggplot(data5, aes(x = f0_fasttrack, y = f0_praat)) +
+  geom_point() +  # Scatter plot of points
+  geom_abline(slope = 0.5, intercept = 0, color = "blue", linetype = "dashed") +
+  geom_abline(slope = 0.75, intercept = 0, color = "purple") +
+  geom_abline(slope = 1.5, intercept = 0, color = "purple") +
+  geom_abline(slope = 1, intercept = 0, color = "red") +
+  geom_abline(slope = 2, intercept = 0, color = "green", linetype = "dashed") +
+  labs(title = "Scatterplot of f0_reaper vs. f0_fasttrack",
+       x = "f0_praat",
+       y = "f0_fasttrack") +
+  theme_minimal() +
+  scale_color_manual(values = c("FALSE" = "black", "TRUE" = "red"))  +
+  facet_wrap(~ Speaker) 
 
-### Find and assign F0 outliers by speaker
 
-data5 <- data5 %>%
-  group_by(Speaker) %>%
-  mutate(
-    mean_f0 = mean(f0_praat, na.rm = TRUE),
-    sd_f0 = sd(f0_praat, na.rm = TRUE),
-    out_of_range = abs(f0_praat - mean_f0) > 2 * sd_f0
-  ) %>%
-  ungroup() 
 
-counts <- data5 %>%
-  select(Speaker, out_of_range) %>%
-  count(Speaker, out_of_range)
 
 
 ### Getting a datset of words which only contain short vowels
@@ -366,6 +385,35 @@ dat_34syll$syll_comp <- paste(dat_34syll$syllable_number, dat_34syll$word_syllab
 
 
 
+## Get z-scored version of models
+
+scale_columns <- function(df, cols) {
+  df %>% 
+    group_by(across(Speaker)) %>%
+    mutate(across(all_of(cols), ~ scale(.) %>% as.vector))
+}
+
+# Example list of dataframes
+df_list <- list(dat_2syl, dat_2syl_long, dat_2syll_shortlong,
+                dat_34syll, dat_3syl,
+                dat_4syl, dat_4syll_shortlong)  # Replace with your actual dataframes
+
+# Columns to scale
+columns_to_scale <- c("f0_praat", "intensity")  # Replace with your actual column names
+
+# Apply the scaling function to each dataframe
+scaled_df_list <- lapply(df_list, scale_columns, cols = columns_to_scale)
+
+df_names <- c("dat_2syl", "dat_2syl_long", "dat_2syll_shortlong",
+                "dat_34syll", "dat_3syl",
+                "dat_4syl", "dat_4syll_shortlong")
+
+for (i in seq_along(df_names)) {
+  new_name <- paste0(df_names[i], "_z")
+  assign(new_name, scaled_df_list[[i]])
+}
+
+
 #### Simple models ####
 
 ### Intensity
@@ -436,57 +484,6 @@ emmeans(p, specs = pairwise ~ syll_comp)
 
 
 
-### F0 Reaper
-## 2-syllable words with just short vowels, f0_reaper
-# Stats
-p <- lmer(f0_reaper ~ syllable_number*vowel + (1|Speaker) + (1|word_unique),
-          data = dat_2syl)
-summary(p)
-emmeans(p, specs = pairwise ~ syllable_number)
-
-## 3-syllable words with just short vowels, f0_reaper
-# Stats
-p <- lmer(f0_reaper ~ syllable_number*vowel + (1|Speaker) + (1|word_unique),
-          data = dat_3syl)
-summary(p)
-emmeans(p, specs = pairwise ~ syllable_number)
-
-## 4-syllable words with just short vowels, f0_reaper
-# Stats
-p <- lmer(f0_reaper ~ syllable_number*vowel + (1|Speaker) + (1|word_unique),
-          data = dat_4syl)
-summary(p)
-emmeans(p, specs = pairwise ~ syllable_number)
-
-## 2-syllable words with just long vowels, f0_reaper
-
-p <- lmer(f0_reaper ~ syllable_number + (1|Speaker) + (1|word_unique)  + (1|vowel),
-          data = dat_2syl_long)
-summary(p)
-emmeans(p, specs = pairwise ~ syllable_number)
-
-## 2-syllable short vs. 2-syllable long, f0_reaper
-p <- lmer(f0_reaper ~ syllable_number*length + (1|Speaker) + (1|word_unique)  + (1|vowel),
-          data = dat_2syll_shortlong)
-summary(p)
-emmeans(p, specs = pairwise ~ syllable_number*length)
-
-
-## 4-syll short vs. 2-syll long, f0_reaper
-p <- lmer(f0_reaper ~ syll_length + (1|Speaker) + (1|word_unique)  + (1|vowel),
-          data = dat_4syll_shortlong)
-summary(p)
-emmeans(p, specs = pairwise ~ syll_length)
-
-
-## 3-syll short vs. 4-syll short, f0_reaper
-p <- lmer(f0_reaper ~ syll_comp*vowel + (1|Speaker) + (1|word_unique),
-          data = dat_34syll)
-summary(p)
-emmeans(p, specs = pairwise ~ syll_comp)
-
-
-
 
 ### F0 Praat
 ## 2-syllable words with just short vowels, intensity
@@ -511,7 +508,6 @@ summary(p)
 emmeans(p, specs = pairwise ~ syllable_number)
 
 yarrr::pirateplot(f0_praat ~ syllable_number, data = dat_4syl)
-yarrr::pirateplot(f0_reaper ~ syllable_number, data = dat_4syl)
 
 
 ## 2-syllable words with just long vowels, f0_praat
@@ -545,7 +541,7 @@ emmeans(p, specs = pairwise ~ syll_comp)
 
 
 ### Duration
-## 2-syllable words with just short vowels, intensity
+## 2-syllable words with just short vowels, duration
 # Stats
 p <- lmer(duration ~ syllable_number*vowel + (1|Speaker) + (1|word_unique),
           data = dat_2syl)
@@ -668,6 +664,101 @@ emmeans(p, specs = pairwise ~ syllable_number)
 
 
 
+
+#### Conditional inference tree ####
+
+library(partykit)
+
+ctree_data <- dat_2syl %>%
+  select(syllable_number, f0_praat, intensity, duration) %>%
+  drop_na()
+
+ctree_data <- dat_2syl_z %>%
+  select(syllable_number, f0_praat, intensity, duration) %>%
+  drop_na()
+
+ctree_model <- ctree(syllable_number ~ 
+                       f0_praat + 
+                       intensity + 
+                       duration,
+                     data = ctree_data,
+                     control=ctree_control(minbucket=400))
+plot(ctree_model)
+
+
+
+#### Linear discriminant analysis
+
+library(MASS)
+library(readxl)
+library(lmerTest)
+library(caret)
+library(devtools)
+library(ggord)
+library(klaR)
+
+
+lda_data <- dat_2syl %>%
+  select(syllable_number, f0_praat, intensity, duration) %>%
+  drop_na()
+
+
+# Data Partition
+set.seed(60)
+training.samples <- BurmeseTone$Tone %>%
+  createDataPartition(p = 0.8, list = FALSE)
+training.prep <- BurmeseTone[training.samples, ]
+testing.prep <- BurmeseTone[-training.samples, ]
+preproc.param <- training.prep %>% 
+  preProcess(method = c("center", "scale"))
+preproc.param.test <- testing.prep %>% 
+  preProcess(method = c("center", "scale"))
+training <- preproc.param %>% predict(training.prep)
+testing <- preproc.param.test %>% predict(testing.prep)
+
+# Fit the model
+model <- lda(Tone~Duration + Pitch_Difference + H1H2 + CPP + HNR + Intensity + H1A1, data = training)
+model
+
+
+# Make predictions
+predictions <- predict(model, training)
+predictions
+
+# Confusion matrix and accuracy
+p1 <- predict(model, training)$class
+tab <- table(Predicted = p1, Actual = training$Tone)
+tab
+sum(diag(tab))/sum(tab)
+
+p2 <- predict(model, testing)$class
+tab <- table(Predicted = p2, Actual = testing$Tone)
+tab
+sum(diag(tab))/sum(tab)
+
+
+# Histograms
+ldahist(data = predictions$x[,1],g=training$Tone)
+ldahist(data = predictions$x[,2],g=training$Tone)
+
+
+
+###PLOTTING DATA
+
+#Basic plot
+plot(model)
+
+#Scatterplot
+lda.data <- cbind(training, predict(model)$x)
+ggplot(lda.data, aes(LD1, LD2)) +
+  #geom_label(label=lda.data$Transcription)
+  geom_point(aes(color = Tone))
+
+# Bi-plot
+ggord(model,training$Tone,ellipse_pro = .8, txt=3,arrow=.2)
+
+#Partition Plots 
+partimat(as.factor(Tone)~Duration + Pitch_Difference + H1H2 + HNR + H1A1, data = training, method="lda")
 
 
 
