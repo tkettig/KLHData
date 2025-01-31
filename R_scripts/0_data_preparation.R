@@ -29,6 +29,10 @@ source("load_speaker/SB_data.R")
 # Bind them all together
 data <- rbind(AA,DK,HM,IN,JM,LV,RM,SB) %>% select(-comment2)
 
+# Take out one erroneous measurement
+data <- data %>%
+  filter(!(word == "iaʻu" & vowel =="ai"))
+
 ##### Add in frequency info ######
 
 freq_catherine <- read.csv("/Users/Thomas/Documents/Hawaiian_Phonetics/Dissertation/frequencies_catherine.csv", header=TRUE, stringsAsFactors=FALSE)
@@ -60,8 +64,9 @@ data <- data %>%
 
 ##### Get a token label in original order and correct some spellings #######
 
-data <- data %>% mutate(original_order = 1:length(filename),
-                        across(.cols = c(word, next_word, previous_word),.fns = ~recode(.x,
+data <- data %>% 
+  mutate(original_order = 1:length(filename),
+                        across(.cols = c(word, next_word, previous_word),.fns = ~dplyr::recode(.x,
                                                                                         aikane = "aikāne", ### these first ones all need their vowel to be changed, too
                                                                                         kaikunane = "kaikunāne",
                                                                                         ahea = "āhea",
@@ -185,11 +190,11 @@ data <- data %>%
       TRUE ~ NA_integer_ # Add default condition if needed
     ),
     Syllabification = ifelse(vowel %in% list_of_monophthongs, "Mono", "Diph"),
-    previous_sound = recode(previous_sound,
+    previous_sound = dplyr::recode(previous_sound,
                             `-` = "sil",
                             sp = "sil",
                             sil = "sil"),
-    next_sound = recode(next_sound,
+    next_sound = dplyr::recode(next_sound,
                         `-` = "sil",
                         sp = "sil",
                         sil = "sil")
