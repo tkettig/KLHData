@@ -54,16 +54,6 @@ filtered <- filtered %>% filter(articles == 0,
                                 mea == 0,
                                 manawa == 0)
 
-### Gets number of tokens per vowel
-
-# vowel_token_freq <- as.data.frame(table(filtered$vowel))
-# vowel_token_freq <- vowel_token_freq %>% rename(vowel = Var1)
-# 
-# ggplot(vowel_token_freq, aes(x=reorder(vowel,-Freq), y=Freq)) +
-#   geom_bar(stat = "identity")+
-#   ggtitle("Token frequency by vowel") +
-#   xlab("Vowel") + ylab("Frequency")+
-#   geom_text(aes(label=Freq), position=position_dodge(width=0.9), vjust=-0.25)
 
 ######### SPREADING DATA INTO TALL FORMAT #########
 
@@ -85,7 +75,11 @@ dataspread <- dataspread %>%
 
 speakers <- c("LV", "HM", "IN", "JM", "SB", "DK", "RM", "AA")
 
-arranged_data <- speakers %>% map(~ dataspread %>% filter(Speaker == .x) %>% arrange(mahal_dist)) %>% purrr::set_names(speakers)
+arranged_data <- speakers %>% 
+  map(~ dataspread %>% 
+        filter(Speaker == .x) %>% 
+        arrange(mahal_dist)) %>% 
+  purrr::set_names(speakers)
 
 ## Find the 95% and 99% points in them in order to just explore worst 5% of tokens and throw out worst 1% of measurements
 
@@ -132,95 +126,30 @@ data <- rbind(AA,DK,HM,IN,JM,LV,RM,SB)
 
 setwd("/Users/Thomas/Documents/Hawaiian_Phonetics/KLHData/R_scripts/")
 
+### Inspect durations to mark extra-long ones to possibly exclude #####
 
+duration_inspection <- data %>%
+  filter(duration > .3) %>%
+  filter(vowel %in% list_of_monophthongs) %>%
+  filter(word_syllables > 1) %>%
+  select(Speaker, filename, start, vowel, word, duration, comment1) %>%
+  unique() %>%
+  arrange(filename)
 
-####### EXPLORING OUTLIERS GRAPHICALLY #######
+write.csv(duration_inspection, "duration_inspection.csv")
 
-## aggregate all 9 measurements together to get a mean
-# 
-# means <- dataspread %>% 
-#   filter(Speaker=="LV") %>%
-#   group_by(filename,vowel,original_order,word,Syllabification,Moras) %>%
-#   summarise(meanF1 = mean(f1),
-#             meanF2 = mean(f2),
-#             mahal_dist = mean(mahal_dist))
-# 
-# library(phonR)
-# 
-# mono <- means %>% filter(Syllabification=="Mono") %>% ungroup()
-# i <- mono %>% filter(vowel == "i")
-# ī <- mono %>% filter(vowel == "ī")
-# 
-# e <- mono %>% filter(vowel == "e")
-# ē <- mono %>% filter(vowel == "ē")
-# 
-# 
-# a <- mono %>% filter(vowel == "a")
-# ā <- mono %>% filter(vowel == "ā")
-# 
-# o <- mono %>% filter(vowel == "o")
-# ō <- mono %>% filter(vowel == "ō")
-# 
-# ū <- mono %>% filter(vowel == "ū")
-# u <- mono %>% filter(vowel == "u")
-# 
-# with(i, plotVowels(meanF1, meanF2, vowel=vowel, pretty=T, legend.kwd = "bottomright", plot.tokens = T, plot.means = T, pch.means = vowel, pch.tokens = filename, ellipse.line = T, ellipse.conf = 0.95, alpha.tokens = 0.5))
-# with(i, plotVowels(meanF1, meanF2, vowel=vowel, pretty=T, legend.kwd = "bottomright", plot.tokens = T, plot.means = T, pch.means = vowel, pch.tokens = round(mahal_dist), ellipse.line = T, ellipse.conf = 0.95, alpha.tokens = 0.5))
-# 
-# 
-# with(ī, plotVowels(meanF1, meanF2, vowel=vowel, pretty=T, legend.kwd = "bottomright", plot.tokens = T, plot.means = T, pch.means = vowel, pch.tokens = filename, ellipse.line = T, ellipse.conf = 0.95, alpha.tokens = 0.5))
-# with(ī, plotVowels(meanF1, meanF2, vowel=vowel, pretty=T, legend.kwd = "bottomright", plot.tokens = T, plot.means = T, pch.means = vowel, pch.tokens = round(mahal_dist), ellipse.line = T, ellipse.conf = 0.95, alpha.tokens = 0.5))
-# 
-# with(e, plotVowels(meanF1, meanF2, vowel=vowel, pretty=T, legend.kwd = "bottomright", plot.tokens = T, plot.means = T, pch.means = vowel, pch.tokens = filename, ellipse.line = T, ellipse.conf = 0.95, alpha.tokens = 0.5))
-# with(e, plotVowels(meanF1, meanF2, vowel=vowel, pretty=T, legend.kwd = "bottomright", plot.tokens = T, plot.means = T, pch.means = vowel, pch.tokens = round(mahal_dist), ellipse.line = T, ellipse.conf = 0.95, alpha.tokens = 0.5))
-# 
-# with(ē, plotVowels(meanF1, meanF2, vowel=vowel, pretty=T, legend.kwd = "bottomright", plot.tokens = T, plot.means = T, pch.means = vowel, pch.tokens = filename, ellipse.line = T, ellipse.conf = 0.95, alpha.tokens = 0.5))
-# with(ē, plotVowels(meanF1, meanF2, vowel=vowel, pretty=T, legend.kwd = "bottomright", plot.tokens = T, plot.means = T, pch.means = vowel, pch.tokens = round(mahal_dist), ellipse.line = T, ellipse.conf = 0.95, alpha.tokens = 0.5))
-# 
-# with(a, plotVowels(meanF1, meanF2, vowel=vowel, pretty=T, legend.kwd = "bottomright", plot.tokens = T, plot.means = T, pch.means = vowel, pch.tokens = filename, ellipse.line = T, ellipse.conf = 0.95, alpha.tokens = 0.5))
-# with(a, plotVowels(meanF1, meanF2, vowel=vowel, pretty=T, legend.kwd = "bottomright", plot.tokens = T, plot.means = T, pch.means = vowel, pch.tokens = round(mahal_dist), ellipse.line = T, ellipse.conf = 0.95, alpha.tokens = 0.5))
-# 
-# with(ā, plotVowels(meanF1, meanF2, vowel=vowel, pretty=T, legend.kwd = "bottomright", plot.tokens = T, plot.means = T, pch.means = vowel, pch.tokens = filename, ellipse.line = T, ellipse.conf = 0.95, alpha.tokens = 0.5))
-# with(ā, plotVowels(meanF1, meanF2, vowel=vowel, pretty=T, legend.kwd = "bottomright", plot.tokens = T, plot.means = T, pch.means = vowel, pch.tokens = round(mahal_dist), ellipse.line = T, ellipse.conf = 0.95, alpha.tokens = 0.5))
-# 
-# 
-# 
-# 
-# 
-# 
-# ####### Looking at outlier diphthongs now #######
-# 
-# ai <- filtered %>% filter(vowel=="ai", Speaker =="LV")
-# au <- filtered %>% filter(vowel=="au")
-# 
-# 
-# with(ai, plotVowels(cbind(f1.3, f1.4, f1.5, f1.6, f1.7), cbind(f2.3, f2.4, f2.5, f2.6, f2.7), 
-#                     vowel, plot.tokens = TRUE, pch.tokens = filename, alpha.tokens = 0.2, plot.means = TRUE, 
-#                     pch.means = vowel, cex.means = 2, var.col.by = vowel, pretty = TRUE, 
-#                     diph.arrows = TRUE, diph.args.tokens = list(lwd = 0.8), diph.args.means = list(lwd = 3), 
-#                     family = "Charis SIL"))
-# 
-# with(au, plotVowels(cbind(f1.3, f1.4, f1.5, f1.6, f1.7), cbind(f2.3, f2.4, f2.5, f2.6, f2.7), 
-#                     vowel, plot.tokens = TRUE, pch.tokens = filename, alpha.tokens = 0.2, plot.means = TRUE, 
-#                     pch.means = vowel, cex.means = 2, var.col.by = vowel, pretty = TRUE, 
-#                     diph.arrows = TRUE, diph.args.tokens = list(lwd = 0.8), diph.args.means = list(lwd = 3), 
-#                     family = "Charis SIL"))
-# 
-# 
-# 
-# 
-# 
-# 
+### Inspect for kēlā and kēnā type words when demonstratives have been left in the dataset
 
-# 
-# means_diph <- dataspread %>% 
-#   group_by(vowel,Syllabification,Moras,time) %>%
-#   summarise(meanF1 = mean(f1),
-#             meanF2 = mean(f2))
-# 
-# ## re-gather, re-spread
-# 
-# means_diph_gath <- means_diph %>% gather(formant, hertz, meanF1:meanF2)
-# means_diph_gath$formant.time <- paste(means_diph_gath$formant,means_diph_gath$time, sep=".")
-# means_diph_spread <- means_diph_gath %>% select(-time,-formant) %>% spread(formant.time, hertz)
+long_e_inspection <- data %>%
+  select(Speaker, filename, start, vowel, word, duration, demons, comment1) %>%
+  filter(vowel %in% c("a","ā","e","ē")) %>%
+  unique()
+
+long_e_inspection$demons <- as.factor(long_e_inspection$demons)
+  
+ggplot(data = long_e_inspection, aes(x = vowel, y = duration, color = demons))+
+  apatheme+
+  geom_boxplot(position = position_dodge(0.5)) +
+  ylim(.03,.3)
+
 

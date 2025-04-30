@@ -211,8 +211,8 @@ data <- data %>%
     maikai = ifelse(str_detect(word, "maikaʻi") | str_detect(word, "maitaʻi"), 1, 0),
     Kinney1956 = ifelse(word %in% c("laila", "ikaika") | maikai == 1 | kaika == 1, 1, 0),
     articles = ifelse(word %in% c("ka", "ke", "kekahi", "kahi", "ta", "te", "nā"), 1, 0),
-    demons = ifelse(word %in% c("kēia", "kēlā", "kēnā", "tēia", "tēlā", "tēnā", "pēia", "pēlā", "pēnā"), 1, 0),
-    particles = ifelse(word %in% c("nō", "paha", "hoʻi", "wale", "pēnei"), 1, 0),
+    demons = ifelse(word %in% c("kēia", "kēlā", "kēnā", "tēia", "tēlā", "tēnā", "pēia", "pēlā", "pēnā", "pēnei"), 1, 0),
+    particles = ifelse(word %in% c("nō", "paha", "hoʻi", "wale"), 1, 0),
     directionals = ifelse(word %in% c("mai", "aku", "aʻe", "iho", "ala", "maila", "akula", "aʻela", "ihola", "nei"), 1, 0),
     pronouns = ifelse(word %in% c("au", "wau", "ʻoe", "ia", "māua", "mākou", "kāua", "kākou", "ʻolua", "ʻoukou", "lāua", "lākou", 
                                   "koʻu", "kou", "kāu", "kaʻu", "kuʻu", "kona", "kāna", "aʻu", "āu", "āna", "oʻu", "ou", "ona", 
@@ -272,8 +272,4 @@ data <- data %>% rename_at(vars(starts_with("f1")), funs(str_replace(., "f1", "f
 data <- data %>% rename_at(vars(starts_with("f2")), funs(str_replace(., "f2", "f2.")))
 data <- data %>% rename_at(vars(starts_with("f3")), funs(str_replace(., "f3", "f3.")))
 
-
-## Arjun: fix with regex
-
-# data <- data %>% rename_with(.cols = f11:f39, .fn = ~paste0(.x, '.'))
 

@@ -396,644 +396,41 @@ for (i in seq_along(df_names)) {
 }
 
 
-#### Simple models ####
+#### Explore how many of the 2-syllable short words actually have longer final vowel? #####
 
-### Intensity
-## 2-syllable words with just short vowels, intensity
-p1 <- lmer(intensity ~ syllable_number*vowel + (1|Speaker) + (1|word_unique),
-          data = dat_2syl)
+dat_2syl$Difference_duration <- dat_2syl$duration - lead(dat_2syl$duration)
+dat_2syl$Difference_intensity <- dat_2syl$intensity - lead(dat_2syl$intensity)
+dat_2syl$Difference_f0 <- dat_2syl$f0_praat - lead(dat_2syl$f0_praat)
 
-p2 <- lmer(intensity ~ syllable_number*vowel + (1 + syllable_number|Speaker) + (1|word_unique),
-          data = dat_2syl)
+dat_2syl$Final_longer <-ifelse(dat_2syl$duration < lead(dat_2syl$duration), TRUE, FALSE) 
+dat_2syl$Final_intenser <-ifelse(dat_2syl$intensity < lead(dat_2syl$intensity), TRUE, FALSE) 
+dat_2syl$Final_higher <-ifelse(dat_2syl$f0_praat < lead(dat_2syl$f0_praat), TRUE, FALSE) 
 
-anova(p1,p2) # p2 has significantly lower AIC
+dat_2syl_Finals <- dat_2syl %>%
+  filter(syllable_number == "-2")
 
-emmeans(p1, specs = pairwise ~ syllable_number)
-emmeans(p2, specs = pairwise ~ syllable_number)
+summary(dat_2syl_Finals$Final_longer)
+summary(dat_2syl_Finals$Final_intenser)
+summary(dat_2syl_Finals$Final_higher)
 
+ggplot(dat_2syl_Finals, aes(x = Difference_duration)) +
+  geom_density() +  # Scatter plot of points
+  geom_vline(xintercept = 0, color = "blue", linetype = "dashed") +
+  theme_minimal() 
+#  facet_wrap(~ Speaker) 
 
-## 3-syllable words with just short vowels, intensity
-p1 <- lmer(intensity ~ syllable_number*vowel + (1|Speaker) + (1|word_unique),
-          data = dat_3syl)
+ggplot(dat_2syl_Finals, aes(x = Difference_intensity)) +
+  geom_density() +  # Scatter plot of points
+  geom_vline(xintercept = 0, color = "blue", linetype = "dashed") +
+  theme_minimal() 
 
-p2 <- lmer(intensity ~ syllable_number*vowel + (1+syllable_number|Speaker) + (1|word_unique),
-          data = dat_3syl)
+ggplot(dat_2syl_Finals, aes(x = Difference_f0)) +
+  geom_density() +  # Scatter plot of points
+  geom_vline(xintercept = 0, color = "blue", linetype = "dashed") +
+  theme_minimal() 
 
-anova(p1,p2)
 
-emmeans(p1, specs = pairwise ~ syllable_number)
-emmeans(p2, specs = pairwise ~ syllable_number)
-
-
-## 4-syllable words with just short vowels, intensity
-p1 <- lmer(intensity ~ syllable_number*vowel + (1|Speaker) + (1|word_unique),
-          data = dat_4syl)
-
-p2 <- lmer(intensity ~ syllable_number*vowel + (1 + syllable_number|Speaker) + (1|word_unique),
-          data = dat_4syl)
-
-anova(p1,p2)
-
-emmeans(p1, specs = pairwise ~ syllable_number)
-emmeans(p2, specs = pairwise ~ syllable_number)
-
-
-## 2-syllable words with just long vowels, intensity
-dat_2syl_long_nokuma <- dat_2syl_long %>%
-  filter(word != "kūmā")
-
-# p1 <- lmer(intensity ~ syllable_number*vowel + (1|Speaker) + (1|word_unique),
-#          data = dat_2syl_long)
-
-# p2 <- lmer(intensity ~ syllable_number*vowel + (1 + syllable_number|Speaker) + (1|word_unique),
-#          data = dat_2syl_long)
-
-p3 <- lmer(intensity ~ syllable_number + (1|Speaker) + (1|word_unique) + (1|vowel),
-           data = dat_2syl_long_nokuma)
-
-p4 <- lmer(intensity ~ syllable_number + (1 + syllable_number|Speaker) + (1|word_unique) + (1|vowel),
-           data = dat_2syl_long_nokuma)
-
-# anova(p1,p2)
-anova(p3,p4)
-
-# emmeans(p1, specs = pairwise ~ syllable_number)
-# emmeans(p2, specs = pairwise ~ syllable_number)
-emmeans(p3, specs = pairwise ~ syllable_number)
-emmeans(p4, specs = pairwise ~ syllable_number)
-
-
-## 2-syllable short vs. 2-syllable long, intensity
-
-dat_2syll_shortlong_nokuma <- dat_2syll_shortlong %>%
-  filter(word != "kūmā")
-
-# p1 <- lmer(intensity ~ syllable_number*length*vowel + (1|Speaker) + (1|word_unique),
-#          data = dat_2syll_shortlong)
-
-# p2 <- lmer(intensity ~ syllable_number*length*vowel + (1 + syllable_number|Speaker) + (1|word_unique),
-#          data = dat_2syll_shortlong)
-
-p3 <- lmer(intensity ~ syllable_number*length + (1|Speaker) + (1|word_unique) + (1|vowel),
-           data = dat_2syll_shortlong_nokuma)
-
-p4 <- lmer(intensity ~ syllable_number*length + (1 + syllable_number|Speaker) + (1|word_unique) + (1|vowel),
-           data = dat_2syll_shortlong_nokuma)
-
-# anova(p1,p2)
-anova(p3,p4)
-
-
-# emmeans(p1, specs = pairwise ~ syllable_number*length)
-# emmeans(p2, specs = pairwise ~ syllable_number*length)
-
-emmeans(p3, specs = pairwise ~ syllable_number*length)
-
-summary(p4)
-emmeans(p4, specs = pairwise ~ syllable_number*length)
-
-
-
-## 4-syll short vs. 2-syll long primary vs secondary, intensity
-dat_primarysecondary_nokuma <- dat_primarysecondary %>%
-  filter(word != "kūmā")
-
-p1 <- lmer(intensity ~ stress*length*vowel + (1|Speaker) + (1|word_unique),
-          data = dat_primarysecondary)
-
-p2 <- lmer(intensity ~ stress*length*vowel + (1 + stress|Speaker) + (1|word_unique),
-          data = dat_primarysecondary)
-
-p3 <- lmer(intensity ~ stress*length + (1|Speaker) + (1|word_unique) + (1|vowel),
-           data = dat_primarysecondary)
-
-p4 <- lmer(intensity ~ stress*length + (1 + stress|Speaker) + (1|word_unique) +(1|vowel),
-           data = dat_primarysecondary)
-
-anova(p1,p2)
-anova(p3,p4)
-
-
-# emmeans(p1, specs = pairwise ~ stress*length)
-# emmeans(p2, specs = pairwise ~ stress*length)
-emmeans(p3, specs = pairwise ~ stress*length)
-emmeans(p4, specs = pairwise ~ stress*length)
-
-
-
-## 3-syll short vs. 4-syll short, intensity
-p1 <- lmer(intensity ~ syll_comp*vowel + (1|Speaker) + (1|word_unique),
-          data = dat_34syll)
-
-p2 <- lmer(intensity ~ syll_comp*vowel + (1 + syll_comp|Speaker) + (1|word_unique),
-           data = dat_34syll)
-
-anova(p1,p2)
-
-emmeans(p1, specs = pairwise ~ syll_comp)
-emmeans(p2, specs = pairwise ~ syll_comp)
-
-
-
-
-### F0 Praat
-## 2-syllable words with just short vowels, f0_praat
-p1 <- lmer(f0_praat ~ syllable_number*vowel + (1|Speaker) + (1|word_unique),
-           data = dat_2syl)
-
-p2 <- lmer(f0_praat ~ syllable_number*vowel + (1 + syllable_number|Speaker) + (1|word_unique),
-           data = dat_2syl)
-
-anova(p1,p2) # p2 has significantly lower AIC but gives a convergence error
-
-emmeans(p1, specs = pairwise ~ syllable_number)
-emmeans(p2, specs = pairwise ~ syllable_number)
-
-
-## 3-syllable words with just short vowels, f0_praat
-p1 <- lmer(f0_praat ~ syllable_number*vowel + (1|Speaker) + (1|word_unique),
-           data = dat_3syl)
-
-p2 <- lmer(f0_praat ~ syllable_number*vowel + (1+syllable_number|Speaker) + (1|word_unique),
-           data = dat_3syl)
-
-anova(p1,p2)
-
-emmeans(p1, specs = pairwise ~ syllable_number)
-emmeans(p2, specs = pairwise ~ syllable_number)
-
-
-## 4-syllable words with just short vowels, f0_praat
-p1 <- lmer(f0_praat ~ syllable_number*vowel + (1|Speaker) + (1|word_unique),
-           data = dat_4syl)
-
-p2 <- lmer(f0_praat ~ syllable_number*vowel + (1 + syllable_number|Speaker) + (1|word_unique),
-           data = dat_4syl)
-
-anova(p1,p2)
-
-emmeans(p1, specs = pairwise ~ syllable_number)
-emmeans(p2, specs = pairwise ~ syllable_number)
-
-
-## 2-syllable words with just long vowels, f0_praat
-dat_2syl_long_nokuma <- dat_2syl_long %>%
-  filter(word != "kūmā")
-
-# p1 <- lmer(f0_praat ~ syllable_number*vowel + (1|Speaker) + (1|word_unique),
-#        data = dat_2syl_long)
-
-# p2 <- lmer(f0_praat ~ syllable_number*vowel + (1 + syllable_number|Speaker) + (1|word_unique),
-#         data = dat_2syl_long)
-
-p3 <- lmer(f0_praat ~ syllable_number + (1|Speaker) + (1|word_unique) + (1|vowel),
-           data = dat_2syl_long)
-
-p4 <- lmer(f0_praat ~ syllable_number + (1 + syllable_number|Speaker) + (1|word_unique) + (1|vowel),
-           data = dat_2syl_long)
-
-# anova(p1,p2)
-anova(p3,p4)
-
-# emmeans(p1, specs = pairwise ~ syllable_number)
-# emmeans(p2, specs = pairwise ~ syllable_number)
-emmeans(p3, specs = pairwise ~ syllable_number)
-emmeans(p4, specs = pairwise ~ syllable_number)
-
-
-## 2-syllable short vs. 2-syllable long, f0_praat
-
-dat_2syll_shortlong_nokuma <- dat_2syll_shortlong %>%
-  filter(word != "kūmā")
-
-# p1 <- lmer(f0_praat ~ syllable_number*length*vowel + (1|Speaker) + (1|word_unique),
-#         data = dat_2syll_shortlong)
-
-# p2 <- lmer(f0_praat ~ syllable_number*length*vowel + (1 + syllable_number|Speaker) + (1|word_unique),
-#         data = dat_2syll_shortlong)
-
-p3 <- lmer(f0_praat ~ syllable_number*length + (1|Speaker) + (1|word_unique) + (1|vowel),
-           data = dat_2syll_shortlong_nokuma)
-
-p4 <- lmer(f0_praat ~ syllable_number*length + (1 + syllable_number|Speaker) + (1|word_unique) + (1|vowel),
-           data = dat_2syll_shortlong_nokuma)
-
-# anova(p1,p2)
-anova(p3,p4)
-
-
-# emmeans(p1, specs = pairwise ~ syllable_number*length)
-# emmeans(p2, specs = pairwise ~ syllable_number*length)
-
-emmeans(p3, specs = pairwise ~ syllable_number*length)
-
-summary(p4)
-emmeans(p4, specs = pairwise ~ syllable_number*length)
-
-
-
-## 4-syll short vs. 2-syll long primary vs secondary, f0_praat
-dat_primarysecondary_nokuma <- dat_primarysecondary %>%
-  filter(word != "kūmā")
-
-# p1 <- lmer(f0_praat ~ stress*length*vowel + (1|Speaker) + (1|word_unique),
-#           data = dat_primarysecondary)
-
-# p2 <- lmer(f0_praat ~ stress*length*vowel + (1 + stress|Speaker) + (1|word_unique),
-#           data = dat_primarysecondary)
-
-p3 <- lmer(f0_praat ~ stress*length + (1|Speaker) + (1|word_unique) + (1|vowel),
-           data = dat_primarysecondary_nokuma)
-
-p4 <- lmer(f0_praat ~ stress*length + (1 + stress|Speaker) + (1|word_unique) +(1|vowel),
-           data = dat_primarysecondary_nokuma)
-
-anova(p1,p2)
-anova(p3,p4)
-
-
-#emmeans(p1, specs = pairwise ~ stress*length)
-#emmeans(p2, specs = pairwise ~ stress*length)
-emmeans(p3, specs = pairwise ~ stress*length)
-emmeans(p4, specs = pairwise ~ stress*length)
-
-
-
-## 3-syll short vs. 4-syll short, f0_praat
-p1 <- lmer(f0_praat ~ syll_comp*vowel + (1|Speaker) + (1|word_unique),
-           data = dat_34syll)
-
-p2 <- lmer(f0_praat ~ syll_comp*vowel + (1 + syll_comp|Speaker) + (1|word_unique),
-           data = dat_34syll)
-
-anova(p1,p2)
-
-emmeans(p1, specs = pairwise ~ syll_comp)
-emmeans(p2, specs = pairwise ~ syll_comp)
-
-
-
-### Duration
-## 2-syllable words with just short vowels, duration
-p1 <- lmer(duration ~ syllable_number*vowel + (1|Speaker) + (1|word_unique),
-           data = dat_2syl)
-
-p2 <- lmer(duration ~ syllable_number*vowel + (1 + syllable_number|Speaker) + (1|word_unique),
-           data = dat_2syl)
-
-anova(p1,p2) # p2 has significantly lower AIC but gives a convergence error
-
-emmeans(p1, specs = pairwise ~ syllable_number)
-emmeans(p2, specs = pairwise ~ syllable_number)
-
-
-## 3-syllable words with just short vowels, duration
-p1 <- lmer(duration ~ syllable_number*vowel + (1|Speaker) + (1|word_unique),
-           data = dat_3syl)
-
-p2 <- lmer(duration ~ syllable_number*vowel + (1+syllable_number|Speaker) + (1|word_unique),
-           data = dat_3syl)
-
-anova(p1,p2)
-
-emmeans(p1, specs = pairwise ~ syllable_number)
-emmeans(p2, specs = pairwise ~ syllable_number)
-
-
-## 4-syllable words with just short vowels, duration
-p1 <- lmer(duration ~ syllable_number*vowel + (1|Speaker) + (1|word_unique),
-           data = dat_4syl)
-
-p2 <- lmer(duration ~ syllable_number*vowel + (1 + syllable_number|Speaker) + (1|word_unique),
-           data = dat_4syl)
-
-anova(p1,p2)
-
-emmeans(p1, specs = pairwise ~ syllable_number)
-emmeans(p2, specs = pairwise ~ syllable_number)
-
-
-## 2-syllable words with just long vowels, duration
-dat_2syl_long_nokuma <- dat_2syl_long %>%
-  filter(word != "kūmā")
-
-# p1 <- lmer(duration ~ syllable_number*vowel + (1|Speaker) + (1|word_unique),
-#        data = dat_2syl_long)
-
-# p2 <- lmer(duration ~ syllable_number*vowel + (1 + syllable_number|Speaker) + (1|word_unique),
-#         data = dat_2syl_long)
-
-p3 <- lmer(duration ~ syllable_number + (1|Speaker) + (1|word_unique) + (1|vowel),
-           data = dat_2syl_long_nokuma)
-
-p4 <- lmer(duration ~ syllable_number + (1 + syllable_number|Speaker) + (1|word_unique) + (1|vowel),
-           data = dat_2syl_long_nokuma)
-
-# anova(p1,p2)
-anova(p3,p4)
-
-# emmeans(p1, specs = pairwise ~ syllable_number)
-# emmeans(p2, specs = pairwise ~ syllable_number)
-emmeans(p3, specs = pairwise ~ syllable_number)
-emmeans(p4, specs = pairwise ~ syllable_number)
-
-
-## 2-syllable short vs. 2-syllable long, duration
-
-dat_2syll_shortlong_nokuma <- dat_2syll_shortlong %>%
-  filter(word != "kūmā")
-
-# p1 <- lmer(duration ~ syllable_number*length*vowel + (1|Speaker) + (1|word_unique),
-#         data = dat_2syll_shortlong)
-
-# p2 <- lmer(duration ~ syllable_number*length*vowel + (1 + syllable_number|Speaker) + (1|word_unique),
-#         data = dat_2syll_shortlong)
-
-p3 <- lmer(duration ~ syllable_number*length + (1|Speaker) + (1|word_unique) + (1|vowel),
-           data = dat_2syll_shortlong)
-
-p4 <- lmer(duration ~ syllable_number*length + (1 + syllable_number|Speaker) + (1|word_unique) + (1|vowel),
-           data = dat_2syll_shortlong)
-
-# anova(p1,p2)
-anova(p3,p4)
-
-
-# emmeans(p1, specs = pairwise ~ syllable_number*length)
-# emmeans(p2, specs = pairwise ~ syllable_number*length)
-
-emmeans(p3, specs = pairwise ~ syllable_number*length)
-
-summary(p3)
-emmeans(p3, specs = pairwise ~ syllable_number*length)
-
-summary(p4)
-emmeans(p4, specs = pairwise ~ syllable_number*length)
-
-
-
-## 4-syll short vs. 2-syll long primary vs secondary, duration
-dat_primarysecondary_nokuma <- dat_primarysecondary %>%
-  filter(word != "kūmā")
-
-# p1 <- lmer(duration ~ stress*length*vowel + (1|Speaker) + (1|word_unique),
-#           data = dat_primarysecondary)
-
-# p2 <- lmer(duration ~ stress*length*vowel + (1 + stress|Speaker) + (1|word_unique),
-#           data = dat_primarysecondary)
-
-p3 <- lmer(duration ~ stress*length + (1|Speaker) + (1|word_unique) + (1|vowel),
-           data = dat_primarysecondary_nokuma)
-
-p4 <- lmer(duration ~ stress*length + (1 + stress|Speaker) + (1|word_unique) +(1|vowel),
-           data = dat_primarysecondary_nokuma)
-
-anova(p1,p2)
-anova(p3,p4)
-
-
-#emmeans(p1, specs = pairwise ~ stress*length)
-#emmeans(p2, specs = pairwise ~ stress*length)
-summary(p3)
-emmeans(p3, specs = pairwise ~ stress*length)
-
-summary(p4)
-emmeans(p4, specs = pairwise ~ stress*length)
-
-
-
-## 3-syll short vs. 4-syll short, duration
-p1 <- lmer(duration ~ syll_comp*vowel + (1|Speaker) + (1|word_unique),
-           data = dat_34syll)
-
-p2 <- lmer(duration ~ syll_comp*vowel + (1 + syll_comp|Speaker) + (1|word_unique),
-           data = dat_34syll)
-
-anova(p1,p2)
-
-emmeans(p1, specs = pairwise ~ syll_comp)
-emmeans(p2, specs = pairwise ~ syll_comp)
-
-
-
-
-
-#### BRMS modeling ####
-
-library(gridExtra)
-
-model_2syll_int <- read_rds("model_2syll_int.rds")
-predictions(
-  model_2syll_int,
-  by = c("syllable_number", "length"))
-a <- plot_predictions(model_2syll_int,
-                      by = c("syllable_number", "length"))
-
-model_2syll_f0 <- read_rds("model_2syll_f0.rds")
-predictions(
-  model_2syll_f0,
-  by = c("syllable_number", "length"))
-b <- plot_predictions(model_2syll_f0,
-                      by = c("syllable_number", "length"))
-
-model_2syll_dur <- read_rds("model_2syll_dur.rds")
-predictions(
-  model_2syll_dur,
-  by = c("syllable_number", "length"))
-c <- plot_predictions(model_2syll_dur,
-                      by = c("syllable_number", "length"))
-
-
-model_3syll_int <- read_rds("model_3syll_int.rds")
-predictions(
-  model_3syll_int,
-  by = c("syllable_number", "length"))
-d <- plot_predictions(model_3syll_int,
-                      by = c("syllable_number", "length"))
-
-model_3syll_f0 <- read_rds("model_3syll_f0.rds")
-predictions(
-  model_3syll_f0,
-  by = c("syllable_number", "length"))
-e <- plot_predictions(model_3syll_f0,
-                      by = c("syllable_number", "length"))
-
-model_3syll_dur <- read_rds("model_3syll_dur.rds")
-predictions(
-  model_3syll_dur,
-  by = c("syllable_number", "length"))
-f <- plot_predictions(model_3syll_dur,
-                      by = c("syllable_number", "length"))
-
-
-model_4syll_int <- read_rds("model_4syll_int.rds")
-predictions(
-  model_4syll_int,
-  by = c("syllable_number", "length"))
-g <- plot_predictions(model_4syll_int,
-                      by = c("syllable_number", "length"))
-
-model_4syll_f0 <- read_rds("model_4syll_f0.rds")
-predictions(
-  model_4syll_f0,
-  by = c("syllable_number", "length"))
-h <- plot_predictions(model_4syll_f0,
-                      by = c("syllable_number", "length"))
-
-model_4syll_dur <- read_rds("model_4syll_dur.rds")
-predictions(
-  model_4syll_dur,
-  by = c("syllable_number", "length"))
-i <- plot_predictions(model_4syll_dur,
-                      by = c("syllable_number", "length"))
-
-
-model_2syll_long_int <- read_rds("model_2syll_long_int.rds")
-predictions(
-  model_2syll_long_int,
-  by = c("syllable_number", "length"))
-j <- plot_predictions(model_2syll_long_int,
-                      by = c("syllable_number", "length"))
-
-model_2syll_long_f0 <- read_rds("model_2syll_long_f0.rds")
-predictions(
-  model_2syll_long_f0,
-  by = c("syllable_number", "length"))
-k <- plot_predictions(model_2syll_long_f0,
-                      by = c("syllable_number", "length"))
-
-model_2syll_long_dur <- read_rds("model_2syll_long_dur.rds")
-predictions(
-  model_2syll_long_dur,
-  by = c("syllable_number", "length"))
-l <- plot_predictions(model_2syll_long_dur,
-                      by = c("syllable_number", "length"))
-
-model_2syll_shortlong_int <- read_rds("model_2syll_shortlong_int.rds")
-predictions(
-  model_2syll_shortlong_int,
-  by = c("syllable_number", "length"))
-m <- plot_predictions(model_2syll_shortlong_int,
-                      by = c("syllable_number", "length"))
-
-model_2syll_shortlong_f0 <- read_rds("model_2syll_shortlong_f0.rds")
-predictions(
-  model_2syll_shortlong_f0,
-  by = c("syllable_number", "length"))
-n <- plot_predictions(model_2syll_shortlong_f0,
-                      by = c("syllable_number", "length"))
-
-model_2syll_shortlong_dur <- read_rds("model_2syll_shortlong_dur.rds")
-predictions(
-  model_2syll_shortlong_dur,
-  by = c("syllable_number", "length"))
-o <- plot_predictions(model_2syll_shortlong_dur,
-                      by = c("syllable_number", "length"))
-
-
-## Primary vs. secondary
-
-model_primarysecondary_int <- read_rds("model_primarysecondary_int.rds")
-p_data <- predictions(
-  model_primarysecondary_int,
-  by = c("stress", "length"))
-p_data$stress <- factor(p_data$stress, 
-                        levels = c("secondary", "primary"))
-p <- ggplot(p_data, aes(x = stress, y = estimate, color = length)) +
-  geom_point(position = position_dodge(width = 0.3)) +
-  geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0, position = position_dodge(width = 0.3)) +
-  theme_minimal() +
-  labs(x = "Stress", y = "Intensity")
-
-
-model_primarysecondary_f0 <- read_rds("model_primarysecondary_f0.rds")
-q_data <- predictions(
-  model_primarysecondary_f0,
-  by = c("stress", "length"))
-q_data$stress <- factor(q_data$stress, 
-                        levels = c("secondary", "primary"))
-q <- ggplot(q_data, aes(x = stress, y = estimate, color = length)) +
-  geom_point(position = position_dodge(width = 0.3)) +
-  geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0, position = position_dodge(width = 0.3)) +
-  theme_minimal() +
-  labs(x = "Stress", y = "f0")
-
-model_primarysecondary_dur <- read_rds("model_primarysecondary_dur.rds")
-r_data <- predictions(
-  model_primarysecondary_dur,
-  by = c("stress", "length"))
-r_data$stress <- factor(r_data$stress, 
-                        levels = c("secondary", "primary"))
-r <- ggplot(r_data, aes(x = stress, y = estimate, color = length)) +
-  geom_point(position = position_dodge(width = 0.3)) +
-  geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0, position = position_dodge(width = 0.3)) +
-  theme_minimal() +
-  labs(x = "Stress", y = "duration")
-
-model_34syll_int <- read_rds("model_34syll_int.rds")
-predictions(
-  model_34syll_int,
-  by = c("syllable_number", "word_syllables"))
-s <- plot_predictions(model_34syll_int,
-                      by = c("syllable_number", "word_syllables"))
-
-model_34syll_f0 <- read_rds("model_34syll_f0.rds")
-predictions(
-  model_34syll_f0,
-  by = c("syllable_number", "word_syllables"))
-t <- plot_predictions(model_34syll_f0,
-                      by = c("syllable_number", "word_syllables"))
-
-model_34syll_dur <- read_rds("model_34syll_dur.rds")
-predictions(
-  model_34syll_dur,
-  by = c("syllable_number", "word_syllables"))
-u <- plot_predictions(model_34syll_dur,
-                      by = c("syllable_number", "word_syllables"))
-
-grid.arrange(#a, b, c, 
-             #d, e, f, 
-             #g, h, i, 
-             #j, k, l,
-             m, n, o, 
-             s, t, u, 
-             p, q, r, 
-             nrow = 3, ncol = 3)
-
-
-## Investigating kūmā
-
-kuma <- dat_2syl_long %>%
-  filter(word == "kūmā")
-all_but_kuma <- dat_2syl_long %>%
-  filter(word != "kūmā")
-pirateplot(data = kuma, 
-           formula = intensity ~ syllable_number)
-pirateplot(data = kuma, 
-           formula = f0_praat ~ syllable_number)
-pirateplot(data = kuma, 
-           formula = duration ~ syllable_number)
-pirateplot(data = all_but_kuma, 
-           formula = intensity ~ syllable_number)
-pirateplot(data = all_but_kuma, 
-           formula = f0_praat ~ syllable_number)
-pirateplot(data = all_but_kuma, 
-           formula = duration ~ syllable_number)
-
-library(cowplot)
-
-plot_grid(
-  plotlist = list(
-    capture.output(aa(), file = NULL),
-    capture.output(bb(), file = NULL),
-    capture.output(cc(), file = NULL)
-    # Add the rest of your pirateplot functions here
-  ),
-  ncol = 1
-)
-
-
-#### Plots #######
+#### Plots from before Feb 2025 #######
 
 ## Making a ggplot theme
 apatheme=theme_bw()+
@@ -1057,7 +454,7 @@ short_3syll_int <- filter(short2, word_syllables == 3)
 short_4syll_int <- filter(short2, word_syllables == 4)
 
 
-short_2syll_int_means = dat_2syl %>% 
+short_2syll_int_means = short_2syll_int %>% 
   group_by(syllable_stress, length, syllable_number, word_syllables) %>% 
   summarise(mean = mean(intensity, na.rm=T), 
             sd = sd(intensity, na.rm=T), 
@@ -1225,10 +622,6 @@ short_4syll_f0_praat_means$tval <- qt(0.05/2, df = short_4syll_f0_praat_means$co
 short_4syll_f0_praat_means$moe <- short_4syll_f0_praat_means$tval * short_4syll_f0_praat_means$se * -1
 short_4syll_f0_praat_means$upper <- short_4syll_f0_praat_means$mean + short_4syll_f0_praat_means$moe
 short_4syll_f0_praat_means$lower <- short_4syll_f0_praat_means$mean - short_4syll_f0_praat_means$moe
-
-
-
-
 
 
 ## Renaming syllables
@@ -2491,131 +1884,644 @@ pirateplot(duration ~ syllable_stress,
 
 
 
+#### Simple models ####
+
+### Intensity
+## 2-syllable words with just short vowels, intensity
+p1 <- lmer(intensity ~ syllable_number*vowel + (1|Speaker) + (1|word_unique),
+           data = dat_2syl)
+
+p2 <- lmer(intensity ~ syllable_number*vowel + (1 + syllable_number|Speaker) + (1|word_unique),
+           data = dat_2syl)
+
+anova(p1,p2) # p2 has significantly lower AIC
+
+emmeans(p1, specs = pairwise ~ syllable_number)
+emmeans(p2, specs = pairwise ~ syllable_number)
 
 
-### Attempt at BRMS modeling of the F1/F2 and stress type ###
+## 3-syllable words with just short vowels, intensity
+p1 <- lmer(intensity ~ syllable_number*vowel + (1|Speaker) + (1|word_unique),
+           data = dat_3syl)
+
+p2 <- lmer(intensity ~ syllable_number*vowel + (1+syllable_number|Speaker) + (1|word_unique),
+           data = dat_3syl)
+
+anova(p1,p2)
+
+emmeans(p1, specs = pairwise ~ syllable_number)
+emmeans(p2, specs = pairwise ~ syllable_number)
 
 
-library(emmeans)
-library(brms)
-library(bmmb)
-library(bayestestR)
-library(parameters)
-library(see)
-library(effects)
-library(ggeffects)
+## 4-syllable words with just short vowels, intensity
+p1 <- lmer(intensity ~ syllable_number*vowel + (1|Speaker) + (1|word_unique),
+           data = dat_4syl)
 
-short_a <- short2_a %>%
-  rename(f1z = f1_normed_inf,
-         f2z = f2_normed_inf)
+p2 <- lmer(intensity ~ syllable_number*vowel + (1 + syllable_number|Speaker) + (1|word_unique),
+           data = dat_4syl)
 
-model_formula <- bf( mvbind(f1z, f2z) ~ syllable_stress + (1|p|Speaker), # |p| indicates that f1 and f2 are correlated within speaker
-                     sigma ~ syllable_stress)
+anova(p1,p2)
 
-model <- brm(model_formula, data=short_a, 
-             chains=4, cores=4, warmup=1000, iter=2500, thin=2, family="student")
-summary(model)
-fixef (model)
-emmeans(model, specs = pairwise ~ syllable_stress)
-hello <- conditional_effects(model, "syllable_stress", resp = "f1z")
-conditional_effects(model, "syllable_stress", resp = "f2z")
-
-# plot(hello$f1normedinf.f1normedinf_syllable_stress$Speaker)
-
-# ggemmeans(model, terms = "syllable_stress")
-ggpredict(model, terms = "syllable_stress")
-
-theme_set(theme_modern())
-plot(parameters(model))
-result <- estimate_density(model)
-plot(result, stack = F)
+emmeans(p1, specs = pairwise ~ syllable_number)
+emmeans(p2, specs = pairwise ~ syllable_number)
 
 
-prior_summary(model)
-get_prior(model)
+## 2-syllable words with just long vowels, intensity
+dat_2syl_long_nokuma <- dat_2syl_long %>%
+  filter(word != "kūmā")
+
+# p1 <- lmer(intensity ~ syllable_number*vowel + (1|Speaker) + (1|word_unique),
+#          data = dat_2syl_long)
+
+# p2 <- lmer(intensity ~ syllable_number*vowel + (1 + syllable_number|Speaker) + (1|word_unique),
+#          data = dat_2syl_long)
+
+p3 <- lmer(intensity ~ syllable_number + (1|Speaker) + (1|word_unique) + (1|vowel),
+           data = dat_2syl_long_nokuma)
+
+p4 <- lmer(intensity ~ syllable_number + (1 + syllable_number|Speaker) + (1|word_unique) + (1|vowel),
+           data = dat_2syl_long_nokuma)
+
+# anova(p1,p2)
+anova(p3,p4)
+
+# emmeans(p1, specs = pairwise ~ syllable_number)
+# emmeans(p2, specs = pairwise ~ syllable_number)
+emmeans(p3, specs = pairwise ~ syllable_number)
+emmeans(p4, specs = pairwise ~ syllable_number)
 
 
-short_hypothesis (
-  model, 
-  c("f1z_syllable_stressPrimaryStressed = f1z_stressFinalUnstressed",                 # F1 Primary Stressed vs. F1 Final Unstressed
-    "sigma_f1z_syllable_stressPrimaryStressed = sigma_f1z_syllable_stressFinalUnstressed",     # F1 spread Primary Stressed vs. F1 spread Final Unstressed
-    "f2z_syllable_stressPrimaryStressed = f2z_syllable_stressFinalUnstressed",                 # F2 Primary Stressed vs. F2 Final Unstressed
-    "sigma_f2z_syllable_stressPrimaryStressed = sigma_f2z_syllable_stressFinalUnstressed",     # F2 spread Primary Stressed vs. F2 spread Final Unstressed
-    
-    "f1z_syllable_stressPrimaryStressed = f1z_syllable_stressAntepen.Unstressed",                 # F1 Primary Stressed vs. F1 Antepen. Unstressed
-    "sigma_f1z_syllable_stressPrimaryStressed = sigma_f1z_syllable_stressAntepen.Unstressed",     # F1 spread Primary Stressed vs. F1 spread Antepen. Unstressed
-    "f2z_syllable_stressPrimaryStressed = f2z_syllable_stressAntepen.Unstressed",                 # F2 Primary Stressed vs. F2 Antepen. Unstressed
-    "sigma_f2z_syllable_stressPrimaryStressed = sigma_f2z_syllable_stressAntepen.Unstressed",     # F2 spread Primary Stressed vs. F2 spread Antepen. Unstressed
-    
-    "f1z_syllable_stressPrimaryStressed = f1z_syllable_stressSecondaryStressed",                 # F1 Primary Stressed vs. F1 Secondary Stressed
-    "sigma_f1z_syllable_stressPrimaryStressed = sigma_f1z_syllable_stressSecondaryStressed",     # F1 spread Primary Stressed vs. F1 spread Secondary Stressed
-    "f2z_syllable_stressPrimaryStressed = f2z_syllable_stressSecondaryStressed",                 # F2 Primary Stressed vs. F2 Secondary Stressed
-    "sigma_f2z_syllable_stressPrimaryStressed = sigma_f2z_syllable_stressSecondaryStressed",     # F2 spread Primary Stressed vs. F2 spread Secondary Stressed
-    
-    "f1z_syllable_stressFinalUnstressed = f1z_syllable_stressAntepen.Unstressed",                 # F1 Final Unstressed vs. F1 Antepen. Unstressed
-    "sigma_f1z_syllable_stressFinalUnstressed = sigma_f1z_syllable_stressAntepen.Unstressed",     # F1 spread Final Unstressed vs. F1 spread Antepen. Unstressed
-    "f2z_syllable_stressFinalUnstressed = f2z_syllable_stressAntepen.Unstressed",                 # F2 Final Unstressed vs. F2 Antepen. Unstressed
-    "sigma_f2z_syllable_stressFinalUnstressed = sigma_f2z_syllable_stressAntepen.Unstressed",     # F2 spread Final Unstressed vs. F2 spread Antepen. Unstressed
-    
-    "f1z_syllable_stressSecondaryStressed = f1z_syllable_stressAntepen.Unstressed",                 # F1 Secondary Stressed vs. F1 Antepen. Unstressed
-    "sigma_f1z_syllable_stressSecondaryStressed = sigma_f1z_syllable_stressAntepen.Unstressed",     # F1 spread Secondary Stressed vs. F1 spread Antepen. Unstressed
-    "f2z_syllable_stressSecondaryStressed = f2z_syllable_stressAntepen.Unstressed",                 # F2 Secondary Stressed vs. F2 Antepen. Unstressed
-    "sigma_f2z_syllable_stressSecondaryStressed = sigma_f2z_syllable_stressAntepen.Unstressed",     # F2 spread Secondary Stressed vs. F2 spread Antepen. Unstressed
-    
-    "f1z_syllable_stressSecondaryStressed = f1z_syllable_stressFinalUnstressed",                 # F1 Secondary Stressed vs. F1 Final Unstressed
-    "sigma_f1z_syllable_stressSecondaryStressed = sigma_f1z_syllable_stressFinalUnstressed",     # F1 spread Secondary Stressed vs. F1 spread Final Unstressed
-    "f2z_syllable_stressSecondaryStressed = f2z_syllable_stressFinalUnstressed",                 # F2 Secondary Stressed vs. F2 Final Unstressed
-    "sigma_f2z_syllable_stressSecondaryStressed = sigma_f2z_syllable_stressFinalUnstressed"     # F2 spread Secondary Stressed vs. F2 spread Final Unstressed
-  ))
+## 2-syllable short vs. 2-syllable long, intensity
+
+dat_2syll_shortlong_nokuma <- dat_2syll_shortlong %>%
+  filter(word != "kūmā")
+
+# p1 <- lmer(intensity ~ syllable_number*length*vowel + (1|Speaker) + (1|word_unique),
+#          data = dat_2syll_shortlong)
+
+# p2 <- lmer(intensity ~ syllable_number*length*vowel + (1 + syllable_number|Speaker) + (1|word_unique),
+#          data = dat_2syll_shortlong)
+
+p3 <- lmer(intensity ~ syllable_number*length + (1|Speaker) + (1|word_unique) + (1|vowel),
+           data = dat_2syll_shortlong_nokuma)
+
+p4 <- lmer(intensity ~ syllable_number*length + (1 + syllable_number|Speaker) + (1|word_unique) + (1|vowel),
+           data = dat_2syll_shortlong_nokuma)
+
+# anova(p1,p2)
+anova(p3,p4)
 
 
+# emmeans(p1, specs = pairwise ~ syllable_number*length)
+# emmeans(p2, specs = pairwise ~ syllable_number*length)
 
+emmeans(p3, specs = pairwise ~ syllable_number*length)
 
-
-# # Making row for relative intensity
-# short2$rel_intensity <- ifelse(
-#   short2$end == short2$word_end,                                   # If it's at the end of the word, then
-#   lag(short2$intensity, 1) - short2$intensity,                     # get the previous row's intensity minus that row's intensity, otherwise
-#   ifelse(short2$stress == "unstressed",                            # if it's unstressed,
-#          lead(short2$intensity, 1) - short2$intensity,             # get the following row's intensity minus that row's intensity, otherwise
-#          ifelse(short2$stress == "secondary",                      # if it's secondary,
-#                 lead(short2$intensity, 2) - short2$intensity,      # get the one 2 rows ahead minus that row's intensity, otherwise NA
-#                 NA
-#          )     
-#   )
-# )
-# 
-# # Making row for relative f0 (Praat)
-# 
-# short2$rel_f0 <- ifelse(
-#   short2$end == short2$word_end,                                   # If it's at the end of the word, then
-#   lag(short2$f0, 1) - short2$f0,                                   # get the previous row's f0 minus that row's f0, otherwise
-#   ifelse(short2$stress == "unstressed",                            # if it's unstressed,
-#          lead(short2$f0, 1) - short2$f0,                           # get the following row's f0 minus that row's f0, otherwise
-#          ifelse(short2$stress == "secondary",                      # if it's secondary,
-#                 lead(short2$f0, 2) - short2$f0,                    # get the one 2 rows ahead minus that row's f0, otherwise NA
-#                 NA
-#          )
-#   )
-# )
-# 
-# 
-# # Making row for relative f0 (Reaper mean)
-# short2$rel_f0_reaper <- ifelse(
-#   short2$end == short2$word_end,                                   # If it's at the end of the word, then
-#   lag(short2$f0_reaper, 1) - short2$f0_reaper,                                   # get the previous row's f0 minus that row's f0, otherwise
-#   ifelse(short2$stress == "unstressed",                            # if it's unstressed,
-#          lead(short2$f0_reaper, 1) - short2$f0_reaper,                           # get the following row's f0 minus that row's f0, otherwise
-#          ifelse(short2$stress == "secondary",                      # if it's secondary,
-#                 lead(short2$f0_reaper, 2) - short2$f0_reaper,                    # get the one 2 rows ahead minus that row's f0, otherwise NA
-#                 NA
-#          )
-#   )
-# )
+summary(p4)
+emmeans(p4, specs = pairwise ~ syllable_number*length)
 
 
 
-### Compare praat readings to reaper readings
+## 4-syll short vs. 2-syll long primary vs secondary, intensity
+dat_primarysecondary_nokuma <- dat_primarysecondary %>%
+  filter(word != "kūmā")
+
+p1 <- lmer(intensity ~ stress*length*vowel + (1|Speaker) + (1|word_unique),
+           data = dat_primarysecondary)
+
+p2 <- lmer(intensity ~ stress*length*vowel + (1 + stress|Speaker) + (1|word_unique),
+           data = dat_primarysecondary)
+
+p3 <- lmer(intensity ~ stress*length + (1|Speaker) + (1|word_unique) + (1|vowel),
+           data = dat_primarysecondary)
+
+p4 <- lmer(intensity ~ stress*length + (1 + stress|Speaker) + (1|word_unique) +(1|vowel),
+           data = dat_primarysecondary)
+
+anova(p1,p2)
+anova(p3,p4)
+
+
+# emmeans(p1, specs = pairwise ~ stress*length)
+# emmeans(p2, specs = pairwise ~ stress*length)
+emmeans(p3, specs = pairwise ~ stress*length)
+emmeans(p4, specs = pairwise ~ stress*length)
+
+
+
+## 3-syll short vs. 4-syll short, intensity
+p1 <- lmer(intensity ~ syll_comp*vowel + (1|Speaker) + (1|word_unique),
+           data = dat_34syll)
+
+p2 <- lmer(intensity ~ syll_comp*vowel + (1 + syll_comp|Speaker) + (1|word_unique),
+           data = dat_34syll)
+
+anova(p1,p2)
+
+emmeans(p1, specs = pairwise ~ syll_comp)
+emmeans(p2, specs = pairwise ~ syll_comp)
+
+
+
+
+### F0 Praat
+## 2-syllable words with just short vowels, f0_praat
+p1 <- lmer(f0_praat ~ syllable_number*vowel + (1|Speaker) + (1|word_unique),
+           data = dat_2syl)
+
+p2 <- lmer(f0_praat ~ syllable_number*vowel + (1 + syllable_number|Speaker) + (1|word_unique),
+           data = dat_2syl)
+
+anova(p1,p2) # p2 has significantly lower AIC but gives a convergence error
+
+emmeans(p1, specs = pairwise ~ syllable_number)
+emmeans(p2, specs = pairwise ~ syllable_number)
+
+
+## 3-syllable words with just short vowels, f0_praat
+p1 <- lmer(f0_praat ~ syllable_number*vowel + (1|Speaker) + (1|word_unique),
+           data = dat_3syl)
+
+p2 <- lmer(f0_praat ~ syllable_number*vowel + (1+syllable_number|Speaker) + (1|word_unique),
+           data = dat_3syl)
+
+anova(p1,p2)
+
+emmeans(p1, specs = pairwise ~ syllable_number)
+emmeans(p2, specs = pairwise ~ syllable_number)
+
+
+## 4-syllable words with just short vowels, f0_praat
+p1 <- lmer(f0_praat ~ syllable_number*vowel + (1|Speaker) + (1|word_unique),
+           data = dat_4syl)
+
+p2 <- lmer(f0_praat ~ syllable_number*vowel + (1 + syllable_number|Speaker) + (1|word_unique),
+           data = dat_4syl)
+
+anova(p1,p2)
+
+emmeans(p1, specs = pairwise ~ syllable_number)
+emmeans(p2, specs = pairwise ~ syllable_number)
+
+
+## 2-syllable words with just long vowels, f0_praat
+dat_2syl_long_nokuma <- dat_2syl_long %>%
+  filter(word != "kūmā")
+
+# p1 <- lmer(f0_praat ~ syllable_number*vowel + (1|Speaker) + (1|word_unique),
+#        data = dat_2syl_long)
+
+# p2 <- lmer(f0_praat ~ syllable_number*vowel + (1 + syllable_number|Speaker) + (1|word_unique),
+#         data = dat_2syl_long)
+
+p3 <- lmer(f0_praat ~ syllable_number + (1|Speaker) + (1|word_unique) + (1|vowel),
+           data = dat_2syl_long)
+
+p4 <- lmer(f0_praat ~ syllable_number + (1 + syllable_number|Speaker) + (1|word_unique) + (1|vowel),
+           data = dat_2syl_long)
+
+# anova(p1,p2)
+anova(p3,p4)
+
+# emmeans(p1, specs = pairwise ~ syllable_number)
+# emmeans(p2, specs = pairwise ~ syllable_number)
+emmeans(p3, specs = pairwise ~ syllable_number)
+emmeans(p4, specs = pairwise ~ syllable_number)
+
+
+## 2-syllable short vs. 2-syllable long, f0_praat
+
+dat_2syll_shortlong_nokuma <- dat_2syll_shortlong %>%
+  filter(word != "kūmā")
+
+# p1 <- lmer(f0_praat ~ syllable_number*length*vowel + (1|Speaker) + (1|word_unique),
+#         data = dat_2syll_shortlong)
+
+# p2 <- lmer(f0_praat ~ syllable_number*length*vowel + (1 + syllable_number|Speaker) + (1|word_unique),
+#         data = dat_2syll_shortlong)
+
+p3 <- lmer(f0_praat ~ syllable_number*length + (1|Speaker) + (1|word_unique) + (1|vowel),
+           data = dat_2syll_shortlong_nokuma)
+
+p4 <- lmer(f0_praat ~ syllable_number*length + (1 + syllable_number|Speaker) + (1|word_unique) + (1|vowel),
+           data = dat_2syll_shortlong_nokuma)
+
+# anova(p1,p2)
+anova(p3,p4)
+
+
+# emmeans(p1, specs = pairwise ~ syllable_number*length)
+# emmeans(p2, specs = pairwise ~ syllable_number*length)
+
+emmeans(p3, specs = pairwise ~ syllable_number*length)
+
+summary(p4)
+emmeans(p4, specs = pairwise ~ syllable_number*length)
+
+
+
+## 4-syll short vs. 2-syll long primary vs secondary, f0_praat
+dat_primarysecondary_nokuma <- dat_primarysecondary %>%
+  filter(word != "kūmā")
+
+# p1 <- lmer(f0_praat ~ stress*length*vowel + (1|Speaker) + (1|word_unique),
+#           data = dat_primarysecondary)
+
+# p2 <- lmer(f0_praat ~ stress*length*vowel + (1 + stress|Speaker) + (1|word_unique),
+#           data = dat_primarysecondary)
+
+p3 <- lmer(f0_praat ~ stress*length + (1|Speaker) + (1|word_unique) + (1|vowel),
+           data = dat_primarysecondary_nokuma)
+
+p4 <- lmer(f0_praat ~ stress*length + (1 + stress|Speaker) + (1|word_unique) +(1|vowel),
+           data = dat_primarysecondary_nokuma)
+
+anova(p1,p2)
+anova(p3,p4)
+
+
+#emmeans(p1, specs = pairwise ~ stress*length)
+#emmeans(p2, specs = pairwise ~ stress*length)
+emmeans(p3, specs = pairwise ~ stress*length)
+emmeans(p4, specs = pairwise ~ stress*length)
+
+
+
+## 3-syll short vs. 4-syll short, f0_praat
+p1 <- lmer(f0_praat ~ syll_comp*vowel + (1|Speaker) + (1|word_unique),
+           data = dat_34syll)
+
+p2 <- lmer(f0_praat ~ syll_comp*vowel + (1 + syll_comp|Speaker) + (1|word_unique),
+           data = dat_34syll)
+
+anova(p1,p2)
+
+emmeans(p1, specs = pairwise ~ syll_comp)
+emmeans(p2, specs = pairwise ~ syll_comp)
+
+
+
+### Duration
+## 2-syllable words with just short vowels, duration
+p1 <- lmer(duration ~ syllable_number*vowel + (1|Speaker) + (1|word_unique),
+           data = dat_2syl)
+
+p2 <- lmer(duration ~ syllable_number*vowel + (1 + syllable_number|Speaker) + (1|word_unique),
+           data = dat_2syl)
+
+anova(p1,p2) # p2 has significantly lower AIC but gives a convergence error
+
+emmeans(p1, specs = pairwise ~ syllable_number)
+emmeans(p2, specs = pairwise ~ syllable_number)
+
+
+## 3-syllable words with just short vowels, duration
+p1 <- lmer(duration ~ syllable_number*vowel + (1|Speaker) + (1|word_unique),
+           data = dat_3syl)
+
+p2 <- lmer(duration ~ syllable_number*vowel + (1+syllable_number|Speaker) + (1|word_unique),
+           data = dat_3syl)
+
+anova(p1,p2)
+
+emmeans(p1, specs = pairwise ~ syllable_number)
+emmeans(p2, specs = pairwise ~ syllable_number)
+
+
+## 4-syllable words with just short vowels, duration
+p1 <- lmer(duration ~ syllable_number*vowel + (1|Speaker) + (1|word_unique),
+           data = dat_4syl)
+
+p2 <- lmer(duration ~ syllable_number*vowel + (1 + syllable_number|Speaker) + (1|word_unique),
+           data = dat_4syl)
+
+anova(p1,p2)
+
+emmeans(p1, specs = pairwise ~ syllable_number)
+emmeans(p2, specs = pairwise ~ syllable_number)
+
+
+## 2-syllable words with just long vowels, duration
+dat_2syl_long_nokuma <- dat_2syl_long %>%
+  filter(word != "kūmā")
+
+# p1 <- lmer(duration ~ syllable_number*vowel + (1|Speaker) + (1|word_unique),
+#        data = dat_2syl_long)
+
+# p2 <- lmer(duration ~ syllable_number*vowel + (1 + syllable_number|Speaker) + (1|word_unique),
+#         data = dat_2syl_long)
+
+p3 <- lmer(duration ~ syllable_number + (1|Speaker) + (1|word_unique) + (1|vowel),
+           data = dat_2syl_long_nokuma)
+
+p4 <- lmer(duration ~ syllable_number + (1 + syllable_number|Speaker) + (1|word_unique) + (1|vowel),
+           data = dat_2syl_long_nokuma)
+
+# anova(p1,p2)
+anova(p3,p4)
+
+# emmeans(p1, specs = pairwise ~ syllable_number)
+# emmeans(p2, specs = pairwise ~ syllable_number)
+emmeans(p3, specs = pairwise ~ syllable_number)
+emmeans(p4, specs = pairwise ~ syllable_number)
+
+
+## 2-syllable short vs. 2-syllable long, duration
+
+dat_2syll_shortlong_nokuma <- dat_2syll_shortlong %>%
+  filter(word != "kūmā")
+
+# p1 <- lmer(duration ~ syllable_number*length*vowel + (1|Speaker) + (1|word_unique),
+#         data = dat_2syll_shortlong)
+
+# p2 <- lmer(duration ~ syllable_number*length*vowel + (1 + syllable_number|Speaker) + (1|word_unique),
+#         data = dat_2syll_shortlong)
+
+p3 <- lmer(duration ~ syllable_number*length + (1|Speaker) + (1|word_unique) + (1|vowel),
+           data = dat_2syll_shortlong)
+
+p4 <- lmer(duration ~ syllable_number*length + (1 + syllable_number|Speaker) + (1|word_unique) + (1|vowel),
+           data = dat_2syll_shortlong)
+
+# anova(p1,p2)
+anova(p3,p4)
+
+
+# emmeans(p1, specs = pairwise ~ syllable_number*length)
+# emmeans(p2, specs = pairwise ~ syllable_number*length)
+
+emmeans(p3, specs = pairwise ~ syllable_number*length)
+
+summary(p3)
+emmeans(p3, specs = pairwise ~ syllable_number*length)
+
+summary(p4)
+emmeans(p4, specs = pairwise ~ syllable_number*length)
+
+
+
+## 4-syll short vs. 2-syll long primary vs secondary, duration
+dat_primarysecondary_nokuma <- dat_primarysecondary %>%
+  filter(word != "kūmā")
+
+# p1 <- lmer(duration ~ stress*length*vowel + (1|Speaker) + (1|word_unique),
+#           data = dat_primarysecondary)
+
+# p2 <- lmer(duration ~ stress*length*vowel + (1 + stress|Speaker) + (1|word_unique),
+#           data = dat_primarysecondary)
+
+p3 <- lmer(duration ~ stress*length + (1|Speaker) + (1|word_unique) + (1|vowel),
+           data = dat_primarysecondary_nokuma)
+
+p4 <- lmer(duration ~ stress*length + (1 + stress|Speaker) + (1|word_unique) +(1|vowel),
+           data = dat_primarysecondary_nokuma)
+
+anova(p1,p2)
+anova(p3,p4)
+
+
+#emmeans(p1, specs = pairwise ~ stress*length)
+#emmeans(p2, specs = pairwise ~ stress*length)
+summary(p3)
+emmeans(p3, specs = pairwise ~ stress*length)
+
+summary(p4)
+emmeans(p4, specs = pairwise ~ stress*length)
+
+
+
+## 3-syll short vs. 4-syll short, duration
+p1 <- lmer(duration ~ syll_comp*vowel + (1|Speaker) + (1|word_unique),
+           data = dat_34syll)
+
+p2 <- lmer(duration ~ syll_comp*vowel + (1 + syll_comp|Speaker) + (1|word_unique),
+           data = dat_34syll)
+
+anova(p1,p2)
+
+emmeans(p1, specs = pairwise ~ syll_comp)
+emmeans(p2, specs = pairwise ~ syll_comp)
+
+
+
+
+
+#### Individual BRMS models ####
+
+library(gridExtra)
+
+model_2syll_int <- read_rds("model_2syll_int.rds")
+predictions(
+  model_2syll_int,
+  by = c("syllable_number", "length"))
+a <- plot_predictions(model_2syll_int,
+                      by = c("syllable_number", "length"))
+
+model_2syll_f0 <- read_rds("model_2syll_f0.rds")
+predictions(
+  model_2syll_f0,
+  by = c("syllable_number", "length"))
+b <- plot_predictions(model_2syll_f0,
+                      by = c("syllable_number", "length"))
+
+model_2syll_dur <- read_rds("model_2syll_dur.rds")
+predictions(
+  model_2syll_dur,
+  by = c("syllable_number", "length"))
+c <- plot_predictions(model_2syll_dur,
+                      by = c("syllable_number", "length"))
+
+
+model_3syll_int <- read_rds("model_3syll_int.rds")
+predictions(
+  model_3syll_int,
+  by = c("syllable_number", "length"))
+d <- plot_predictions(model_3syll_int,
+                      by = c("syllable_number", "length"))
+
+model_3syll_f0 <- read_rds("model_3syll_f0.rds")
+predictions(
+  model_3syll_f0,
+  by = c("syllable_number", "length"))
+e <- plot_predictions(model_3syll_f0,
+                      by = c("syllable_number", "length"))
+
+model_3syll_dur <- read_rds("model_3syll_dur.rds")
+predictions(
+  model_3syll_dur,
+  by = c("syllable_number", "length"))
+f <- plot_predictions(model_3syll_dur,
+                      by = c("syllable_number", "length"))
+
+
+model_4syll_int <- read_rds("model_4syll_int.rds")
+predictions(
+  model_4syll_int,
+  by = c("syllable_number", "length"))
+g <- plot_predictions(model_4syll_int,
+                      by = c("syllable_number", "length"))
+
+model_4syll_f0 <- read_rds("model_4syll_f0.rds")
+predictions(
+  model_4syll_f0,
+  by = c("syllable_number", "length"))
+h <- plot_predictions(model_4syll_f0,
+                      by = c("syllable_number", "length"))
+
+model_4syll_dur <- read_rds("model_4syll_dur.rds")
+predictions(
+  model_4syll_dur,
+  by = c("syllable_number", "length"))
+i <- plot_predictions(model_4syll_dur,
+                      by = c("syllable_number", "length"))
+
+
+model_2syll_long_int <- read_rds("model_2syll_long_int.rds")
+predictions(
+  model_2syll_long_int,
+  by = c("syllable_number", "length"))
+j <- plot_predictions(model_2syll_long_int,
+                      by = c("syllable_number", "length"))
+
+model_2syll_long_f0 <- read_rds("model_2syll_long_f0.rds")
+predictions(
+  model_2syll_long_f0,
+  by = c("syllable_number", "length"))
+k <- plot_predictions(model_2syll_long_f0,
+                      by = c("syllable_number", "length"))
+
+model_2syll_long_dur <- read_rds("model_2syll_long_dur.rds")
+predictions(
+  model_2syll_long_dur,
+  by = c("syllable_number", "length"))
+l <- plot_predictions(model_2syll_long_dur,
+                      by = c("syllable_number", "length"))
+
+model_2syll_shortlong_int <- read_rds("model_2syll_shortlong_int.rds")
+predictions(
+  model_2syll_shortlong_int,
+  by = c("syllable_number", "length"))
+m <- plot_predictions(model_2syll_shortlong_int,
+                      by = c("syllable_number", "length"))
+
+model_2syll_shortlong_f0 <- read_rds("model_2syll_shortlong_f0.rds")
+predictions(
+  model_2syll_shortlong_f0,
+  by = c("syllable_number", "length"))
+n <- plot_predictions(model_2syll_shortlong_f0,
+                      by = c("syllable_number", "length"))
+
+model_2syll_shortlong_dur <- read_rds("model_2syll_shortlong_dur.rds")
+predictions(
+  model_2syll_shortlong_dur,
+  by = c("syllable_number", "length"))
+o <- plot_predictions(model_2syll_shortlong_dur,
+                      by = c("syllable_number", "length"))
+
+
+## Primary vs. secondary
+
+model_primarysecondary_int <- read_rds("model_primarysecondary_int.rds")
+p_data <- predictions(
+  model_primarysecondary_int,
+  by = c("stress", "length"))
+p_data$stress <- factor(p_data$stress, 
+                        levels = c("secondary", "primary"))
+p <- ggplot(p_data, aes(x = stress, y = estimate, color = length)) +
+  geom_point(position = position_dodge(width = 0.3)) +
+  geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0, position = position_dodge(width = 0.3)) +
+  theme_minimal() +
+  labs(x = "Stress", y = "Intensity")
+
+
+model_primarysecondary_f0 <- read_rds("model_primarysecondary_f0.rds")
+q_data <- predictions(
+  model_primarysecondary_f0,
+  by = c("stress", "length"))
+q_data$stress <- factor(q_data$stress, 
+                        levels = c("secondary", "primary"))
+q <- ggplot(q_data, aes(x = stress, y = estimate, color = length)) +
+  geom_point(position = position_dodge(width = 0.3)) +
+  geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0, position = position_dodge(width = 0.3)) +
+  theme_minimal() +
+  labs(x = "Stress", y = "f0")
+
+model_primarysecondary_dur <- read_rds("model_primarysecondary_dur.rds")
+r_data <- predictions(
+  model_primarysecondary_dur,
+  by = c("stress", "length"))
+r_data$stress <- factor(r_data$stress, 
+                        levels = c("secondary", "primary"))
+r <- ggplot(r_data, aes(x = stress, y = estimate, color = length)) +
+  geom_point(position = position_dodge(width = 0.3)) +
+  geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0, position = position_dodge(width = 0.3)) +
+  theme_minimal() +
+  labs(x = "Stress", y = "duration")
+
+model_34syll_int <- read_rds("model_34syll_int.rds")
+predictions(
+  model_34syll_int,
+  by = c("syllable_number", "word_syllables"))
+s <- plot_predictions(model_34syll_int,
+                      by = c("syllable_number", "word_syllables"))
+
+model_34syll_f0 <- read_rds("model_34syll_f0.rds")
+predictions(
+  model_34syll_f0,
+  by = c("syllable_number", "word_syllables"))
+t <- plot_predictions(model_34syll_f0,
+                      by = c("syllable_number", "word_syllables"))
+
+model_34syll_dur <- read_rds("model_34syll_dur.rds")
+predictions(
+  model_34syll_dur,
+  by = c("syllable_number", "word_syllables"))
+u <- plot_predictions(model_34syll_dur,
+                      by = c("syllable_number", "word_syllables"))
+
+grid.arrange(#a, b, c, 
+  #d, e, f, 
+  #g, h, i, 
+  #j, k, l,
+  m, n, o, 
+  s, t, u, 
+  p, q, r, 
+  nrow = 3, ncol = 3)
+
+
+## Investigating kūmā
+
+kuma <- dat_2syl_long %>%
+  filter(word == "kūmā")
+all_but_kuma <- dat_2syl_long %>%
+  filter(word != "kūmā")
+pirateplot(data = kuma, 
+           formula = intensity ~ syllable_number)
+pirateplot(data = kuma, 
+           formula = f0_praat ~ syllable_number)
+pirateplot(data = kuma, 
+           formula = duration ~ syllable_number)
+pirateplot(data = all_but_kuma, 
+           formula = intensity ~ syllable_number)
+pirateplot(data = all_but_kuma, 
+           formula = f0_praat ~ syllable_number)
+pirateplot(data = all_but_kuma, 
+           formula = duration ~ syllable_number)
+
+library(cowplot)
+
+plot_grid(
+  plotlist = list(
+    capture.output(aa(), file = NULL),
+    capture.output(bb(), file = NULL),
+    capture.output(cc(), file = NULL)
+    # Add the rest of your pirateplot functions here
+  ),
+  ncol = 1
+)
+
+
+#### Compare praat readings to reaper readings #####
 ggplot(data5, aes(x = f0_praat, y = f0_reaper)) +
   geom_point() +  # Scatter plot of points
   geom_abline(slope = 0.5, intercept = 0, color = "blue", linetype = "dashed") +

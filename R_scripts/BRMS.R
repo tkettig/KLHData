@@ -18,7 +18,7 @@ setwd("/Users/Thomas/Documents/Hawaiian_Phonetics/KLHData/R_scripts/")
 # source("3_normalize.R")
 
 ## This just gets the .csv with all the data, pre-extracted
-data <- read.csv('all_data_10Dec2024.csv')
+data <- read.csv('all_data_31Jan2025.csv')
 
 #### Data Preparation #####
 
@@ -165,6 +165,7 @@ dat_2syl <- short2 %>%
 
 dat_2syl <- dat_2syl %>% 
   dplyr::select(Speaker,
+                filename,
                 word,
                 word_unique,
                 vowel,
@@ -198,6 +199,7 @@ dat_3syl %>% pull(syllable_number) %>% table
 
 dat_3syl <- dat_3syl %>% 
   dplyr::select(Speaker,
+                filename,
                 word,
                 word_unique,
                 vowel,
@@ -231,6 +233,7 @@ dat_4syl %>% pull(syllable_number) %>% table
 
 dat_4syl <- dat_4syl %>% 
   dplyr::select(Speaker,
+                filename,
                 word,
                 word_unique,
                 vowel,
@@ -291,6 +294,7 @@ long2$syllable_stress <- factor(long2$syllable_stress, levels=c("Final Stressed"
 dat_2syl_long <- long2 %>% 
   filter(word_syllables == 2, str_length(vowel) == 1, Moras == 2) %>% 
   dplyr::select(Speaker,
+                filename,
                 word,
                 word_unique,
                 vowel,
@@ -361,6 +365,13 @@ dat_primarysecondary <- dat_primarysecondary %>%
 dat_34syll <- rbind(dat_4syl, dat_3syl)
 
 dat_34syll$syll_comp <- paste(dat_34syll$syllable_number, dat_34syll$word_syllables, sep = "_")
+
+
+## Write out the datasets to csv
+
+write.csv(dat_2syll_shortlong, "dat_2long2short.csv")
+write.csv(dat_primarysecondary, "dat_2long4short.csv")
+write.csv(dat_34syll, "dat_34short.csv")
 
 
 
